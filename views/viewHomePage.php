@@ -101,8 +101,6 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
         </div>
         <!-- Portfolio Grid Items-->
         <div class="row justify-content-center">
@@ -171,8 +169,6 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
         </div>
         <!-- About Section Content-->
         <div class="row">
@@ -182,9 +178,9 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
         </div>
         <!-- About Section Button-->
         <div class="text-center mt-4">
-            <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/theme/freelancer/">
+            <a class="btn btn-xl btn-outline-light" href="views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/Guillaume De backre.pdf" download="CV Guillaume De Backre">
                 <i class="fas fa-download me-2"></i>
-                Free Download!
+                CV
             </a>
         </div>
     </div>

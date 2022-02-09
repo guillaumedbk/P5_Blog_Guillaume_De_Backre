@@ -46,6 +46,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/startbootstrap-freelancer-gh-pages/assets/img/portfolio" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,7 +62,7 @@
       <workItem from="1643208764526" duration="43256000" />
       <workItem from="1643794687812" duration="1000" />
       <workItem from="1644396961514" duration="51000" />
-      <workItem from="1644397278884" duration="11021000" />
+      <workItem from="1644397278884" duration="11833000" />
     </task>
     <servers />
   </component>
