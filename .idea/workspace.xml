@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="067fcdae-1739-4ebe-9478-d1f1fc789c30" name="Changes" comment="" />
+    <list default="true" id="067fcdae-1739-4ebe-9478-d1f1fc789c30" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Controller/ControllerHome.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/Router.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Model.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Post.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/PostManager.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/viewError.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/viewHome.php" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,11 +61,23 @@
       <updated>1643208761836</updated>
       <workItem from="1643208764526" duration="43256000" />
       <workItem from="1643794687812" duration="1000" />
+      <workItem from="1644396961514" duration="51000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
