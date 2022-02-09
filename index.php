@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 require('controllers/post.php');
 
 if(isset($_GET['action'])) {
@@ -21,3 +22,9 @@ if(isset($_GET['action'])) {
 $req = getPosts();
 
 
+=======
+require_once ('Controller/Router.php');
+
+$router = new Router();
+$router-> routeReq();
+>>>>>>> main
