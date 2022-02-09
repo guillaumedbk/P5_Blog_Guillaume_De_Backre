@@ -47,7 +47,7 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
 </head>
 <body id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg bg-secondary border-bottom border-white text-uppercase fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="#page-top">GUIBLOG</a>
         <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,33 +67,24 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
 
 
 <!-- Masthead-->
-<header class="masthead bg-primary text-white text-center">
+<header class="masthead bg-secondary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
 
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5 rounded-circle" src="views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/photoprofil.jpeg" alt="profile picture" />
 
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">Welcome to my blog !</h1>
-        <!-- Icon Divider-->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
+        <h1 class="masthead-heading text-uppercase mb-0"> <?= $firstname . ' ' . $name ?> </h1>
+
         <!-- Masthead Subheading-->
         <p class="masthead-subheading font-weight-light mb-0">
             <?= $bio ?>
         </p>
 
-        <ul>
-
-            <li>
-                <?=
-                $firstname, $name ?>
-            </li>
-
-        </ul>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+        </div>
 
     </div>
 </header>
