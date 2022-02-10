@@ -16,7 +16,7 @@ function dbConnect()
 function getPosts()
 {
     $db = dbConnect();
-    $req = $db->prepare('SELECT * FROM post');
+    $req = $db->prepare('SELECT * FROM post ORDER BY lastUpdate DESC');
     $req->execute();
     $posts = $req->fetchAll();
 
