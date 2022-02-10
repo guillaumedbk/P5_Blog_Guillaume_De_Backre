@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="067fcdae-1739-4ebe-9478-d1f1fc789c30" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/viewHomePage.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/viewHomePage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/viewPosts.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/viewPosts.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +50,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views" />
       <recent name="$PROJECT_DIR$/views/startbootstrap-freelancer-gh-pages/assets/img/portfolio" />
     </key>
   </component>
@@ -62,7 +65,8 @@
       <workItem from="1643208764526" duration="43256000" />
       <workItem from="1643794687812" duration="1000" />
       <workItem from="1644396961514" duration="51000" />
-      <workItem from="1644397278884" duration="12784000" />
+      <workItem from="1644397278884" duration="12960000" />
+      <workItem from="1644483747728" duration="5694000" />
     </task>
     <servers />
   </component>

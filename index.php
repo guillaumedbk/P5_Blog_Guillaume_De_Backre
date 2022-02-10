@@ -15,7 +15,6 @@ if(isset($_GET['action'])) {
     }
 }else{
     listUsers();
-   // header('Location: http://localhost:8888/Blog/views/startbootstrap-freelancer-gh-pages/');
 }
 
 $req = getPosts();
