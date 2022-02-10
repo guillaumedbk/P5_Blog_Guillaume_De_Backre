@@ -12,14 +12,21 @@ function listPost()
 function post()
 {
     $post = getPost($_GET['id']);
+    //$user = getUser(1);
     require('views/viewPost.php');
 }
-//All post
+//All users
 function listUsers()
 {
     $users = getUsers();
-   // require('views/viewHomePage.php');
     require('views/viewHomePage.php');
 }
+//One user
+function user()
+{
+    $user = getUser();
+    require('views/viewPost.php');
+}
+
 
 

@@ -57,14 +57,12 @@
             <!-- Post preview-->
             <?php foreach ($posts as $post): ?>
             <div class="post-preview">
-                <a href="post.html">
+                <a href="?action=post&id=<?= $post['id'] ?>">
                     <h2 class="post-title"> <?= $post['title'] ?> </h2>
                     <h3 class="post-subtitle"><?= $post['chapo'] ?> </h3>
                 </a>
                 <p class="post-meta">
-                    Posté
-                    <a href="#!">Start Bootstrap</a>
-                    le <?= $post['lastUpdate'] ?>
+                    Posté le <?= $post['lastUpdate'] ?>
                 </p>
             </div>
             <?php endforeach; ?>

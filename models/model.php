@@ -26,13 +26,12 @@ function getPosts()
 function getPost($postId)
 {
     $db = dbConnect();
-    $req = $db->prepare('SELECT id, title, chapo FROM post WHERE id = ? ORDER BY lastUpdate DESC');
+    $req = $db->prepare('SELECT * FROM post WHERE id = ?');
     $req->execute(array($postId));
     $post = $req->fetch();
 
     return $post;
 }
-
 //Get users
 function getUsers()
 {
@@ -42,4 +41,14 @@ function getUsers()
     $users = $req->fetchAll();
 
     return $users;
+}
+//Get user
+function getUser($userId)
+{
+    $db = dbConnect();
+    $req = $db->prepare('SELECT * FROM user WHERE id = ?');
+    $req->execute(array($userId));
+    $user = $req->fetch();
+    return $user;
+
 }
