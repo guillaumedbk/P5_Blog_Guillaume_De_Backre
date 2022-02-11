@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="067fcdae-1739-4ebe-9478-d1f1fc789c30" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/views/viewCreatePost.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/controllers/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/post.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/model.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.php" afterDir="false" />
+=======
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/views/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/viewPost.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
