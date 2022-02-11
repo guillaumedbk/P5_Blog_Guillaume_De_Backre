@@ -49,6 +49,14 @@ function getUser($userId)
     $req = $db->prepare('SELECT * FROM user WHERE id = ?');
     $req->execute(array($userId));
     $user = $req->fetch();
-    return $user;
 
+    return $user;
+}
+//Create post
+function createPost($author, $title, $chapo, $content){
+    $db = dbConnect();
+    $createPost = $db -> prepare('INSERT INTO post(userId, title, chapo, content, lastUpdate) VALUES(?, ?, ?, ?, NOW())');
+    $affectedLines = $createPost -> execute(array($author, $title, $chapo, $content));
+
+    return $affectedLines;
 }
