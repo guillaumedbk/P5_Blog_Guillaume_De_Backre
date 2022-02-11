@@ -13,6 +13,14 @@ if(isset($_GET['action'])) {
             echo 'Error: no id has been sent';
         }
     }
+    elseif ($_GET['action'] == 'addPost'){
+            if (!empty($_POST['author']) && !empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content'])) {
+                addPost($_POST['author'], $_POST['title'], $_POST['chapo'],  $_POST['content']);
+            }
+            else {
+                echo 'Erreur : tous les champs ne sont pas remplis !';
+            }
+    }
 }else{
     listUsers();
 }
