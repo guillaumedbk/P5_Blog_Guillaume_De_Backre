@@ -68,10 +68,7 @@ $user = getUser($userId);
         </div>
     </div>
 </article>
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 <!-- Post Creation -->
 <form action="index.php?action=addPost" method="post">
     <div>

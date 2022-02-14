@@ -41,31 +41,7 @@
     </div>
 </nav>
 
-
-<!-- Post Creation -->
-<form action="index.php?action=addPost" method="post">
-    <div>
-        <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" />
-    </div>
-    <div>
-        <label for="comment">titre du post</label><br />
-        <textarea id="comment" name="title"></textarea>
-    </div>
-    <div>
-        <label for="comment">chapo</label><br />
-        <textarea id="comment" name="chapo"></textarea>
-    </div>
-    <div>
-        <label for="comment">contenu</label><br />
-        <textarea id="comment" name="content"></textarea>
-    </div>
-    <div>
-        <input type="submit" />
-    </div>
-</form>
-
-<!-- Contact Section-->
+<!-- Post creation Section-->
 <section class="page-section" id="contact">
     <div class="container">
         <!-- Contact Section Heading-->

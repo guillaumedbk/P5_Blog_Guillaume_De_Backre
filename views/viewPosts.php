@@ -45,6 +45,7 @@
                 <div class="site-heading">
                     <h1>Le Blog</h1>
                     <span class="subheading">Découvrez nos derniers posts</span>
+                    <a href="?action=createP">Créer un post</a>
                 </div>
             </div>
         </div>
