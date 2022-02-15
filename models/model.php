@@ -61,10 +61,10 @@ function createPost($author, $title, $chapo, $content){
     return $affectedLines;
 }
 //Create user
-function signIn($firstname, $name, $email, $status, $bio){
+function signIn($firstname, $name, $email, $status, $bio, $password){
     $db = dbConnect();
-    $addUser = $db -> prepare('INSERT INTO user(firstname, name, email, status, bio) VALUES(?, ?, ?, ?, ?)');
-    $affected = $addUser -> execute(array($firstname, $name, $email, $status, $bio));
+    $addUser = $db -> prepare('INSERT INTO user(firstname, name, email, status, bio, password) VALUES(?, ?, ?, ?, ?, ?)');
+    $affected = $addUser -> execute(array($firstname, $name, $email, $status, $bio, $password));
 
     return $affected;
 }

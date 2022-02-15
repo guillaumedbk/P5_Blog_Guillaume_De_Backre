@@ -7,11 +7,9 @@ foreach ($users as $user) {
     $bio = $user['bio'];
 }
 //Assets access
-
 $dir = 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/cabin.{jpg,jpeg,gif,png}';
 $files = glob($dir,GLOB_BRACE);
 
-echo 'Listing des images du repertoire miniatures <br />';
 foreach($files as $image)
 {
     $f= str_replace($repertoire,'',$image);

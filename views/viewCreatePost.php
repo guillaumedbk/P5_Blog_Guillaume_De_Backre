@@ -56,16 +56,15 @@
             <div class="col-lg-8 col-xl-7">
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
-
                 <form action="index.php?action=addPost" method="post">
                     <!-- Auteur input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="number" id="author" name="author" placeholder="Chiffre Random pour le moment" />
+                        <input class="form-control" type="number" id="author" name="author" placeholder="Chiffre Random pour le moment" required />
                         <label for="name">Random pour le moment</label>
                     </div>
                     <!-- Titre input-->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="comment" name="title"></input>
+                        <input type="text" class="form-control" id="comment" name="title" required />
                         <label for="comment">Titre du post</label>
                         <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez mettre un titre</div>
                     </div>

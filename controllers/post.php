@@ -39,17 +39,16 @@ function addPost($author, $title, $chapo, $content)
     }
 }
 //Add user
-function addUser($firstname, $name, $email, $status, $bio)
+function addUser($firstname, $name, $email, $status, $bio, $password)
 {
-    $affected = signIn($firstname, $name, $email, $status, $bio);
+    $affected = signIn($firstname, $name, $email, $status, $bio, $password);
     if($affected == false){
         die('Impossible d\'ajouter l\'utilisateur');
     }
     else{
-        header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php');
+        listUsers();
     }
 }
-
 //Go to blogpost creation form
 function createBlogPost()
 {

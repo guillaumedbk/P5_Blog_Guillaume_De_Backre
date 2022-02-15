@@ -6,6 +6,9 @@ if(isset($_GET['action'])) {
     if($_GET['action'] == 'listPosts'){
         listPost();
     }
+    elseif($_GET['action'] == 'signIn'){
+        require('views/viewSignIn.php');
+    }
     elseif ($_GET['action'] == 'post'){
         if(isset($_GET['id']) && $_GET['id'] > 0){
             post();
@@ -25,11 +28,17 @@ if(isset($_GET['action'])) {
             }
     }
     elseif ($_GET['action'] == 'addUser'){
-        if (!empty($_POST['firstname']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['status']) && !empty($_POST['bio'])) {
-            addUser($_POST['firstname'], $_POST['name'], $_POST['email'],  $_POST['status'], $_POST['bio']);
+        if (!empty($_POST['firstname']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password'])){
+            if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                addUser($_POST['firstname'], $_POST['name'], $_POST['email'], 'utilisateur', $_POST['bio'], sha1($_POST['password']));
+            }
+            else{
+                echo 'Erreur: Veuillez entrer un mail valide';
+            }
+
         }
         else {
-            echo 'Erreur : tous les champs ne sont pas remplis !';
+            echo 'Erreur : Veuillez renseigner tous les champs !';
         }
     }
 }else{
