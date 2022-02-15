@@ -13,8 +13,8 @@ if(isset($_GET['action'])) {
             echo 'Error: no id has been sent';
         }
     }
-    if($_GET['action'] == 'createP'){
-        createP();
+    if($_GET['action'] == 'createBlogPost'){
+        createBlogPost();
     }
     elseif ($_GET['action'] == 'addPost'){
             if (!empty($_POST['author']) && !empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content'])) {
