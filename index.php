@@ -24,6 +24,14 @@ if(isset($_GET['action'])) {
                 echo 'Erreur : tous les champs ne sont pas remplis !';
             }
     }
+    elseif ($_GET['action'] == 'addUser'){
+        if (!empty($_POST['firstname']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['status']) && !empty($_POST['bio'])) {
+            addUser($_POST['firstname'], $_POST['name'], $_POST['email'],  $_POST['status'], $_POST['bio']);
+        }
+        else {
+            echo 'Erreur : tous les champs ne sont pas remplis !';
+        }
+    }
 }else{
     listUsers();
 }

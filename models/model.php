@@ -60,3 +60,11 @@ function createPost($author, $title, $chapo, $content){
 
     return $affectedLines;
 }
+//Create user
+function signIn($firstname, $name, $email, $status, $bio){
+    $db = dbConnect();
+    $addUser = $db -> prepare('INSERT INTO user(firstname, name, email, status, bio) VALUES(?, ?, ?, ?, ?)');
+    $affected = $addUser -> execute(array($firstname, $name, $email, $status, $bio));
+
+    return $affected;
+}

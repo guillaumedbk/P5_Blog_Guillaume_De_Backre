@@ -35,10 +35,22 @@ function addPost($author, $title, $chapo, $content)
         die('Impossible d\'ajouter le post !');
     }
     else{
-       //require('views/viewPosts.php');
        header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=listPosts');
     }
 }
+//Add user
+function addUser($firstname, $name, $email, $status, $bio)
+{
+    $affected = signIn($firstname, $name, $email, $status, $bio);
+    if($affected == false){
+        die('Impossible d\'ajouter l\'utilisateur');
+    }
+    else{
+        header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php');
+    }
+}
+
+//Go to blogpost creation form
 function createBlogPost()
 {
     require('views/viewCreatePost.php');
