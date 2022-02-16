@@ -68,3 +68,12 @@ function signIn($firstname, $name, $email, $status, $bio, $password){
 
     return $affected;
 }
+//Check if mail exist
+function mailExist($mail){
+    $db = dbConnect();
+    $reqMail = $db->prepare('SELECT * FROM user WHERE email = ?');
+    $reqMail->execute(array($mail));
+    $mailExist = $reqMail->rowCount();
+
+    return $mailExist;
+}

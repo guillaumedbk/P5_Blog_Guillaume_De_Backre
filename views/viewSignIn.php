@@ -67,8 +67,9 @@
 
                     <!-- message display -->
                     <?php
-                    if(isset($msg)){
+                    if(isset($msg, $erreur)){
                         echo $msg;
+                        echo $erreur;
                     }
                     ?>
 

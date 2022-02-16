@@ -29,8 +29,17 @@ if(isset($_GET['action'])) {
     }
     elseif ($_GET['action'] == 'addUser'){
         if (!empty($_POST['firstname']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password'])){
+            //Mail Filter
             if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                addUser($_POST['firstname'], $_POST['name'], $_POST['email'], 'utilisateur', $_POST['bio'], sha1($_POST['password']));
+                //Check if mail already exist
+                $mail = $_POST['email'];
+                $checkMailExist = mailExistBdd($mail);
+
+                if($checkMailExist == 0 ){
+                    addUser($_POST['firstname'], $_POST['name'], $_POST['email'], 'utilisateur', $_POST['bio'], sha1($_POST['password']));
+                }else{
+                   echo 'Adresse mail déjà enregistrée';
+                }
             }
             else{
                 echo 'Erreur: Veuillez entrer un mail valide';

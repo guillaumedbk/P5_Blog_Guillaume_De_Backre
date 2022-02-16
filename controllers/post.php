@@ -49,6 +49,11 @@ function addUser($firstname, $name, $email, $status, $bio, $password)
         listUsers();
     }
 }
+//Check if mail exist
+function mailExistBdd($mail){
+    $mailExist = mailExist($mail);
+    return $mailExist;
+}
 //Go to blogpost creation form
 function createBlogPost()
 {
