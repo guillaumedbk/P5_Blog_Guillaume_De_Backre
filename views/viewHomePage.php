@@ -59,12 +59,12 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="?action=listPosts">Blog</a></li>
 
-                <!-- Display color according to connexion status -->
+                <!-- Display connexion status -->
                     <?php
                     if(isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']){
                         echo '<div class="btn-group">
                                 <button type="button" class="btn btn-secondary dropdown-toggle p-0 text-success" data-bs-toggle="dropdown" aria-expanded="false">
-                                    CONNECTÉ 
+                                    CONNECTÉ
                                 </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li><a href="?action=disconnect" class="dropdown-item" type="button">Déconnexion</a></li>
@@ -72,7 +72,7 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
                                     </ul>
                                 </div>';
                     }else{
-                        echo '<a class="py-3 px-0 px-lg-3 rounded" href="?action=connectForm">Connexion</a>';
+                        echo '<a class="py-3 px-0 px-lg-3 rounded " href="?action=connectForm">Connexion</a>';
                     }
                     ?>
             </ul>
@@ -328,11 +328,11 @@ if(isset($_POST['mailform']))
             <!-- Footer About Text-->
             <div class="col-lg-4">
                 <h4 class="text-uppercase mb-4">Liens utiles</h4>
-                <p class="lead mb-0">
-                    Freelance is a free to use, MIT licensed Bootstrap theme created by
-                    <a href="http://startbootstrap.com">Start Bootstrap</a>
-                    .
-                </p>
+               <ul class="p-lg-0">
+                   <li style="list-style-type: none"><a class="nav-link px-0 px-lg-3 rounded" href="?action=profil">Profil</a></li>
+                   <li style="list-style-type: none"><a class="nav-link px-0 px-lg-3 rounded" href="?action=administration">Administration</a></li>
+                   <li style="list-style-type: none"><a class="nav-link px-0 px-lg-3 rounded" href="?action=listPosts">Blog</a></li>
+               </ul>
             </div>
         </div>
     </div>

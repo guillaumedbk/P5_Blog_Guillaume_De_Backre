@@ -39,6 +39,22 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://localhost:8888/P5_Blog_Guillaume_De_Backre/#about">CV</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://localhost:8888/P5_Blog_Guillaume_De_Backre/#contact">Contact</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="?action=listPosts">Blog</a></li>
+                <!-- Display connexion status -->
+                <?php
+                if(isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']){
+                    echo '<div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle p-0 text-success" data-bs-toggle="dropdown" aria-expanded="false">
+                                    CONNECTÉ
+                                </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a href="?action=disconnect" class="dropdown-item" type="button">Déconnexion</a></li>
+                                        <li><button class="dropdown-item" type="button">Profil</button></li>
+                                    </ul>
+                                </div>';
+                }else{
+                    echo '<a class="py-3 px-0 px-lg-3 rounded " href="?action=connectForm">Connexion</a>';
+                }
+                ?>
             </ul>
         </div>
     </div>

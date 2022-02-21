@@ -98,7 +98,10 @@ if(isset($_GET['action'])) {
                 echo 'Tous les champs doivent être remplis';
             }
         }
-
+    }
+    //ADMINISTRATION
+    elseif ($_GET['action'] == 'administration') {
+        require('views/viewAdministration.php');
     }
 }else{
     listUsers();
