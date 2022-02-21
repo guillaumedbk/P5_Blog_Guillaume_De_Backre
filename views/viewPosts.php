@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
+    header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -44,6 +50,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
                     <h1>Le Blog</h1>
+                    <p>Bonjour <?php echo $_SESSION['FIRSTNAME'] ?> et bienvenue !</p>
                     <span class="subheading">Découvrez nos derniers posts</span>
                     <a href="?action=createBlogPost">Créer un post</a>
                 </div>
@@ -69,8 +76,6 @@
             <?php endforeach; ?>
             <!-- Divider-->
             <hr class="my-4" />
-            <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
         </div>
     </div>
 </div>

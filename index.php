@@ -3,12 +3,11 @@
 require('controllers/post.php');
 
 if(isset($_GET['action'])) {
+    //ALL POSTS
     if($_GET['action'] == 'listPosts'){
         listPost();
     }
-    elseif($_GET['action'] == 'signIn'){
-        require('views/viewSignIn.php');
-    }
+    //ONE POST
     elseif ($_GET['action'] == 'post'){
         if(isset($_GET['id']) && $_GET['id'] > 0){
             post();
@@ -16,9 +15,11 @@ if(isset($_GET['action'])) {
             echo 'Error: no id has been sent';
         }
     }
-    if($_GET['action'] == 'createBlogPost'){
+    //BLOGPOST FORM CREATION
+    elseif($_GET['action'] == 'createBlogPost'){
         createBlogPost();
     }
+    //BLOG POST CREATION
     elseif ($_GET['action'] == 'addPost'){
             if (!empty($_POST['author']) && !empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content'])) {
                 addPost($_POST['author'], $_POST['title'], $_POST['chapo'],  $_POST['content']);
@@ -27,11 +28,18 @@ if(isset($_GET['action'])) {
                 echo 'Erreur : tous les champs ne sont pas remplis !';
             }
     }
+    //SIGNUP FORM
+    elseif($_GET['action'] == 'signIn'){
+        require('views/viewSignIn.php');
+    }
+    //USER REGISTRATION
     elseif ($_GET['action'] == 'addUser'){
+        //Check if field are well filled
         if (!empty($_POST['firstname']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password'])){
             //Mail Filter
             if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                //Check if mail already exist
+
+                //Check if mail already exist in db
                 $mail = $_POST['email'];
                 $checkMailExist = mailExistBdd($mail);
 
@@ -44,11 +52,52 @@ if(isset($_GET['action'])) {
             else{
                 echo 'Erreur: Veuillez entrer un mail valide';
             }
-
         }
         else {
             echo 'Erreur : Veuillez renseigner tous les champs !';
         }
+    }
+    //CONNECT FORM
+    elseif($_GET['action'] == 'connectForm'){
+        require('views/viewLogIn.php');
+    }
+    //DISCONNECT FORM
+    elseif($_GET['action'] == 'disconnect'){
+    require('views/viewDisconnect.php');
+    }
+    //USER CONNEXION
+    elseif ($_GET['action'] == 'connectUser'){
+
+        if(isset($_POST['connectform'])){
+            //Check if fields are filled
+            if(!empty($_POST['email']) && !empty($_POST['password'])){
+                //Mail Filter
+                if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                    $mail = $_POST['email'];
+                    $password = sha1($_POST['password']);
+                    $userExist = userExistBdd($mail, $password);
+                    $user = userInfos($mail, $password);
+
+                    if($userExist == 1){
+                        session_start();
+                        $_SESSION['LOGGED'] = true;
+                        $_SESSION['ID'] = $user['id'];
+                        $_SESSION['FIRSTNAME'] = $user['firstname'];
+                        $_SESSION['NAME'] = $user['name'];
+                        header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=listPosts');
+                    }
+                    else{
+                        echo 'mauvais mail ou mot de passe';
+                    }
+
+                }else{
+                    echo 'Adresse mail non valide';
+                }
+            }else{
+                echo 'Tous les champs doivent être remplis';
+            }
+        }
+
     }
 }else{
     listUsers();

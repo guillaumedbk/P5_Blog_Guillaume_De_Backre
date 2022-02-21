@@ -49,7 +49,17 @@ function addUser($firstname, $name, $email, $status, $bio, $password)
         listUsers();
     }
 }
-//Check if mail exist
+//User connexion
+function userExistBdd($mail, $password){
+    $userExist = userConnect($mail, $password);
+    return $userExist;
+}
+//User info
+function userInfos($mail, $password){
+    $userInfos = getUserInfos($mail, $password);
+    return $userInfos;
+}
+//Check if mail already exist
 function mailExistBdd($mail){
     $mailExist = mailExist($mail);
     return $mailExist;

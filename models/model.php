@@ -4,8 +4,7 @@ function dbConnect()
 {
     try
     {
-        $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
-        return $db;
+        return new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
     }
     catch(Exception $e)
     {
@@ -18,9 +17,8 @@ function getPosts()
     $db = dbConnect();
     $req = $db->prepare('SELECT * FROM post ORDER BY lastUpdate DESC');
     $req->execute();
-    $posts = $req->fetchAll();
 
-    return $posts;
+    return $req->fetchAll();
 }
 //Get one post
 function getPost($postId)
@@ -28,9 +26,8 @@ function getPost($postId)
     $db = dbConnect();
     $req = $db->prepare('SELECT * FROM post WHERE id = ?');
     $req->execute(array($postId));
-    $post = $req->fetch();
 
-    return $post;
+    return $req->fetch();
 }
 //Get users
 function getUsers()
@@ -38,9 +35,8 @@ function getUsers()
     $db = dbConnect();
     $req = $db->prepare('SELECT * FROM user WHERE id = 1');
     $req->execute();
-    $users = $req->fetchAll();
 
-    return $users;
+    return $req->fetchAll();
 }
 //Get user
 function getUser($userId)
@@ -48,32 +44,44 @@ function getUser($userId)
     $db = dbConnect();
     $req = $db->prepare('SELECT * FROM user WHERE id = ?');
     $req->execute(array($userId));
-    $user = $req->fetch();
 
-    return $user;
+    return $req->fetch();
 }
 //Create post
 function createPost($author, $title, $chapo, $content){
     $db = dbConnect();
     $createPost = $db -> prepare('INSERT INTO post(userId, title, chapo, content, lastUpdate) VALUES(?, ?, ?, ?, NOW())');
-    $affectedLines = $createPost -> execute(array($author, $title, $chapo, $content));
 
-    return $affectedLines;
+    return $createPost -> execute(array($author, $title, $chapo, $content));
 }
 //Create user
 function signIn($firstname, $name, $email, $status, $bio, $password){
     $db = dbConnect();
     $addUser = $db -> prepare('INSERT INTO user(firstname, name, email, status, bio, password) VALUES(?, ?, ?, ?, ?, ?)');
-    $affected = $addUser -> execute(array($firstname, $name, $email, $status, $bio, $password));
 
-    return $affected;
+    return $addUser -> execute(array($firstname, $name, $email, $status, $bio, $password));
 }
 //Check if mail exist
 function mailExist($mail){
     $db = dbConnect();
     $reqMail = $db->prepare('SELECT * FROM user WHERE email = ?');
     $reqMail->execute(array($mail));
-    $mailExist = $reqMail->rowCount();
 
-    return $mailExist;
+    return $reqMail->rowCount();
+}
+//User connexion
+function userConnect($mail, $password){
+    $db = dbConnect();
+    $reqUser = $db->prepare('SELECT * FROM user WHERE email = ? AND password = ?');
+    $reqUser->execute(array($mail, $password));
+
+    return $reqUser->rowCount();
+}
+//Get user info
+function getUserInfos($mail, $password){
+    $db = dbConnect();
+    $reqUser = $db->prepare('SELECT * FROM user WHERE email = ? AND password = ?');
+    $reqUser->execute(array($mail, $password));
+
+    return $reqUser->fetch();
 }
