@@ -1,5 +1,5 @@
-
 <?php
+session_start();
 //Variables
 foreach ($users as $user) {
     $firstname = $user['firstname'];
@@ -58,12 +58,27 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">CV</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="?action=listPosts">Blog</a></li>
+
+                <!-- Display color according to connexion status -->
+                    <?php
+                    if(isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']){
+                        echo '<div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle p-0 text-success" data-bs-toggle="dropdown" aria-expanded="false">
+                                    CONNECTÉ 
+                                </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a href="?action=disconnect" class="dropdown-item" type="button">Déconnexion</a></li>
+                                        <li><button class="dropdown-item" type="button">Profil</button></li>
+                                    </ul>
+                                </div>';
+                    }else{
+                        echo '<a class="py-3 px-0 px-lg-3 rounded" href="?action=connectForm">Connexion</a>';
+                    }
+                    ?>
             </ul>
         </div>
     </div>
 </nav>
-
-
 
 <!-- Masthead-->
 <header class="masthead bg-secondary text-white text-center">
@@ -190,7 +205,7 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
 
 if(isset($_POST['mailform']))
 {
-    if((!empty($_POST['name']) AND (!empty($_POST['email']) AND (!empty($_POST['message']))))){
+    if((!empty($_POST['name']) && (!empty($_POST['email']) && (!empty($_POST['message']))))){
 
         $header="MIME-Version: 1.0\r\n";
         $header.='From:"Guillaume De Backre"<guillaume@gmail.com>'."\n";

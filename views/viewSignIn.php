@@ -29,6 +29,8 @@
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
         </div>
+
+        <p class="text-center mt-3">Vous avez déjà un compte ? <a href="?action=connectForm">Connectez-vous</a></p>
         <!-- Contact Section Form-->
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">

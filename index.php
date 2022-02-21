@@ -84,6 +84,7 @@ if(isset($_GET['action'])) {
                         $_SESSION['ID'] = $user['id'];
                         $_SESSION['FIRSTNAME'] = $user['firstname'];
                         $_SESSION['NAME'] = $user['name'];
+                        $_SESSION['STATUS'] = $user['status'];
                         header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=listPosts');
                     }
                     else{
