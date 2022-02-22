@@ -11,12 +11,6 @@ function listUsers()
     $users = getUsers();
     require('views/viewHomePage.php');
 }
-//All users
-function listDesUsers()
-{
-    $allusers = getUsers();
-    require('views/viewAdministration.php');
-}
 //Add user
 function addUser($firstname, $name, $email, $status, $bio, $password)
 {
@@ -36,6 +30,9 @@ function mailExistBdd($mail)
 //User info
 function userInfos($mail, $password){
     return getUserInfos($mail, $password);
+}
+function allUsers(){
+    return getAllUsers();
 }
 //One user
 function user()

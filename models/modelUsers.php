@@ -1,9 +1,19 @@
 <?php
-//Get users
+
+//Get my user
 function getUsers()
 {
     $db = dbConnect();
     $req = $db->prepare('SELECT * FROM user WHERE id = 1');
+    $req->execute();
+
+    return $req->fetchAll();
+}
+//Get my user
+function getAllUsers()
+{
+    $db = dbConnect();
+    $req = $db->prepare('SELECT * FROM user');
     $req->execute();
 
     return $req->fetchAll();

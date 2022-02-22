@@ -6,7 +6,8 @@ include 'controllers/users.php';
 if(isset($_GET['action'])) {
     //ALL POSTS
     if($_GET['action'] == 'listPosts'){
-        listPost();
+        $posts = listPost();
+        require('views/viewPosts.php');
     }
     //ONE POST
     elseif ($_GET['action'] == 'post'){
@@ -102,9 +103,8 @@ if(isset($_GET['action'])) {
     }
     //ADMINISTRATION
     elseif ($_GET['action'] == 'administration') {
-        listDesUsers();
-        listPosts();
-
+        $posts = listPost();
+        $users = allUsers();
         require('views/viewAdministration.php');
     }
 }else{

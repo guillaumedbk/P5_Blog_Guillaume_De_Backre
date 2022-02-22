@@ -12,6 +12,7 @@ else{
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,8 +28,8 @@ else{
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -143,15 +144,15 @@ else{
                                 </thead>
 
                                 <tbody>
-                                <?php foreach ($postes as $post): ?>
-                                <tr>
-                                    <td><?= $post['id'] ?></td>
-                                    <td><?= $post['title'] ?></td>
-                                    <td><?= $post['chapo'] ?></td>
-                                    <td><?= $post['content'] ?></td>
-                                    <td><?= $post['lastUpdate'] ?></td>
-                                    <td><?= $post['userId'] ?></td>
-                                </tr>
+                                <?php foreach ($posts as $post): ?>
+                                    <tr>
+                                        <td><?= $post['id'] ?></td>
+                                        <td><?= $post['title'] ?></td>
+                                        <td><?= $post['chapo'] ?></td>
+                                        <td><?= $post['content'] ?></td>
+                                        <td><?= $post['lastUpdate'] ?></td>
+                                        <td><?= $post['userId'] ?></td>
+                                    </tr>
                                 <?php endforeach; ?>
 
                                 </tbody>
@@ -168,7 +169,6 @@ else{
                     <div class="card-body">
                         <div class="table-responsive">
                             <!-- Post preview-->
-
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
@@ -183,7 +183,7 @@ else{
                                 </thead>
 
                                 <tbody>
-                                <?php foreach ($allusers as $user): ?>
+                                <?php foreach ($users as $user): ?>
                                     <tr>
                                         <td><?= $user['id'] ?></td>
                                         <td><?= $user['firstname'] ?></td>
@@ -191,6 +191,7 @@ else{
                                         <td><?= $user['email'] ?></td>
                                         <td><?= $user['status'] ?></td>
                                         <td><?= $user['bio'] ?></td>
+                                        <td><?= $user['password'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
 

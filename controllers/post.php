@@ -1,18 +1,11 @@
 <?php
 
-include('models/model.php');
+include('models/modelPosts.php');
 
 //All post
 function listPost()
 {
-    $posts = getPosts();
-    require('views/viewPosts.php');
-}
-//All post
-function listPosts()
-{
-    $postes = getPosts();
-    require('views/viewAdministration.php');
+    return getPosts();
 }
 //Get one post
 function post()

@@ -29,9 +29,3 @@ c
 3views/startbootstrap-clean-blog-gh-pages/index.html,9/7/970eff71f881f1b1080d9f7fc9a6dea5445ec3e8
 b
 2views/startbootstrap-clean-blog-gh-pages/post.html,0/d/0dd19794ad6f3ab93b625610551a5df11e5c1ea2
-d
-4views/startbootstrap-sb-admin-2-gh-pages/tables.html,9/6/964af8d054bed9b616d444d1ea7032538af725e9
-B
-views/viewPost.php,8/2/82c5ea2586d48dc63b8a8c86bc2fa9493b613e26
-C
-views/viewPosts.php,8/2/823b2baf818148d2da37ea3fa72aea59d37c03c2
