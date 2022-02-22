@@ -12,7 +12,8 @@ if(isset($_GET['action'])) {
     //ONE POST
     elseif ($_GET['action'] == 'post'){
         if(isset($_GET['id']) && $_GET['id'] > 0){
-            post();
+           $post = post();
+           require('views/viewPost.php');
         }else{
             echo 'Error: no id has been sent';
         }
@@ -29,6 +30,34 @@ if(isset($_GET['action'])) {
             else {
                 echo 'Erreur : tous les champs ne sont pas remplis !';
             }
+    }
+    //MODIFY POST
+    elseif ($_GET['action'] == 'modifyPost'){
+        if(isset($_GET['id']) && $_GET['id'] > 0){
+            $post = post();
+            require('views/viewModifyPost.php');
+        }else{
+            echo 'Error: no id has been sent';
+        }
+    }
+    //MODIFY BLOG POST
+    elseif ($_GET['action'] == 'modifyBlogPost'){
+        if(isset($_GET['id']) && $_GET['id'] > 0){
+
+            $postId = $_GET['id'];
+            $author = $_POST['author'];
+            $title = $_POST['title'];
+            $chapo = $_POST['chapo'];
+            $content = $_POST['content'];
+
+            if(!empty($author) && !empty($title) && !empty($chapo) && !empty($content)){
+               $postModified = modifyPost($postId, $title, $chapo, $content);
+            }else{
+                echo 'Error: all fields must be complete';
+            }
+        }else{
+            echo 'Error: no id has been sent';
+        }
     }
     //SIGNUP FORM
     elseif($_GET['action'] == 'signIn'){

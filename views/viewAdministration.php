@@ -134,6 +134,8 @@ else{
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
                                     <th>Id</th>
                                     <th>Titre</th>
                                     <th>Chapo</th>
@@ -146,6 +148,8 @@ else{
                                 <tbody>
                                 <?php foreach ($posts as $post): ?>
                                     <tr>
+                                        <td><button class="btn-secondary btn-sm"><a href="?action=modifyPost&id=<?= $post['id'] ?>" style="color: white">Modifier</a></button></td>
+                                        <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
                                         <td><?= $post['id'] ?></td>
                                         <td><?= $post['title'] ?></td>
                                         <td><?= $post['chapo'] ?></td>

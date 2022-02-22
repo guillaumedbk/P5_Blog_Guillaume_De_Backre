@@ -10,8 +10,7 @@ function listPost()
 //Get one post
 function post()
 {
-    $post = getPost($_GET['id']);
-    require('views/viewPost.php');
+    return getPost($_GET['id']);
 }
 //Create post
 function addPost($author, $title, $chapo, $content)
@@ -29,6 +28,11 @@ function addPost($author, $title, $chapo, $content)
 function createBlogPost()
 {
     require('views/viewCreatePost.php');
+}
+//Modify Post
+function modifyPost($postId, $title, $chapo, $content)
+{
+    return modifyBlogPost($postId, $title, $chapo, $content);
 }
 
 

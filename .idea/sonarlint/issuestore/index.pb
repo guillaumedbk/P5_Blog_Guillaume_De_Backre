@@ -3,8 +3,6 @@ C
 views/viewLogIn.php,b/8/b89fcc16ed4710a53393772e103db1022c7e9df5
 D
 views/viewSignIn.php,7/1/71c9a4213ba243a9b7ec3b75f04d367af2c6b1bd
-H
-views/viewCreatePost.php,6/1/61699969543b3aea3a128c72153b1e4c766abf65
 o
 ?views/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg,a/6/a67318e0a531cb0e4490767e43aae1c6c0588c2c
 n
