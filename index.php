@@ -1,6 +1,7 @@
 <?php
 
-require('controllers/post.php');
+include 'controllers/post.php';
+include 'controllers/users.php';
 
 if(isset($_GET['action'])) {
     //ALL POSTS
@@ -101,6 +102,9 @@ if(isset($_GET['action'])) {
     }
     //ADMINISTRATION
     elseif ($_GET['action'] == 'administration') {
+        listDesUsers();
+        listPosts();
+
         require('views/viewAdministration.php');
     }
 }else{

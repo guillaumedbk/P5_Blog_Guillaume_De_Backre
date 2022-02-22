@@ -90,6 +90,7 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
                 </p>
             </div>
             <?php endforeach; ?>
+
             <!-- Divider-->
             <hr class="my-4" />
         </div>
