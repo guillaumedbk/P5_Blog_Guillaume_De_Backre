@@ -22,11 +22,6 @@ function addPost($author, $title, $chapo, $content)
        header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=listPosts');
     }
 }
-//Go to blogpost creation form
-function createBlogPost()
-{
-    require('views/viewCreatePost.php');
-}
 //Modify Post
 function modifyPost($postId, $title, $chapo, $content)
 {

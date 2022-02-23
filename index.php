@@ -1,5 +1,4 @@
 <?php
-
 include 'controllers/post.php';
 include 'controllers/users.php';
 
@@ -20,12 +19,13 @@ if(isset($_GET['action'])) {
     }
     //BLOGPOST FORM CREATION
     elseif($_GET['action'] == 'createBlogPost'){
-        createBlogPost();
+        require('views/viewCreatePost.php');
     }
     //BLOG POST CREATION
     elseif ($_GET['action'] == 'addPost'){
-            if (!empty($_POST['author']) && !empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content'])) {
-                addPost($_POST['author'], $_POST['title'], $_POST['chapo'],  $_POST['content']);
+        $authorId = $_GET['id'];
+            if (!empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content'])) {
+                addPost($authorId, $_POST['title'], $_POST['chapo'],  $_POST['content']);
             }
             else {
                 echo 'Erreur : tous les champs ne sont pas remplis !';

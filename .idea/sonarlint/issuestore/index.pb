@@ -29,7 +29,3 @@ d
 4views/startbootstrap-sb-admin-2-gh-pages/tables.html,9/6/964af8d054bed9b616d444d1ea7032538af725e9
 D
 models/dbConnect.php,9/0/90e6148b9e34ae1d2122ee11a4d71e653fd92755
-C
-views/viewPosts.php,8/2/823b2baf818148d2da37ea3fa72aea59d37c03c2
-B
-views/viewPost.php,8/2/82c5ea2586d48dc63b8a8c86bc2fa9493b613e26

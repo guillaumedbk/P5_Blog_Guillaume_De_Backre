@@ -65,12 +65,7 @@ if($_SESSION['STATUS'] != 'admin'){
             <div class="col-lg-8 col-xl-7">
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
-                <form action="index.php?action=addPost" method="post">
-                    <!-- Auteur input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="number" id="author" name="author" placeholder="Chiffre Random pour le moment" required />
-                        <label for="name">Random pour le moment</label>
-                    </div>
+                <form action="index.php?action=addPost&id=<?= $_SESSION['ID'] ?>" method="post">
                     <!-- Titre input-->
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="comment" name="title" required />
