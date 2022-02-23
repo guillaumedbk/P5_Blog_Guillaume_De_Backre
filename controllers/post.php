@@ -1,7 +1,5 @@
 <?php
-
 include('models/modelPosts.php');
-
 //All post
 function listPost()
 {
@@ -34,5 +32,9 @@ function modifyPost($postId, $title, $chapo, $content)
 {
     return modifyBlogPost($postId, $title, $chapo, $content);
 }
-
+//Delete Post
+function deletePost($postId)
+{
+    return deleteBlogPost($postId);
+}
 

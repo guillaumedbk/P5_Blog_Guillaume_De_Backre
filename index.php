@@ -59,6 +59,16 @@ if(isset($_GET['action'])) {
             echo 'Error: no id has been sent';
         }
     }
+    //DELETE POST
+    elseif ($_GET['action'] == 'deletePost'){
+        if(isset($_GET['id']) && $_GET['id'] > 0){
+            $postId = $_GET['id'];
+            deletePost($postId);
+            header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+        }else{
+            echo 'Error: no id has been sent';
+        }
+    }
     //SIGNUP FORM
     elseif($_GET['action'] == 'signIn'){
         require('views/viewSignIn.php');

@@ -1,18 +1,12 @@
 <?php
-if(!isset($_SESSION))
-{
-    session_start();
-}
-if(isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']){
-    if($_SESSION['STATUS'] != 'admin'){
-        echo'Vous n\'avez pas accès à la partie administration du blog car il faut être administrateur';
-    }
-}
-else{
+session_start();
+if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
+if($_SESSION['STATUS'] != 'admin'){
+    die ('error: seul les administrateurs peuvent accéder à cette page');
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -149,7 +143,7 @@ else{
                                 <?php foreach ($posts as $post): ?>
                                     <tr>
                                         <td><button class="btn-secondary btn-sm"><a href="?action=modifyPost&id=<?= $post['id'] ?>" style="color: white">Modifier</a></button></td>
-                                        <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deletePost&id=<?= $post['id'] ?>" style="color: white">Supprimer</a></button></td>
                                         <td><?= $post['id'] ?></td>
                                         <td><?= $post['title'] ?></td>
                                         <td><?= $post['chapo'] ?></td>
