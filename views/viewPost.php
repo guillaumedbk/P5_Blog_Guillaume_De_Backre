@@ -1,4 +1,5 @@
 <?php
+session_start();
 $userId = $post['userId'];
 $user = getUser($userId);
 ?>
@@ -52,7 +53,12 @@ $user = getUser($userId);
                                 Posté par
                                 <?= $user['firstname'] . ' ' . $user['name'] ?>
                                 le <?= $post['lastUpdate'] ?>
-                            </span>
+                    </span>
+                    <?php if($_SESSION['STATUS'] == 'admin'): ?>
+                        <button class="btn btn-secondary mt-3"><a href="?action=modifyPost&id=<?= $post['id'] ?>">Modifier</a></button>
+                        <button class="btn btn-secondary mt-3"><a href="?action=deletePost&id=<?= $post['id'] ?>">Supprimer</a></button>
+                    <?php endif; ?>
+
                 </div>
             </div>
         </div>

@@ -66,11 +66,6 @@ if($_SESSION['STATUS'] != 'admin'){
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
                 <form action="index.php?action=modifyBlogPost&id=<?= $post['id'] ?>" method="post">
-                    <!-- Auteur input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="number" id="author" name="author" placeholder="Chiffre Random pour le moment" required />
-                        <label for="name">Random pour le moment</label>
-                    </div>
                     <!-- Titre input-->
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="comment" name="title" value="<?= $post['title'] ?>"/>

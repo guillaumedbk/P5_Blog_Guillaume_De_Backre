@@ -68,9 +68,8 @@ if($_SESSION['STATUS'] != 'admin'){
                 <form action="index.php?action=addPost&id=<?= $_SESSION['ID'] ?>" method="post">
                     <!-- Titre input-->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="comment" name="title" required />
                         <label for="comment">Titre du post</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez mettre un titre</div>
+                        <input type="text" class="form-control" id="comment" name="title" required />
                     </div>
                     <!-- Chapo input-->
                     <div class="form-floating mb-3">
@@ -81,7 +80,6 @@ if($_SESSION['STATUS'] != 'admin'){
                     <div class="form-floating mb-3">
                         <label for="content">Votre contenu</label><br />
                         <textarea class="form-control" id="comment" name="content"></textarea>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">Veuillez entrer votre contenu.</div>
                     </div>
 
                     <!-- Submit Button-->

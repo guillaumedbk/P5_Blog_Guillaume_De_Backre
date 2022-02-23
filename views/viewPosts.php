@@ -68,7 +68,9 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
                     <h1>Le Blog</h1>
                     <p>Bonjour <?php echo $_SESSION['FIRSTNAME'] ?> et bienvenue !</p>
                     <span class="subheading">Découvrez nos derniers posts</span>
-                    <a href="?action=createBlogPost">Créer un post</a>
+                    <?php if($_SESSION['STATUS'] == 'admin'): ?>
+                        <button class="btn btn-secondary mt-3"><a href="?action=createBlogPost">Créer un post</a></button>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
