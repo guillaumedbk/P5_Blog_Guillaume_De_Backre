@@ -29,9 +29,13 @@ function createPost($author, $title, $chapo, $content){
 //Modify post
 function modifyBlogPost($postId, $title, $chapo, $content){
     $db = dbConnect();
-    $modifyPost = $db -> prepare('UPDATE post SET title = :title, chapo = :chapo, content = :content, lastUpdate = NOW() WHERE id = ?');
+    $modifyPost = $db -> prepare('UPDATE post SET title = :title, chapo = :chapo, content = :content, lastUpdate = NOW() WHERE id = :id');
 
-    return $modifyPost -> execute(array('title' => $title, 'chapo' => $chapo, 'content' => $content, 'id' => $postId));
+    return $modifyPost -> execute([
+        'title' => $title,
+        'chapo' => $chapo,
+        'content' => $content,
+        'id' => $postId]);
 }
 //Delete post
 function deleteBlogPost($postId){

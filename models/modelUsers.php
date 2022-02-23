@@ -19,7 +19,7 @@ function getAllUsers()
     return $req->fetchAll();
 }
 //Get user
-function getUser($userId)
+function getOneUser($userId)
 {
     $db = dbConnect();
     $req = $db->prepare('SELECT * FROM user WHERE id = ?');
@@ -58,4 +58,24 @@ function getUserInfos($mail, $password){
     $reqUser->execute(array($mail, $password));
 
     return $reqUser->fetch();
+}
+//Modify user
+function modifyOneUser($userId, $firstname, $name, $email, $bio, $password){
+    $db = dbConnect();
+    $modifyUser = $db -> prepare('UPDATE user SET firstname = :firstname, name = :name, email = :email, bio = :bio, password = :password WHERE id = :id');
+
+    return $modifyUser -> execute([
+        'firstname' => $firstname,
+        'name' => $name,
+        'email' => $email,
+        'bio' => $bio,
+        'password' => $password,
+        'id' => $userId]);
+}
+//Delete user
+function deleteOneUser($userId){
+    $db = dbConnect();
+    $deleteUser = $db -> prepare('DELETE FROM user WHERE id = ?');
+
+    return $deleteUser -> execute(array($userId));
 }

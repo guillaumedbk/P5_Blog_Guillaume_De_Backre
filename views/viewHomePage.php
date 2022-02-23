@@ -1,11 +1,10 @@
 <?php
 session_start();
 //Variables
-foreach ($users as $user) {
-    $firstname = $user['firstname'];
-    $name = $user['name'];
-    $bio = $user['bio'];
-}
+$firstname = $user['firstname'];
+$name = $user['name'];
+$bio = $user['bio'];
+
 //Assets access
 $dir = 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/cabin.{jpg,jpeg,gif,png}';
 $files = glob($dir,GLOB_BRACE);

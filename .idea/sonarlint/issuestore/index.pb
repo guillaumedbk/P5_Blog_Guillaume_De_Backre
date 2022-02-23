@@ -1,8 +1,6 @@
 
 C
 views/viewLogIn.php,b/8/b89fcc16ed4710a53393772e103db1022c7e9df5
-D
-views/viewSignIn.php,7/1/71c9a4213ba243a9b7ec3b75f04d367af2c6b1bd
 o
 ?views/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg,a/6/a67318e0a531cb0e4490767e43aae1c6c0588c2c
 n
@@ -27,19 +25,11 @@ c
 3views/startbootstrap-clean-blog-gh-pages/index.html,9/7/970eff71f881f1b1080d9f7fc9a6dea5445ec3e8
 b
 2views/startbootstrap-clean-blog-gh-pages/post.html,0/d/0dd19794ad6f3ab93b625610551a5df11e5c1ea2
-F
-views/viewHomePage.php,6/c/6cdfcabf45f878562bf99aa611f5bb651de2c4a6
 d
 4views/startbootstrap-sb-admin-2-gh-pages/tables.html,9/6/964af8d054bed9b616d444d1ea7032538af725e9
 D
 models/dbConnect.php,9/0/90e6148b9e34ae1d2122ee11a4d71e653fd92755
-E
-models/modelUsers.php,1/d/1df2a704b1fd4dd125af87c625d7666c71d101c6
-E
-controllers/users.php,a/c/ac18afad111fe5baffee844e4d372b85fc57db70
 C
 views/viewPosts.php,8/2/823b2baf818148d2da37ea3fa72aea59d37c03c2
 B
 views/viewPost.php,8/2/82c5ea2586d48dc63b8a8c86bc2fa9493b613e26
-H
-views/viewModifyPost.php,b/8/b8425df6b234c20cad2fa051581e72cbfdc2c35a

@@ -4,7 +4,7 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
 if($_SESSION['STATUS'] != 'admin'){
-    die ('error: seul les administrateurs peuvent ajouter des posts');
+    die ('error: seul les administrateurs peuvent modifier des utilisateurs');
 }
 ?>
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ if($_SESSION['STATUS'] != 'admin'){
 <section class="page-section" id="contact">
     <div class="container">
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Modifier le post</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Modifier le user</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -64,38 +64,42 @@ if($_SESSION['STATUS'] != 'admin'){
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
                 <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <form action="index.php?action=modifyBlogPost&id=<?= $post['id'] ?>" method="post">
-                    <!-- Auteur input-->
+                <form action="index.php?action=modifyOneUser&id=<?= $user['id'] ?>" method="post">
+                    <!-- Firstname input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="number" id="author" name="author" placeholder="Chiffre Random pour le moment" required />
-                        <label for="name">Random pour le moment</label>
+                        <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" value="<?= $user['firstname'] ?>" required />
+                        <label for="firstname">Prénom</label>
                     </div>
-                    <!-- Titre input-->
+                    <!-- Name input-->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="comment" name="title" value="<?= $post['title'] ?>"/>
-                        <label for="comment">Titre du post</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez mettre un titre</div>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?= $user['name'] ?>" required />
+                        <label for="name">Nom</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre nom</div>
                     </div>
-                    <!-- Chapo input-->
+                    <!-- Email input-->
                     <div class="form-floating mb-3">
-                        <label for="chapo">Châpo</label><br />
-                        <input type="text" class="form-control" id="chapo" name="chapo" value="<?= $post['chapo'] ?>"></input>
+                        <label for="email">Email</label><br />
+                        <input type="email" class="form-control" id="email" name="email" value="<?= $user['email'] ?>" required />
                     </div>
-                    <!-- Content input-->
+                    <!-- Password input-->
                     <div class="form-floating mb-3">
-                        <label for="content">Votre contenu</label><br />
-                        <textarea class="form-control" id="comment" name="content"><?= $post['content'] ?></textarea>
+                        <label for="password">Choisissez votre mot de passe</label><br />
+                        <input type="password" class="form-control" id="password" name="password" value="<?= $user['password'] ?>"required />
+                    </div>
+                    <!-- Bio input-->
+                    <div class="form-floating mb-3">
+                        <label for="content">Biographie</label><br />
+                        <textarea class="form-control" id="bio" name="bio"><?= $user['bio'] ?></textarea>
                         <div class="invalid-feedback" data-sb-feedback="message:required">Veuillez entrer votre contenu.</div>
                     </div>
-
                     <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl" type="submit" value="Envoyer" name="modifyform">Envoyer</button>
+                    <button class="btn btn-primary btn-xl" type="submit" value="Envoyer" name="userform">S'inscire</button>
 
                     <!-- message display -->
                     <?php
-                    if(isset($msg)){
+                    if(isset($msg, $erreur)){
                         echo $msg;
+                        echo $erreur;
                     }
                     ?>
 
@@ -215,5 +219,6 @@ if($_SESSION['STATUS'] != 'admin'){
 
 
 </html>
+
 
 

@@ -52,6 +52,7 @@ if(isset($_GET['action'])) {
 
             if(!empty($author) && !empty($title) && !empty($chapo) && !empty($content)){
                $postModified = modifyPost($postId, $title, $chapo, $content);
+                header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=listPosts');
             }else{
                 echo 'Error: all fields must be complete';
             }
@@ -96,6 +97,47 @@ if(isset($_GET['action'])) {
         }
         else {
             echo 'Erreur : Veuillez renseigner tous les champs !';
+        }
+    }
+    //MODIFY USER
+    elseif ($_GET['action'] == 'modifyUser'){
+        if(isset($_GET['id']) && $_GET['id'] > 0){
+            $userId = $_GET['id'];
+            $user = getUser($userId);
+            require('views/viewModifyUser.php');
+        }else{
+            echo 'Error: no id has been sent';
+        }
+    }
+    //MODIFY DATA USER
+    elseif ($_GET['action'] == 'modifyOneUser'){
+        if(isset($_GET['id']) && $_GET['id'] > 0){
+
+            $userId = $_GET['id'];
+            $firstname = $_POST['firstname'];
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $bio = $_POST['bio'];
+            $password = sha1($_POST['password']);
+
+            if(!empty($firstname) && !empty($name) && !empty($email) && !empty($bio) && !empty($password)){
+                $userModified = modifyUser( $userId, $firstname, $name, $email, $bio, $password);
+                header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+            }else{
+                echo 'Error: all fields must be complete';
+            }
+        }else{
+            echo 'Error: no id has been sent';
+        }
+    }
+    //DELETE USER
+    elseif ($_GET['action'] == 'deleteUser'){
+        if(isset($_GET['id']) && $_GET['id'] > 0){
+            $userId = $_GET['id'];
+            deleteUser($userId);
+            header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+        }else{
+            echo 'Error: no id has been sent';
         }
     }
     //CONNECT FORM
@@ -147,7 +189,8 @@ if(isset($_GET['action'])) {
         require('views/viewAdministration.php');
     }
 }else{
-    listUsers();
+    $user = getUser(1);
+    require('views/viewHomePage.php');
 }
 
 $req = getPosts();

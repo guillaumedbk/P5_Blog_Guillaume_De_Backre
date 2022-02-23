@@ -8,8 +8,7 @@ function userExistBdd($mail, $password){
 //All users
 function listUsers()
 {
-    $users = getUsers();
-    require('views/viewHomePage.php');
+    return getUsers();
 }
 //Add user
 function addUser($firstname, $name, $email, $status, $bio, $password)
@@ -31,12 +30,19 @@ function mailExistBdd($mail)
 function userInfos($mail, $password){
     return getUserInfos($mail, $password);
 }
+//Get all users
 function allUsers(){
     return getAllUsers();
 }
-//One user
-function user()
-{
-    $user = getUser();
-    require('views/viewPost.php');
+//Get user
+function getUser($userId){
+    return getOneUser($userId);
+}
+//Modify user
+function modifyUser($userId, $firstname, $name, $email, $bio, $password){
+    return modifyOneUser($userId, $firstname, $name, $email, $bio, $password);
+}
+//Delete user
+function deleteUser($userId){
+    return deleteOneUser($userId);
 }
