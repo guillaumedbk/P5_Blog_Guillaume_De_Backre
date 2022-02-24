@@ -1,6 +1,7 @@
 <?php
 include 'controllers/post.php';
 include 'controllers/users.php';
+include 'controllers/comment.php';
 
 if(isset($_GET['action'])) {
     //ALL POSTS
@@ -30,6 +31,18 @@ if(isset($_GET['action'])) {
             else {
                 echo 'Erreur : tous les champs ne sont pas remplis !';
             }
+    }
+    //ADD COMMENT
+    elseif ($_GET['action'] == 'addComment'){
+        $userId = $_GET['userId'];
+        $postId = $_GET['postId'];
+        $content = $_POST['comment'];
+        if (!empty($content)){
+            addComment($userId, $postId, $content);
+        }
+        else {
+            echo 'Erreur : tous les champs ne sont pas remplis !';
+        }
     }
     //MODIFY POST
     elseif ($_GET['action'] == 'modifyPost'){

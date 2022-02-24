@@ -72,6 +72,32 @@ $user = getUser($userId);
                 <p><?= $post['content'] ?></p>
             </div>
         </div>
+
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Display comments -->
+
+                <!-- * * SB Forms Contact Form * *-->
+                <form action="index.php?action=addComment&userId=<?= $_SESSION['ID'] ?>&postId=<?= $post['id'] ?>" method="post">
+                    <!-- Titre input-->
+                    <div class="form-floating mb-3">
+                        <label for="comment">Votre commentaire</label>
+                        <input type="text" class="form-control" id="comment" name="comment" required />
+                    </div>
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl" type="submit" value="Envoyer" name="mailform">Envoyer</button>
+
+                    <!-- message display -->
+                    <?php
+                    if(isset($msg)){
+                        echo $msg;
+                    }
+                    ?>
+
+                </form>
+            </div>
+        </div>
+
     </div>
 </article>
 

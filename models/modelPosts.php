@@ -18,7 +18,6 @@ function getPost($postId)
 
     return $req->fetch();
 }
-
 //Create post
 function createPost($author, $title, $chapo, $content){
     $db = dbConnect();
