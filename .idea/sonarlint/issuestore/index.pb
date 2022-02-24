@@ -41,5 +41,3 @@ F
 views/viewHomePage.php,6/c/6cdfcabf45f878562bf99aa611f5bb651de2c4a6
 H
 views/viewModifyPost.php,b/8/b8425df6b234c20cad2fa051581e72cbfdc2c35a
-L
-views/viewAdministration.php,8/2/82f35a33d06f7a63f6b8eda71ab6d77eb45c9b69

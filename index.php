@@ -199,9 +199,26 @@ if(isset($_GET['action'])) {
     }
     //ADMINISTRATION
     elseif ($_GET['action'] == 'administration') {
+        $waitingComments = getWaitingComments();
         $posts = listPost();
         $users = allUsers();
         require('views/viewAdministration.php');
+    }
+    //DELETE COMMENT
+    elseif ($_GET['action'] == 'deleteComment') {
+        $commentId = $_GET['id'];
+        deleteComment($commentId);
+        header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+    }
+    //ACCEPT COMMENT
+    elseif ($_GET['action'] == 'acceptComment') {
+        if(isset($_GET['id']) && $_GET['id'] > 0) {
+            $commentId = $_GET['id'];
+            acceptComment($commentId);
+            header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+        }else{
+            echo 'no id has been sent';
+        }
     }
 }else{
     $user = getUser(1);

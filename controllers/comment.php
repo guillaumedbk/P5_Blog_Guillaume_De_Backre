@@ -15,3 +15,15 @@ function addComment($userId, $postId, $content){
 function getPostComment($postId){
     return getOnePostComment($postId);
 }
+//Get waiting comments
+function getWaitingComments(){
+    return waitingComments();
+}
+//Delete comment
+function deleteComment($commentId){
+    return deleteOneComment($commentId);
+}
+//Accept comment
+function acceptComment($commentId){
+    return acceptOneComment($commentId);
+}

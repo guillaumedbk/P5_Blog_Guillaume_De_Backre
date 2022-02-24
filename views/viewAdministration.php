@@ -119,6 +119,43 @@ if($_SESSION['STATUS'] != 'admin'){
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Commentaires en attente de validation</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <!-- Post preview-->
+
+                            <table class="table table-bordered" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Commentaire</th>
+                                    <th>Date de publication:</th>
+                                    <th>Accepter</th>
+                                    <th>Refuser</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <?php foreach ($waitingComments as $comment): ?>
+                                    <tr>
+                                        <td><?= $comment['id'] ?></td>
+                                        <td><?= $comment['content'] ?></td>
+                                        <td><?= $comment['publishAt'] ?></td>
+                                        <td><button class="btn-secondary btn-sm"><a href="?action=acceptComment&id=<?= $comment['id'] ?>" style="color: white">Accepter</a></button></td>
+                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deleteComment&id=<?= $comment['id'] ?>" style="color: white">Refuser</a></button></td>
+                                    </tr>
+                                <?php endforeach; ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DataTales -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">DataTables Posts</h6>
                     </div>
                     <div class="card-body">
