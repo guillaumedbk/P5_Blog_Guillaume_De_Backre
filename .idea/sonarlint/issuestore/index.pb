@@ -37,7 +37,5 @@ E
 controllers/users.php,a/c/ac18afad111fe5baffee844e4d372b85fc57db70
 E
 models/modelUsers.php,1/d/1df2a704b1fd4dd125af87c625d7666c71d101c6
-F
-views/viewHomePage.php,6/c/6cdfcabf45f878562bf99aa611f5bb651de2c4a6
 H
 views/viewModifyPost.php,b/8/b8425df6b234c20cad2fa051581e72cbfdc2c35a
