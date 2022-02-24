@@ -43,5 +43,3 @@ H
 views/viewModifyPost.php,b/8/b8425df6b234c20cad2fa051581e72cbfdc2c35a
 L
 views/viewAdministration.php,8/2/82f35a33d06f7a63f6b8eda71ab6d77eb45c9b69
-C
-views/viewPosts.php,8/2/823b2baf818148d2da37ea3fa72aea59d37c03c2

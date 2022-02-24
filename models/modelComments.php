@@ -6,3 +6,11 @@ function createComment($userId, $postId, $content){
 
     return $createComment -> execute(array($userId, $postId, $content));
 }
+//Get comment from one post
+function getOnePostComment($postId){
+    $db = dbConnect();
+    $reqComment = $db -> prepare('SELECT * FROM comments WHERE postId = ?');
+    $reqComment -> execute(array($postId));
+
+    return $reqComment->fetchAll();
+}

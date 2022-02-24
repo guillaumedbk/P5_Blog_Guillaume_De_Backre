@@ -12,6 +12,6 @@ function addComment($userId, $postId, $content){
     }
 }
 //Get comment from one post
-function getPostComment(){
-    
+function getPostComment($postId){
+    return getOnePostComment($postId);
 }

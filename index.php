@@ -12,8 +12,10 @@ if(isset($_GET['action'])) {
     //ONE POST
     elseif ($_GET['action'] == 'post'){
         if(isset($_GET['id']) && $_GET['id'] > 0){
-           $post = post();
-           require('views/viewPost.php');
+            $postId = $_GET['id'];
+            $comments = getPostComment($postId);
+            $post = post();
+            require('views/viewPost.php');
         }else{
             echo 'Error: no id has been sent';
         }
