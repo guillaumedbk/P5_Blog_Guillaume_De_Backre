@@ -21,44 +21,13 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <style>
+
         <?php include 'startbootstrap-clean-blog-gh-pages/css/styles.css'; ?>
     </style>
 </head>
 <body>
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg bg-secondary border-bottom border-white text-uppercase fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="#page-top">GUIBLOG</a>
-        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://localhost:8888/P5_Blog_Guillaume_De_Backre/#portfolio">Portfolio</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://localhost:8888/P5_Blog_Guillaume_De_Backre/#about">CV</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://localhost:8888/P5_Blog_Guillaume_De_Backre/#contact">Contact</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="?action=listPosts">Blog</a></li>
-                <!-- Display connexion status -->
-                <?php
-                if(isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']){
-                    echo '<div class="btn-group">
-                                <button type="button" class="btn btn-secondary dropdown-toggle p-0 text-success" data-bs-toggle="dropdown" aria-expanded="false">
-                                    CONNECTÉ
-                                </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a href="?action=disconnect" class="dropdown-item" type="button">Déconnexion</a></li>
-                                        <li><button class="dropdown-item" type="button">Profil</button></li>
-                                    </ul>
-                                </div>';
-                }else{
-                    echo '<a class="py-3 px-0 px-lg-3 rounded " href="?action=connectForm">Connexion</a>';
-                }
-                ?>
-            </ul>
-        </div>
-    </div>
-</nav>
+
+<?php include('viewHeader.php') ?>
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
     <div class="container position-relative px-4 px-lg-5">
@@ -98,43 +67,10 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
         </div>
     </div>
 </div>
+<!-- FOOTER -->
+<?php include('viewFooter.php') ?>
 
-<!-- Footer-->
-<footer class="border-top">
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <ul class="list-inline text-center">
-                    <li class="list-inline-item">
-                        <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2021</div>
-            </div>
-        </div>
-    </div>
-</footer>
+
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

@@ -46,7 +46,7 @@ if($_SESSION['STATUS'] != 'admin'){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:8888/P5_Blog_Guillaume_De_Backre">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -116,6 +116,7 @@ if($_SESSION['STATUS'] != 'admin'){
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
 
+                <?php if($waitingComments): ?>
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -152,7 +153,7 @@ if($_SESSION['STATUS'] != 'admin'){
                         </div>
                     </div>
                 </div>
-
+                <?php endif; ?>
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">

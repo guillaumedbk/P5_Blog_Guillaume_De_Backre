@@ -43,41 +43,8 @@ $favicon = 'views/startbootstrap-freelancer-gh-pages/assets/favicon.ico';
 
 </head>
 <body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg bg-secondary border-bottom border-white text-uppercase fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="#page-top">GUIBLOG</a>
-        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">CV</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="?action=listPosts">Blog</a></li>
 
-                <!-- Display connexion status -->
-                    <?php
-                    if(isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']){
-                        echo '<div class="btn-group">
-                                <button type="button" class="btn btn-secondary dropdown-toggle p-0 text-success" data-bs-toggle="dropdown" aria-expanded="false">
-                                    CONNECTÉ
-                                </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a href="?action=disconnect" class="dropdown-item" type="button">Déconnexion</a></li>
-                                        <li><button class="dropdown-item" type="button">Profil</button></li>
-                                    </ul>
-                                </div>';
-                    }else{
-                        echo '<a class="py-3 px-0 px-lg-3 rounded " href="?action=connectForm">Connexion</a>';
-                    }
-                    ?>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php include('viewHeader.php') ?>
 
 <!-- Masthead-->
 <header class="masthead bg-secondary text-white text-center">
@@ -274,45 +241,8 @@ if(isset($_POST['mailform']))
         </div>
     </div>
 </section>
-
-
-<!-- Footer-->
-<footer class="footer text-center">
-    <div class="container">
-        <div class="row">
-            <!-- Footer Location-->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Coordonnées</h4>
-                <p class="lead mb-0">
-                    Guillaume De Backre
-                    <br />
-                    Comines, Belgique
-                </p>
-            </div>
-            <!-- Footer Social Icons-->
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Suivez-moi !</h4>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/profile.php?id=100009962677004"><i class="fab fa-fw fa-facebook-f"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/DeBackre"><i class="fab fa-fw fa-twitter"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/guillaume-de-backre/"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/guillaumedbk"><i class="fab fa-brands fa-github"></i></a>
-            </div>
-            <!-- Footer About Text-->
-            <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">Liens utiles</h4>
-               <ul class="p-lg-0">
-                   <li style="list-style-type: none"><a class="nav-link px-0 px-lg-3 rounded" href="?action=profil">Profil</a></li>
-                   <li style="list-style-type: none"><a class="nav-link px-0 px-lg-3 rounded" href="?action=administration">Administration</a></li>
-                   <li style="list-style-type: none"><a class="nav-link px-0 px-lg-3 rounded" href="?action=listPosts">Blog</a></li>
-               </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- Copyright Section-->
-<div class="copyright py-4 text-center text-white">
-    <div class="container"><small>Copyright &copy; GUIBLOG 2022</small></div>
-</div>
+<!-- FOOTER -->
+<?php include('viewFooter.php') ?>
 <!-- Portfolio Modals-->
 <!-- Portfolio Modal 1-->
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
