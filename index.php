@@ -145,6 +145,22 @@ if(isset($_GET['action'])) {
             echo 'Error: no id has been sent';
         }
     }
+    //MODIFY DATA USER
+    elseif ($_GET['action'] == 'modifyStatus'){
+        if(isset($_GET['id']) && $_GET['id'] > 0){
+            $userId = $_GET['id'];
+            $newStatus = $_GET['status'];
+            if(isset($newStatus)){
+                modifyStatus($userId, $newStatus);
+                header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+            }else{
+                echo 'Error: no status has been mentionned';
+            }
+
+        }else{
+            echo 'Error: no id has been sent';
+        }
+    }
     //DELETE USER
     elseif ($_GET['action'] == 'deleteUser'){
         if(isset($_GET['id']) && $_GET['id'] > 0){

@@ -208,6 +208,7 @@ if($_SESSION['STATUS'] != 'admin'){
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
+                                    <th>Modifier status</th>
                                     <th>Modifier</th>
                                     <th>Supprimer</th>
                                     <th>Id</th>
@@ -223,6 +224,13 @@ if($_SESSION['STATUS'] != 'admin'){
                                 <tbody>
                                 <?php foreach ($users as $user): ?>
                                     <tr>
+                                        <td>
+                                            <?php if($user['status'] == 'admin'): ?>
+                                            <a href="?action=modifyStatus&id=<?= $user['id'] ?>&status=utilisateur" style="color: black">Rendre Utilisateur</a>
+                                            <?php elseif ($user['status'] == 'utilisateur'):?>
+                                            <a href="?action=modifyStatus&id=<?= $user['id'] ?>&status=admin" style="color: black">Rendre Admin</a>
+                                            <?php endif; ?>
+                                        </td>
                                         <td><button class="btn-secondary btn-sm"><a href="?action=modifyUser&id=<?= $user['id'] ?>" style="color: white">Modifier</a></button></td>
                                         <td><button class="btn btn-danger btn-sm"><a href="?action=deleteUser&id=<?= $user['id'] ?>" style="color: white">Supprimer</a></button></td>
                                         <td><?= $user['id'] ?></td>

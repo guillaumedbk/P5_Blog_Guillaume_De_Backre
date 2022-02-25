@@ -79,3 +79,12 @@ function deleteOneUser($userId){
 
     return $deleteUser -> execute(array($userId));
 }
+//Modify user status
+function modifyUserStatus($userId, $newStatus){
+    $db = dbConnect();
+    $reqReplace = $db -> prepare('UPDATE user SET status = :status WHERE id = :id');
+    return $reqReplace -> execute([
+        'status' => $newStatus,
+        'id' => $userId
+    ]);
+}

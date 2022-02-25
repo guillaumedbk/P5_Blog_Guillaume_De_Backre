@@ -46,3 +46,7 @@ function modifyUser($userId, $firstname, $name, $email, $bio, $password){
 function deleteUser($userId){
     return deleteOneUser($userId);
 }
+//Modify user status
+function modifyStatus($userId, $newStatus){
+    return modifyUserStatus($userId, $newStatus);
+}
