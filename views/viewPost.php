@@ -20,6 +20,12 @@ $user = getUser($userId);
     <!-- Core theme CSS (includes Bootstrap)-->
     <style>
         <?php include 'startbootstrap-clean-blog-gh-pages/css/styles.css'; ?>
+        button a{
+            text-decoration: none;
+        }
+        header.masthead{
+            padding-bottom: 8em;
+        }
     </style>
 </head>
 <body>
@@ -70,11 +76,11 @@ $user = getUser($userId);
                 <form action="index.php?action=addComment&userId=<?= $_SESSION['ID'] ?>&postId=<?= $post['id'] ?>" method="post">
                     <!-- Titre input-->
                     <div class="form-floating mb-3">
-                        <label for="comment">Votre commentaire</label>
-                        <input type="text" class="form-control" id="comment" name="comment" required />
+                        <input type="text" class="form-control" id="comment" name="comment" placeholder="Votre commentaire:" required />
+                        <label for="comment">Votre commentaire:</label>
                     </div>
                     <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl" type="submit" value="Envoyer" name="mailform">Envoyer</button>
+                    <button class="btn btn-primary btn-lg" type="submit" value="Envoyer" name="mailform">Envoyer</button>
 
                     <!-- message display -->
                     <?php

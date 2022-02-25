@@ -21,52 +21,16 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <style>
-
         <?php include 'startbootstrap-clean-blog-gh-pages/css/styles.css'; ?>
     </style>
 </head>
 <body>
-
+<!-- HEADER -->
 <?php include('viewHeader.php') ?>
-<!-- Page Header-->
-<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>Le Blog</h1>
-                    <p>Bonjour <?php echo $_SESSION['FIRSTNAME'] ?> et bienvenue !</p>
-                    <span class="subheading">Découvrez nos derniers posts</span>
-                    <?php if($_SESSION['STATUS'] == 'admin'): ?>
-                        <button class="btn btn-secondary mt-3"><a href="?action=createBlogPost">Créer un post</a></button>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Main Content-->
-<div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-            <!-- Post preview-->
-            <?php foreach ($posts as $post): ?>
-            <div class="post-preview">
-                <a href="?action=post&id=<?= $post['id'] ?>">
-                    <h2 class="post-title"> <?= $post['title'] ?> </h2>
-                    <h3 class="post-subtitle"><?= $post['chapo'] ?> </h3>
-                </a>
-                <p class="post-meta">
-                    Posté le <?= $post['lastUpdate'] ?>
-                </p>
-            </div>
-            <?php endforeach; ?>
 
-            <!-- Divider-->
-            <hr class="my-4" />
-        </div>
-    </div>
-</div>
+<!-- BLOG -->
+<?php include('viewBlog.php') ?>
+
 <!-- FOOTER -->
 <?php include('viewFooter.php') ?>
 

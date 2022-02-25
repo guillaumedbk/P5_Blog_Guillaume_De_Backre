@@ -43,15 +43,7 @@ D
 controllers/post.php,7/8/78de8196c9b74fc639968108a60ce0b0b413078d
 g
 7views/startbootstrap-freelancer-gh-pages/css/styles.css,a/a/aab586648d315aee66eac5ecafb0bb463e8e38ed
-g
-7views/startbootstrap-clean-blog-gh-pages/css/styles.css,4/0/4014389167b21286057469775e87173c3218ac27
 D
 views/viewFooter.php,8/6/863f332d80b20d1bcafbbffafed78d1c48105b0e
-D
-views/viewHeader.php,6/a/6abe30e6c22365374371df0d53546bfadab39dee
-C
-views/viewPosts.php,8/2/823b2baf818148d2da37ea3fa72aea59d37c03c2
 F
 views/viewHomePage.php,6/c/6cdfcabf45f878562bf99aa611f5bb651de2c4a6
-B
-views/viewPost.php,8/2/82c5ea2586d48dc63b8a8c86bc2fa9493b613e26
