@@ -35,8 +35,6 @@ H
 views/viewModifyUser.php,9/5/956881c17230657b0449dc8dc6b63e1d4b4559da
 H
 views/viewModifyPost.php,b/8/b8425df6b234c20cad2fa051581e72cbfdc2c35a
-H
-views/viewCreatePost.php,6/1/61699969543b3aea3a128c72153b1e4c766abf65
 G
 controllers/comment.php,1/9/19f1aafdabfe69cb38cc518f1d34adda11a64ec8
 D

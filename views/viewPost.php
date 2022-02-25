@@ -88,7 +88,6 @@ $user = getUser($userId);
                         echo $msg;
                     }
                     ?>
-
                 </form>
             </div>
         </div>
