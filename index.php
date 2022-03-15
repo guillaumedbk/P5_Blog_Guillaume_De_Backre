@@ -3,6 +3,9 @@ include 'controllers/post.php';
 include 'controllers/users.php';
 include 'controllers/comment.php';
 
+define('ERROR_NOID', 'no id has been sent');
+define('ADMINISTRATION_PAGE', 'Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+
 if(isset($_GET['action'])) {
     //ALL POSTS
     if($_GET['action'] == 'listPosts'){
@@ -17,7 +20,8 @@ if(isset($_GET['action'])) {
             $post = post();
             require('views/viewPost.php');
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //BLOGPOST FORM CREATION
@@ -31,7 +35,8 @@ if(isset($_GET['action'])) {
                 addPost($authorId, $_POST['title'], $_POST['chapo'],  $_POST['content']);
             }
             else {
-                echo 'Erreur : tous les champs ne sont pas remplis !';
+                $error = 'Erreur : tous les champs ne sont pas remplis !';
+                require('views/viewError.php');
             }
     }
     //ADD COMMENT
@@ -43,7 +48,8 @@ if(isset($_GET['action'])) {
             addComment($userId, $postId, $content);
         }
         else {
-            echo 'Erreur : tous les champs ne sont pas remplis !';
+            $error = 'Erreur : tous les champs ne sont pas remplis !';
+            require('views/viewError.php');
         }
     }
     //MODIFY POST
@@ -52,7 +58,8 @@ if(isset($_GET['action'])) {
             $post = post();
             require('views/viewModifyPost.php');
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //MODIFY BLOG POST
@@ -69,10 +76,12 @@ if(isset($_GET['action'])) {
                $postModified = modifyPost($postId, $title, $chapo, $content);
                 header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=listPosts');
             }else{
-                echo 'Error: all fields must be complete';
+                $error = 'Error: all fields must be complete';
+                require('views/viewError.php');
             }
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //DELETE POST
@@ -80,9 +89,10 @@ if(isset($_GET['action'])) {
         if(isset($_GET['id']) && $_GET['id'] > 0){
             $postId = $_GET['id'];
             deletePost($postId);
-            header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+            header(constant('ADMINISTRATION_PAGE'));
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //SIGNUP FORM
@@ -103,15 +113,19 @@ if(isset($_GET['action'])) {
                 if($checkMailExist == 0 ){
                     addUser($_POST['firstname'], $_POST['name'], $_POST['email'], 'utilisateur', $_POST['bio'], sha1($_POST['password']));
                 }else{
-                   echo 'Adresse mail déjà enregistrée';
+                    $error = 'Adresse mail déjà enregistrée';
+                    $solution =  '<a href="?action=connectForm">Veuillez vous connecter</a>';
+                    require('views/viewError.php');
                 }
             }
             else{
-                echo 'Erreur: Veuillez entrer un mail valide';
+                $error = 'Veuillez entrer un mail valide';
+                require('views/viewError.php');
             }
         }
         else {
-            echo 'Erreur : Veuillez renseigner tous les champs !';
+            $error = 'Veuillez renseigner tous les champs !';
+            require('views/viewError.php');
         }
     }
     //MODIFY USER
@@ -121,7 +135,8 @@ if(isset($_GET['action'])) {
             $user = getUser($userId);
             require('views/viewModifyUser.php');
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //MODIFY DATA USER
@@ -137,12 +152,14 @@ if(isset($_GET['action'])) {
 
             if(!empty($firstname) && !empty($name) && !empty($email) && !empty($bio) && !empty($password)){
                 $userModified = modifyUser( $userId, $firstname, $name, $email, $bio, $password);
-                header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+                header(constant('ADMINISTRATION_PAGE'));
             }else{
-                echo 'Error: all fields must be complete';
+                $error = 'Error: all fields must be complete';
+                require('views/viewError.php');
             }
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //MODIFY DATA USER
@@ -152,13 +169,15 @@ if(isset($_GET['action'])) {
             $newStatus = $_GET['status'];
             if(isset($newStatus)){
                 modifyStatus($userId, $newStatus);
-                header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+                header(constant('ADMINISTRATION_PAGE'));
             }else{
-                echo 'Error: no status has been mentionned';
+                $error = 'Error: no status has been mentionned';
+                require('views/viewError.php');
             }
 
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //DELETE USER
@@ -166,9 +185,10 @@ if(isset($_GET['action'])) {
         if(isset($_GET['id']) && $_GET['id'] > 0){
             $userId = $_GET['id'];
             deleteUser($userId);
-            header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+            header(constant('ADMINISTRATION_PAGE'));
         }else{
-            echo 'Error: no id has been sent';
+            $error = constant('ERROR_NOID');
+            require('views/viewError.php');
         }
     }
     //CONNECT FORM
@@ -202,14 +222,18 @@ if(isset($_GET['action'])) {
                         header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=listPosts');
                     }
                     else{
-                        echo 'mauvais mail ou mot de passe';
+                        $error = 'mauvais mail ou mot de passe';
+                        $solution =  '<a href="?action=connectForm">Tenter à nouveau</a>';
+                        require('views/viewError.php');
                     }
 
                 }else{
-                    echo 'Adresse mail non valide';
+                    $error = 'Adresse mail non valide';
+                    require('views/viewError.php');
                 }
             }else{
-                echo 'Tous les champs doivent être remplis';
+                $error = 'Tous les champs doivent être remplis';
+                require('views/viewError.php');
             }
         }
     }
@@ -224,16 +248,17 @@ if(isset($_GET['action'])) {
     elseif ($_GET['action'] == 'deleteComment') {
         $commentId = $_GET['id'];
         deleteComment($commentId);
-        header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+        header(constant('ADMINISTRATION_PAGE'));
     }
     //ACCEPT COMMENT
     elseif ($_GET['action'] == 'acceptComment') {
         if(isset($_GET['id']) && $_GET['id'] > 0) {
             $commentId = $_GET['id'];
             acceptComment($commentId);
-            header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=administration');
+            header(constant('ADMINISTRATION_PAGE'));
         }else{
-            echo 'no id has been sent';
+            $error = 'no id has been sent';
+            require('views/viewError.php');
         }
     }
 }else{
