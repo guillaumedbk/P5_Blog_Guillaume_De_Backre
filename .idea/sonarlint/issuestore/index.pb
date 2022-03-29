@@ -1,6 +1,4 @@
 
-C
-views/viewLogIn.php,b/8/b89fcc16ed4710a53393772e103db1022c7e9df5
 o
 ?views/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg,a/6/a67318e0a531cb0e4490767e43aae1c6c0588c2c
 n
@@ -27,8 +25,6 @@ b
 2views/startbootstrap-clean-blog-gh-pages/post.html,0/d/0dd19794ad6f3ab93b625610551a5df11e5c1ea2
 d
 4views/startbootstrap-sb-admin-2-gh-pages/tables.html,9/6/964af8d054bed9b616d444d1ea7032538af725e9
-D
-views/viewSignIn.php,7/1/71c9a4213ba243a9b7ec3b75f04d367af2c6b1bd
 H
 views/viewModifyUser.php,9/5/956881c17230657b0449dc8dc6b63e1d4b4559da
 H
@@ -37,8 +33,6 @@ g
 7views/startbootstrap-freelancer-gh-pages/css/styles.css,a/a/aab586648d315aee66eac5ecafb0bb463e8e38ed
 D
 views/viewFooter.php,8/6/863f332d80b20d1bcafbbffafed78d1c48105b0e
-D
-views/viewHeader.php,6/a/6abe30e6c22365374371df0d53546bfadab39dee
 g
 7views/startbootstrap-clean-blog-gh-pages/css/styles.css,4/0/4014389167b21286057469775e87173c3218ac27
 H
@@ -47,15 +41,25 @@ L
 views/viewAdministration.php,8/2/82f35a33d06f7a63f6b8eda71ab6d77eb45c9b69
 G
 controllers/comment.php,1/9/19f1aafdabfe69cb38cc518f1d34adda11a64ec8
-D
-controllers/post.php,7/8/78de8196c9b74fc639968108a60ce0b0b413078d
-E
-controllers/users.php,a/c/ac18afad111fe5baffee844e4d372b85fc57db70
-D
-models/dbConnect.php,9/0/90e6148b9e34ae1d2122ee11a4d71e653fd92755
 H
 models/modelComments.php,9/3/933d779877d2c879080ca2afb92389b1ad7a6d69
+B
+views/viewBlog.php,d/7/d71f52be242c377e2f0b65eee7114dba2814a0ef
+B
+views/viewPost.php,8/2/82c5ea2586d48dc63b8a8c86bc2fa9493b613e26
+C
+views/viewPosts.php,8/2/823b2baf818148d2da37ea3fa72aea59d37c03c2
+C
+views/viewError.php,8/4/846af9255965ab6b819b6613c25eb1df0b0d4b8e
 E
 models/modelPosts.php,b/a/bacdfc8f6e164fe21596aad4af1ebd7def9e2617
+C
+vendor/autoload.php,4/c/4ceef96aee837e6ae16da075ddeaba8aafebd371
+I
+controllers/post/post.php,2/e/2e9019798bee22794ec27fed9bd979912a37981c
 E
-models/modelUsers.php,1/d/1df2a704b1fd4dd125af87c625d7666c71d101c6
+controllers/users.php,a/c/ac18afad111fe5baffee844e4d372b85fc57db70
+9
+	.htaccess,f/1/f14dd8fe84b7e99eb63debbf029152463832e7ad
+=
+composer.lock,c/3/c3262e2a0879195bd6a727e90f768bc85ad79ffd
