@@ -21,10 +21,6 @@ class ComposerStaticInitac24199f3f92b850d4345edc9e645d72
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
-        'E' => 
-        array (
-            'Exceptions\\' => 11,
-        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -43,10 +39,6 @@ class ComposerStaticInitac24199f3f92b850d4345edc9e645d72
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
-        ),
-        'Exceptions\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Exceptions',
         ),
         'App\\' => 
         array (
