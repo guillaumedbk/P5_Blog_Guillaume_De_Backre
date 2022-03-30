@@ -59,7 +59,5 @@ I
 controllers/post/post.php,2/e/2e9019798bee22794ec27fed9bd979912a37981c
 E
 controllers/users.php,a/c/ac18afad111fe5baffee844e4d372b85fc57db70
-9
-	.htaccess,f/1/f14dd8fe84b7e99eb63debbf029152463832e7ad
 =
 composer.lock,c/3/c3262e2a0879195bd6a727e90f768bc85ad79ffd

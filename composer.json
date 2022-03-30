@@ -4,5 +4,8 @@
       "App\\": "src/",
       "Exceptions\\": "Exceptions/"
     }
+  },
+  "require": {
+    "twig/twig": "^3.3"
   }
 }
