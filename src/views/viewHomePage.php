@@ -109,7 +109,7 @@
         </div>
         <!-- About Section Button-->
         <div class="text-center mt-4">
-            <a class="btn btn-xl btn-outline-light" href="startbootstrap-freelancer-gh-pages/assets/img/portfolio/Guillaume De backre.pdf" download="CV Guillaume De Backre">
+            <a class="btn btn-xl btn-outline-light" href="../../Templates/images/Guillaume%20De%20backre.pdf" download="CV Guillaume De Backre">
                 <i class="fas fa-download me-2"></i>
                 CV
             </a>
