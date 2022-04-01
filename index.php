@@ -7,6 +7,7 @@ use App\Repository\home\HomeController;
 use App\Repository\blog\MyPutController;
 use App\Repository\blog\BlogController;
 use App\Router\Request;
+use App\Repository\home\SignUpController;
 
 //Chemin vers la racine du projet
 define('ROOT', dirname(__DIR__));
@@ -17,6 +18,10 @@ $router = new Router(
         "/^\/$/" => [
             'methods' => ['GET'],
             'controller' => new HomeController()
+        ],
+        "/^\inscription/$/" => [
+            'methods' => ['POST'],
+            'controller' => new SignUpController()
         ],
         "/^\/blog$/" => [
             'methods' => ['GET'],
