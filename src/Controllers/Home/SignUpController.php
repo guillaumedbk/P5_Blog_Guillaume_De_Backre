@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\home;
+namespace App\Controllers\Home;
 
 class SignUpController
 {

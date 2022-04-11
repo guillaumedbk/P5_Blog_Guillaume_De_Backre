@@ -1,23 +1,32 @@
 <?php
 require_once realpath("vendor/autoload.php");
 
+use App\Controllers\Blog\BlogController;
+use App\Controllers\Blog\MyPutController;
+use App\Controllers\Home\SignUpController;
+use App\Controllers\Home\UserController;
 use App\Exceptions\ControllerNotFoundException;
 use App\Router\Router;
-use App\Repository\home\HomeController;
-use App\Repository\blog\MyPutController;
-use App\Repository\blog\BlogController;
+use App\Router\Controller\HomeController;
 use App\Router\Request;
-use App\Repository\home\SignUpController;
 
 //Chemin vers la racine du projet
 define('ROOT', dirname(__DIR__));
+
+// Loading for .env at the root directory
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 //Router
 $router = new Router(
     [
         "/^\/$/" => [
             'methods' => ['GET'],
-            'controller' => new HomeController()
+            'controller' => new HomeController('blog')
+        ],
+        "/^\/user/" => [
+            'methods' => ['GET'],
+            'controller' => new UserController()
         ],
         "/^\inscription/$/" => [
             'methods' => ['POST'],
@@ -25,12 +34,17 @@ $router = new Router(
         ],
         "/^\/blog$/" => [
             'methods' => ['GET'],
-            'controller' => new BlogController()
+            'controller' => new BlogController('blog')
         ],
-        "/^\/post\/\d+$/" => [
+        "/post\/\d+/" => [
             'methods' => ['POST', 'GET', 'PUT'],
-            'controller' => new MyPutController()
-        ],
+            'controller' => new MyPutController('blog')
+        ]
+        /*
+        "/^\/post\/\d+/" => [
+            'methods' => ['POST', 'GET', 'PUT'],
+            'controller' => new MyPutController('blog')
+        ],*/
     ]
 );
 
