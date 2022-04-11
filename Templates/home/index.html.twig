@@ -12,10 +12,8 @@
 
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0"> <!-- AFFICHER LE NOM -->
-                    {% for article in entreprise %}
-
-                            {{ article.nom }}
-
+                    {% for item in user %}
+                        {{ item.firstname }}  {{ item.name }}
                     {% endfor %}
                 </h1>
 

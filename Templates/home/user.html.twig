@@ -2,5 +2,8 @@
 
 {% block body %}
     <h1>Hello, tu es bien sur la page pour afficher un user</h1>
-    {{ firstname }}
+    {% for item in user %}
+        <p>{{ item.firstname }}</p>
+        <p>{{ item.name }}</p>
+    {% endfor %}
 {% endblock %}
