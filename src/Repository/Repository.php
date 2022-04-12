@@ -9,9 +9,10 @@ abstract class Repository
     protected DBConnexion $dbConnection;
     protected $table;
 
-    public function __construct(DBConnexion $dbConnection)
+    public function __construct(DBConnexion $dbConnection, $table)
     {
         $this->dbConnection = $dbConnection;
+        $this->table = $table;
     }
 
     public function All(): array
@@ -21,12 +22,12 @@ abstract class Repository
         return $req->fetchAll();
     }
 
-    public function findById(int $id)
+    public function findById(int $id): object
     {
         //GET ONE
         $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE id = ?");
         $req->execute([$id]);
 
-        return json_decode(json_encode($req->fetch()), true);
+        return $req->fetch();
     }
 }

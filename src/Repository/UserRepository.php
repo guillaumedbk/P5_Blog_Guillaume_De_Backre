@@ -6,8 +6,9 @@ use App\Entity\User\User;
 
 class UserRepository extends Repository
 {
-    protected $table = 'user';
-
-
+    public function __construct(\App\Repository\DBConnexion $dbConnection)
+    {
+        parent::__construct($dbConnection, 'user');
+    }
 
 }

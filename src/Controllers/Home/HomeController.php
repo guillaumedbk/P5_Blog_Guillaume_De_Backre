@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function __invoke(Request $request)
     {
-        
+
         $oneUser = new UserRepository($this->getDBConnexion());
         $theUser = $oneUser->findById(1);
 
