@@ -25,11 +25,11 @@ $router = new Router(
             'methods' => ['GET'],
             'controller' => new HomeController('blog')
         ],
-        "/^\/user/" => [
+        "/^\/user$/" => [
             'methods' => ['GET'],
             'controller' => new UserController()
         ],
-        "/^\inscription/$/" => [
+        "/^\/inscription$/" => [
             'methods' => ['POST'],
             'controller' => new SignUpController()
         ],
@@ -37,15 +37,10 @@ $router = new Router(
             'methods' => ['GET'],
             'controller' => new BlogController('blog')
         ],
-        "/post\/\d+/" => [
+        "/^\/post\/(\d+)$/" => [
             'methods' => ['POST', 'GET', 'PUT'],
             'controller' => new MyPutController('blog')
         ]
-        /*
-        "/^\/post\/\d+/" => [
-            'methods' => ['POST', 'GET', 'PUT'],
-            'controller' => new MyPutController('blog')
-        ],*/
     ]
 );
 

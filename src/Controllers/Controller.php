@@ -15,6 +15,9 @@ abstract class Controller
     //public function __construct(DBConnexion $db)
     public function __construct($db)
     {
+        //DB CONNEXION
+        $db = new DBConnexion($_ENV['DB_NAME'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+
         $this->db = $db;
         //Parameter for the templates folder
         $this->loader = new FilesystemLoader(ROOT.'/P5_Blog_Guillaume_De_Backre/Templates');

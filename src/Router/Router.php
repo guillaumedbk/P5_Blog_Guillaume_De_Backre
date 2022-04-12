@@ -19,8 +19,10 @@ class Router
     public function execute(Request $request)
     {
         foreach ($this->routes as $pattern => $config) {
-            if (preg_match($pattern, $request->getPath()) === 1 && in_array($request->getMethod(), $config['methods'], true)) {
-                return $config['controller']($request);
+            $matches = [];
+            if (preg_match($pattern, $request->getPath(), $matches) === 1 && in_array($request->getMethod(), $config['methods'], true)) {
+             $request->setMatches($matches);
+             return $config['controller']($request);
             }
         }
 

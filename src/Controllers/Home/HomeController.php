@@ -13,11 +13,9 @@ class HomeController extends Controller
 
     public function __invoke(Request $request)
     {
-        //DB CONNEXION
-        $db = new DBConnexion($_ENV['DB_NAME'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
 
         //GET ALL USER
-        $req = $db->getPDO()->query('SELECT * FROM user');
+        $req = $this->db->getPDO()->query('SELECT * FROM user');
         $users = $req->fetchAll();
 
         //DISPLAY TEMPLATE AND SEND VARIABLES
@@ -25,5 +23,7 @@ class HomeController extends Controller
         echo $template->render([
             'user' => $users
         ]);
+
+        var_dump($request->getMatches());
     }
 }
