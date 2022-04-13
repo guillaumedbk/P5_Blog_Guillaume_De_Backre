@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
 
-        $oneUser = new UserRepository($this->getDBConnexion());
+        $oneUser = new UserRepository($this->getDBConnexion(), 'user');
         $theUser = $oneUser->findById(1);
 
         //DISPLAY TEMPLATE AND SEND VARIABLES
@@ -24,6 +24,6 @@ class HomeController extends Controller
             'user' => $theUser
         ]);
 
-        var_dump($request->getMatches());
+       // var_dump($request->getMatches());
     }
 }

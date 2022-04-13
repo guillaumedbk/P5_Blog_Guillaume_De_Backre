@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Controllers\Home\HomeController;
 use App\Repository\DBConnexion;
 
 abstract class Repository
@@ -25,9 +26,10 @@ abstract class Repository
     public function findById(int $id): object
     {
         //GET ONE
-        $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE id = ?");
+        $req = $this->dbConnection->getPDO()->prepare("SELECT id, firstname, name, email, status, bio, password FROM {$this->table} WHERE id = ?");
         $req->execute([$id]);
 
-        return $req->fetch();
+        return $req->fetchObject('App\Entity\User\User');
     }
+
 }
