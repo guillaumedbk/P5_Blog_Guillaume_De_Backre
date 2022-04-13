@@ -8,7 +8,25 @@ class UserRepository extends Repository
 {
     public function __construct(\App\Repository\DBConnexion $dbConnection)
     {
-        parent::__construct($dbConnection, 'user');
+        parent::__construct($dbConnection, 'user', 'App\Entity\User\User');
     }
+
+    //INSERT NEW ELEMENT
+    public function insertInto()
+    {
+        //VARIABLES AUXQUELLES ON ATTRIBUERA LES VALEURS
+         $firstname = 'guillaume';
+         $name = 'dbk';
+         $email = "test@mail";
+         $status = 'admin';
+         $bio = 'bio';
+         $password = 'pass';
+
+         $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
+         return $insertInto ->execute(array($firstname, $name, $email, $status, $bio, $password));
+
+    }
+
+
 
 }
