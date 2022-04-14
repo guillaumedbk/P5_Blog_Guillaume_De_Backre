@@ -30,8 +30,8 @@ $router = new Router(
             'controller' => new UserController()
         ],
         "/^\/inscription$/" => [
-            'methods' => ['POST'],
-            'controller' => new SignUpController()
+            'methods' => ['GET', 'POST'],
+            'controller' => new SignUpController('blog')
         ],
         "/^\/blog$/" => [
             'methods' => ['GET'],

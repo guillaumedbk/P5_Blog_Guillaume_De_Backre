@@ -33,5 +33,16 @@ abstract class Repository
 
         return $req->fetchObject($this->entity);
     }
+    //DELETE ONE ELEMENT
+    public function deleteById(int $id)
+    {
+        $req = $this->dbConnection->getPDO()->prepare("DELETE FROM {$this->table} WHERE id = ?");
+
+        if($req->execute([$id])){
+            return "L\'élément $id de la table {$this->table} a été supprimé avec succès";
+        }else{
+            return "An error has occured";
+        }
+    }
 
 }

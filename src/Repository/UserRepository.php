@@ -12,19 +12,10 @@ class UserRepository extends Repository
     }
 
     //INSERT NEW ELEMENT
-    public function insertInto()
+    public function createUser($firstname, $name, $email, $status, $bio, $password)
     {
-        //VARIABLES AUXQUELLES ON ATTRIBUERA LES VALEURS
-         $firstname = 'guillaume';
-         $name = 'dbk';
-         $email = "test@mail";
-         $status = 'admin';
-         $bio = 'bio';
-         $password = 'pass';
-
          $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
          return $insertInto ->execute(array($firstname, $name, $email, $status, $bio, $password));
-
     }
 
 
