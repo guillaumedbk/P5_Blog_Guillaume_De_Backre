@@ -28,7 +28,7 @@ abstract class Repository
     //GET BY ID
     public function findById(int $id): object
     {
-        $req = $this->dbConnection->getPDO()->prepare("SELECT id, firstname, name, email, status, bio, password FROM {$this->table} WHERE id = ?");
+        $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE id = ?");
         $req->execute([$id]);
 
         return $req->fetchObject($this->entity);

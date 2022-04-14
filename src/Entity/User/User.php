@@ -4,7 +4,7 @@ namespace App\Entity\User;
 class User
 {
     //Attributes
-    private $id;
+    //private $id;
     private $firstname;
     private $name;
     private $email;
@@ -13,8 +13,8 @@ class User
     private $password;
 
     //Constructor
-    public function __construct($id=NULL, $firstname=NULL, $name=NULL, $email=NULL, $status=NULL, $bio=NULL, $password=NULL){
-        $this->id = $id === NULL ? $this->id : $id;
+    public function __construct($firstname=NULL, $name=NULL, $email=NULL, $status=NULL, $bio=NULL, $password=NULL){
+       // $this->id = $id === NULL ? $this->id : $id;
         $this->firstname = $firstname  === NULL ? $this->firstname : $firstname;;
         $this->name = $name === NULL ? $this->name: $name;;
         $this->email = $email === NULL ? $this->email : $email;;

@@ -6,16 +6,25 @@ use App\Entity\User\User;
 
 class UserRepository extends Repository
 {
+    protected $table = 'user';
+
     public function __construct(\App\Repository\DBConnexion $dbConnection)
     {
-        parent::__construct($dbConnection, 'user', User::class);
+        parent::__construct($dbConnection, $this->table, User::class);
     }
 
-    //CREATE NEW USER
+    //CREATE NEW USER WITH OBJECT ?
     public function createUser($firstname, $name, $email, $status, $bio, $password)
     {
-         $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
-         return $insertInto ->execute(array($firstname, $name, $email, $status, $bio, $password));
+        $user = new User($firstname, $name, $email, $status, $bio, $password);
+        $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
+        return $insertInto ->execute(array($user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(),$user->getPassword()));
+    }
+    //CREATE NEW USER VERSION 2
+    public function createUserSecondVersion($firstname, $name, $email, $status, $bio, $password)
+    {
+        $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
+        return $insertInto ->execute(array($firstname, $name, $email, $status, $bio, $password));
     }
     //MODIFY ONE USER
     public function modifyUser($id, $firstname, $name, $email, $bio, $password)
