@@ -19,19 +19,18 @@ class UserRepository extends Repository
         $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
         return $insertInto ->execute(array($user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(),$user->getPassword()));
     }
-
     //MODIFY ONE USER
-    public function modifyUser($id, $firstname, $name, $email, $bio, $password)
+    public function modifyUser(User $user, $userId)
     {
         $modifyUser = $this->dbConnection->getPDO()->prepare('UPDATE user SET firstname = :firstname, name = :name, email = :email, bio = :bio, password = :password WHERE id = :id');
             if (
                 $modifyUser->execute([
-                'firstname' => $firstname,
-                'name' => $name,
-                'email' => $email,
-                'bio' => $bio,
-                'password' => $password,
-                'id' => $id
+                'firstname' => $user->getFirstname(),
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'bio' => $user->getBio(),
+                'password' => $user->getPassword(),
+                'id' => $userId
                 ])) {
                 return 'User successfully modified';
             }else{
