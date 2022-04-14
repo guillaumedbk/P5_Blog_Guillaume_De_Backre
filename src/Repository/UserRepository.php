@@ -8,7 +8,7 @@ class UserRepository extends Repository
 {
     public function __construct(\App\Repository\DBConnexion $dbConnection)
     {
-        parent::__construct($dbConnection, 'user', 'App\Entity\User\User');
+        parent::__construct($dbConnection, 'user', User::class);
     }
 
     //INSERT NEW ELEMENT
