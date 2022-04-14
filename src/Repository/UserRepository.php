@@ -28,9 +28,18 @@ class UserRepository extends Repository
                 'email' => $email,
                 'bio' => $bio,
                 'password' => $password,
-                'id' => $id])
-            ){
+                'id' => $id
+                ])) {
                 return 'User successfully modified';
+            }else{
+                return 'An error has occured';
+            }
+    }
+    //MODIFY USER STATUS
+    public function modifyUserStatus($userId, $newStatus){
+        $req = $this->dbConnection->getPDO()->prepare('UPDATE user SET status = :status WHERE id = :id');
+            if ($req-> execute(['status' => $newStatus, 'id' => $userId])){
+                return 'User status successfully modified';
             }else{
                 return 'An error has occured';
             }

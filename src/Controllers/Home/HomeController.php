@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $oneUser = new UserRepository($this->getDBConnexion());
         $theUser = $oneUser->findById(1);
-
+        
         //DISPLAY TEMPLATE AND SEND VARIABLES
         $template = $this->twig->load('home/index.html.twig');
         echo $template->render([
