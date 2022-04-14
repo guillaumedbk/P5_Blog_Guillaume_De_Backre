@@ -8,7 +8,6 @@ class Post
     private $title;
     private $chapo;
     private $content;
-    private $latsUpdate;
 
     /**
      * @param $userId
@@ -17,13 +16,12 @@ class Post
      * @param $content
      * @param $latsUpdate
      */
-    public function __construct($userId=NULL, $title=NULL, $chapo=NULL, $content=NULL, $latsUpdate=NULL)
+    public function __construct($userId=NULL, $title=NULL, $chapo=NULL, $content=NULL)
     {
         $this->userId = $userId === NULL ? $this->userId : $userId;
         $this->title = $title === NULL ? $this->title : $title;
         $this->chapo = $chapo === NULL ? $this->chapo : $chapo;
         $this->content = $content === NULL ? $this->content : $content;
-        $this->latsUpdate = $latsUpdate === NULL ? $this->latsUpdate : $latsUpdate;
     }
 
     /**
@@ -90,19 +88,4 @@ class Post
         $this->content = $content;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLatsUpdate()
-    {
-        return $this->latsUpdate;
-    }
-
-    /**
-     * @param mixed $latsUpdate
-     */
-    public function setLatsUpdate($latsUpdate): void
-    {
-        $this->latsUpdate = $latsUpdate;
-    }
 }
