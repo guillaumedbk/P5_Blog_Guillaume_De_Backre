@@ -33,6 +33,7 @@ abstract class Repository
 
         return $req->fetchObject($this->entity);
     }
+
     //DELETE ONE ELEMENT
     public function deleteById(int $id)
     {
