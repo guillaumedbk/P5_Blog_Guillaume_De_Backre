@@ -3,15 +3,9 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
-use App\Entity\Post\Post;
-use App\Entity\User\User;
-use App\Repository\DBConnexion;
-use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use App\Router\Request;
-use Exception;
-use Exceptions\RouteNotFoundException;
-use Twig\Extension\AbstractExtension;
+
 
 class HomeController extends Controller
 {

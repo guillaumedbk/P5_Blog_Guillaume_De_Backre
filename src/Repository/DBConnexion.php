@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use PDO;
+use PDOException;
 
 class DBConnexion
 {
@@ -24,11 +25,15 @@ class DBConnexion
     {
         if($this->pdo === null){
             //Instantiate pdo if null
-            $this->pdo = new PDO("mysql:dbname={$this->dbname};host={$this->host}", $this->username, $this->password, array(
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET CHARACTER SET UTF8'
+            try{
+                $this->pdo = new PDO("mysql:dbname={$this->dbname};host={$this->host}", $this->username, $this->password, array(
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET CHARACTER SET UTF8'
                 ));
+            }catch(PDOException $Exception){
+                echo 'The following error has occured :' . $Exception->getMessage() . ' at ligne ' . $Exception->getLine() . ' in the following file: ' . $Exception->getFile();
+            }
         }
         return $this->pdo;
     }
