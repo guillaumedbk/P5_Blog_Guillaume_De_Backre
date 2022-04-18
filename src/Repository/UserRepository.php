@@ -13,16 +13,7 @@ class UserRepository extends Repository
 
     public function __construct(\App\Repository\DBConnexion $dbConnection)
     {
-        try{
-            parent::__construct($dbConnection, $this->table, User::class);
-
-            if(!$this->entity){
-                throw new EntityNotFoundException($this->entity);
-            }
-        }catch(Exception $exception){
-           $e = new EntityNotFoundException($this->entity);
-           echo $e->getClass() . ': '. $exception->getMessage();
-        }
+        parent::__construct($dbConnection, $this->table, User::class);
     }
 
     //CREATE NEW USER BY PASSING AN OBJECT
