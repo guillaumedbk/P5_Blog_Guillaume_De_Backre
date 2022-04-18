@@ -3,6 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\User\User;
+use Exception;
+use App\Exceptions\EntityNotFoundException;
+
 
 class UserRepository extends Repository
 {
@@ -10,7 +13,16 @@ class UserRepository extends Repository
 
     public function __construct(\App\Repository\DBConnexion $dbConnection)
     {
-        parent::__construct($dbConnection, $this->table, User::class);
+        try{
+            parent::__construct($dbConnection, $this->table, User::class);
+
+            if(!$this->entity){
+                throw new EntityNotFoundException($this->entity);
+            }
+        }catch(Exception $exception){
+           $e = new EntityNotFoundException($this->entity);
+           echo $e->getClass() . ': '. $exception->getMessage();
+        }
     }
 
     //CREATE NEW USER BY PASSING AN OBJECT
