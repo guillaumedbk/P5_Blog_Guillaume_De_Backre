@@ -3,12 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\Post\Post;
+use App\Repository\DBConnexion;
 
 class PostRepository extends Repository
 {
-    protected $table = 'post';
+    protected string $table = 'post';
 
-    public function __construct(\App\Repository\DBConnexion $dbConnection)
+    public function __construct(DBConnexion $dbConnection)
     {
         parent::__construct($dbConnection, $this->table, Post::class);
     }

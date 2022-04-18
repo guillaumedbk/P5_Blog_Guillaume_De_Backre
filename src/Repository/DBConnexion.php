@@ -11,7 +11,7 @@ class DBConnexion
     private string $host;
     private string $username;
     private string $password;
-    private string $pdo;
+    private $pdo;
 
     public function __construct(string $dbname, string $host, string $username,string $password)
     {

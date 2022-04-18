@@ -5,13 +5,14 @@ namespace App\Repository;
 use App\Entity\User\User;
 use Exception;
 use App\Exceptions\EntityNotFoundException;
+use App\Repository\DBConnexion;
 
 
 class UserRepository extends Repository
 {
-    protected $table = 'user';
+    protected string $table = 'user';
 
-    public function __construct(\App\Repository\DBConnexion $dbConnection)
+    public function __construct(DBConnexion $dbConnection)
     {
         parent::__construct($dbConnection, $this->table, User::class);
     }

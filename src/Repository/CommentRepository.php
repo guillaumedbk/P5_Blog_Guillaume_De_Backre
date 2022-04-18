@@ -3,12 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\Comment\Comment;
+use App\Repository\DBConnexion;
 
 class CommentRepository extends Repository
 {
-    protected $table = 'comments';
+    protected string $table = 'comments';
 
-    public function __construct(\App\Repository\DBConnexion $dbConnection)
+    public function __construct(DBConnexion $dbConnection)
     {
         parent::__construct($dbConnection, $this->table, Comment::class);
     }
