@@ -5,20 +5,21 @@ namespace App\Entity\Comment;
 class Comment
 {
     //Attributes
-    protected $userId;
-    protected $postId;
-    protected $content;
-    protected $publishAt;
-    protected $status;
+    protected int $userId;
+    protected int $postId;
+    protected string $content;
+    //TODO Is string type ok for date ?
+    protected string $publishAt;
+    protected string $status;
 
     /**
-     * @param $userId
-     * @param $postId
-     * @param $content
-     * @param $publishAt
-     * @param $status
+     * @param int|NULL $userId
+     * @param int|NULL $postId
+     * @param string|NULL $content
+     * @param string|NULL $publishAt
+     * @param string|NULL $status
      */
-    public function __construct($userId=NULL, $postId=NULL, $content=NULL, $publishAt=NULL, $status=NULL)
+    public function __construct(int $userId=NULL, int $postId=NULL, string $content=NULL, string $publishAt=NULL, string $status=NULL)
     {
         $this->userId = $userId === NULL ? $this->userId : $userId;
         $this->postId = $postId  === NULL ? $this->postId : $postId;
@@ -28,84 +29,85 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getUserId()
+    public function getUserId(): int
     {
         return $this->userId;
     }
 
     /**
-     * @param mixed $userId
+     * @param int $userId
      */
-    public function setUserId($userId): void
+    public function setUserId(int $userId): void
     {
         $this->userId = $userId;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getPostId()
+    public function getPostId(): int
     {
         return $this->postId;
     }
 
     /**
-     * @param mixed $postId
+     * @param int $postId
      */
-    public function setPostId($postId): void
+    public function setPostId(int $postId): void
     {
         $this->postId = $postId;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
-    public function setContent($content): void
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPublishAt()
+    public function getPublishAt(): string
     {
         return $this->publishAt;
     }
 
     /**
-     * @param mixed $publishAt
+     * @param string $publishAt
      */
-    public function setPublishAt($publishAt): void
+    public function setPublishAt(string $publishAt): void
     {
         $this->publishAt = $publishAt;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @param mixed $status
+     * @param string $status
      */
-    public function setStatus($status): void
+    public function setStatus(string $status): void
     {
         $this->status = $status;
     }
+
 
 
 }

@@ -9,10 +9,10 @@ use PDO;
 abstract class Repository
 {
     protected DBConnexion $dbConnection;
-    protected $table;
-    protected $entity;
+    protected string $table;
+    protected string $entity;
 
-    public function __construct(DBConnexion $dbConnection, $table, $entity)
+    public function __construct(DBConnexion $dbConnection, string $table, string $entity)
     {
         $this->dbConnection = $dbConnection;
         $this->table = $table;

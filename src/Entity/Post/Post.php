@@ -4,88 +4,88 @@ namespace App\Entity\Post;
 class Post
 {
     //Attributes
-    private $userId;
-    private $title;
-    private $chapo;
-    private $content;
+    private int $userId;
+    private string $title;
+    private string $chapo;
+    private string $content;
 
     /**
-     * @param $userId
-     * @param $title
-     * @param $chapo
-     * @param $content
-     * @param $latsUpdate
+     * @param int|NULL $userId
+     * @param string|NULL $title
+     * @param string|NULL $chapo
+     * @param string|NULL $content
      */
-    public function __construct($userId=NULL, $title=NULL, $chapo=NULL, $content=NULL)
-    {
-        $this->userId = $userId === NULL ? $this->userId : $userId;
-        $this->title = $title === NULL ? $this->title : $title;
-        $this->chapo = $chapo === NULL ? $this->chapo : $chapo;
-        $this->content = $content === NULL ? $this->content : $content;
-    }
+      public function __construct(int $userId=NULL, string $title=NULL, string $chapo=NULL, string $content=NULL)
+      {
+          $this->userId = $userId === NULL ? $this->userId: $userId;
+          $this->title = $title === NULL ? $this->title : $title;
+          $this->chapo = $chapo === NULL ? $this->chapo : $chapo;
+          $this->content = $content === NULL ? $this->content : $content;
+      }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getUserId()
+    public function getUserId(): int
     {
         return $this->userId;
     }
 
     /**
-     * @param mixed $userId
+     * @param int $userId
      */
-    public function setUserId($userId): void
+    public function setUserId(int $userId): void
     {
         $this->userId = $userId;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getChapo()
+    public function getChapo(): string
     {
         return $this->chapo;
     }
 
     /**
-     * @param mixed $chapo
+     * @param string $chapo
      */
-    public function setChapo($chapo): void
+    public function setChapo(string $chapo): void
     {
         $this->chapo = $chapo;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
-    public function setContent($content): void
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
+
 
 }

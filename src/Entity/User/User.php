@@ -4,15 +4,23 @@ namespace App\Entity\User;
 class User
 {
     //Attributes
-    private $firstname;
-    private $name;
-    private $email;
-    private $status;
-    private $bio;
-    private $password;
+    private string $firstname;
+    private string $name;
+    private string $email;
+    private string $status;
+    private string $bio;
+    private string $password;
 
+    /**
+     * @param string|NULL $firstname
+     * @param string|NULL $name
+     * @param string|NULL $email
+     * @param string|NULL $status
+     * @param string|NULL $bio
+     * @param string|NULL $password
+     */
     //Constructor
-    public function __construct($firstname=NULL, $name=NULL, $email=NULL, $status=NULL, $bio=NULL, $password=NULL){
+    public function __construct(string $firstname=NULL, string $name=NULL, string $email=NULL, string $status=NULL, string $bio=NULL, string $password=NULL){
         $this->firstname = $firstname  === NULL ? $this->firstname : $firstname;
         $this->name = $name === NULL ? $this->name: $name;
         $this->email = $email === NULL ? $this->email : $email;
@@ -22,50 +30,100 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFirstname()
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
 
     /**
-     * @return mixed
+     * @param string $firstname
      */
-    public function getName()
+    public function setFirstname(string $firstname): void
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @return mixed
+     * @param string $name
      */
-    public function getEmail()
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * @return mixed
+     * @param string $email
      */
-    public function getStatus()
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @return mixed
+     * @param string $status
      */
-    public function getBio()
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBio(): string
     {
         return $this->bio;
     }
 
     /**
-     * @return mixed
+     * @param string $bio
      */
-    public function getPassword()
+    public function setBio(string $bio): void
+    {
+        $this->bio = $bio;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+
 }
