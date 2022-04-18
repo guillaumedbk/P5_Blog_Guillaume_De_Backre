@@ -3,6 +3,7 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
+use App\Entity\User\User;
 use App\Repository\UserRepository;
 use App\Router\Request;
 

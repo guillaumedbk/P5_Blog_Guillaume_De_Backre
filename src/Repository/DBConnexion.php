@@ -32,7 +32,7 @@ class DBConnexion
                     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET CHARACTER SET UTF8'
                 ));
             }catch(PDOException $Exception){
-                echo 'The following error has occured :' . $Exception->getMessage() . ' at ligne ' . $Exception->getLine() . ' in the following file: ' . $Exception->getFile();
+                echo 'Connection failure :' . $Exception->getMessage() . ' at ligne ' . $Exception->getLine() . ' in the following file: ' . $Exception->getFile();
             }
         }
         return $this->pdo;

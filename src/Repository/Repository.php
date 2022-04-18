@@ -21,8 +21,13 @@ abstract class Repository
     //GET ALL
     public function All(): array
     {
-        $req = $this->dbConnection->getPDO()->query("SELECT * FROM {$this->table}");
-        return $req->fetchAll(PDO::FETCH_CLASS, $this->entity);
+        try{
+            $req = $this->dbConnection->getPDO()->query("SELECT * FROM {$this->table}");
+            return $req->fetchAll(PDO::FETCH_CLASS, $this->entity);
+        }catch (\PDOException $exception){
+            return 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
+        }
+
     }
 
     //GET BY ID

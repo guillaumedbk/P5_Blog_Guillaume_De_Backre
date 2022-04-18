@@ -28,6 +28,6 @@ abstract class Controller
 
     protected function getDBConnexion()
     {
-        return $this->db;
+            return $this->db;
     }
 }
