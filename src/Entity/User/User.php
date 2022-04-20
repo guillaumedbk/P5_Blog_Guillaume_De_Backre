@@ -1,9 +1,12 @@
 <?php
 namespace App\Entity\User;
 
-class User
+use App\Entity\EntityInterface;
+
+class User implements EntityInterface
 {
     //Attributes
+    private ?int $id = NULL;
     private string $firstname;
     private string $name;
     private string $email;
@@ -11,22 +14,21 @@ class User
     private string $bio;
     private string $password;
 
-    /**
-     * @param string|NULL $firstname
-     * @param string|NULL $name
-     * @param string|NULL $email
-     * @param string|NULL $status
-     * @param string|NULL $bio
-     * @param string|NULL $password
-     */
     //Constructor
-    public function __construct(string $firstname=NULL, string $name=NULL, string $email=NULL, string $status=NULL, string $bio=NULL, string $password=NULL){
-        $this->firstname = $firstname  === NULL ? $this->firstname : $firstname;
-        $this->name = $name === NULL ? $this->name: $name;
-        $this->email = $email === NULL ? $this->email : $email;
-        $this->status = $status === NULL ? $this->status : $status;
-        $this->bio = $bio === NULL ? $this->bio : $bio;
-        $this->password = $password === NULL ? $this->password : $password;
+    public function __construct(string $firstname, string $name, string $email, string $status, string $bio, string $password){
+        $this->firstname = $firstname;
+        $this->name = $name;
+        $this->email = $email;
+        $this->status = $status;
+        $this->bio = $bio;
+        $this->password = $password;
+    }
+
+    public static function createFromDb(array $element):self
+    {
+        $user = new User($element['firstname'], $element['name'], $element['email'], $element['status'], $element['bio'], $element['password']);
+        $user->id = $element['id'];
+        return $user;
     }
 
     /**

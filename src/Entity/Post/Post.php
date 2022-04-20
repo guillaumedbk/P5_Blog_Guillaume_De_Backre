@@ -1,88 +1,92 @@
 <?php
 namespace App\Entity\Post;
 
-class Post
+use App\Entity\EntityInterface;
+
+class Post implements EntityInterface
 {
     //Attributes
+    private ?int $id = NULL;
     private int $userId;
     private string $title;
     private string $chapo;
     private string $content;
 
-    /**
-     * @param int|NULL $userId
-     * @param string|NULL $title
-     * @param string|NULL $chapo
-     * @param string|NULL $content
-     */
-      public function __construct(int $userId=NULL, string $title=NULL, string $chapo=NULL, string $content=NULL)
-      {
-          $this->userId = $userId === NULL ? $this->userId: $userId;
-          $this->title = $title === NULL ? $this->title : $title;
-          $this->chapo = $chapo === NULL ? $this->chapo : $chapo;
-          $this->content = $content === NULL ? $this->content : $content;
-      }
+    public function __construct(int $userId=NULL, string $title=NULL, string $chapo=NULL, string $content=NULL)
+    {
+          $this->userId = $userId;
+          $this->title = $title;
+          $this->chapo = $chapo;
+          $this->content = $content;
+    }
+
+    public static function createFromDb(array $element): self
+    {
+        $post = new Post($element['userId'], $element['title'], $element['chapo'], $element['content']);
+        $post->id = $element['id'];
+        return $post;
+    }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUserId(): int
+    public function getUserId(): ?int
     {
         return $this->userId;
     }
 
     /**
-     * @param int $userId
+     * @param int|null $userId
      */
-    public function setUserId(int $userId): void
+    public function setUserId(?int $userId): void
     {
         $this->userId = $userId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * @param string $title
+     * @param string|null $title
      */
-    public function setTitle(string $title): void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getChapo(): string
+    public function getChapo(): ?string
     {
         return $this->chapo;
     }
 
     /**
-     * @param string $chapo
+     * @param string|null $chapo
      */
-    public function setChapo(string $chapo): void
+    public function setChapo(?string $chapo): void
     {
         $this->chapo = $chapo;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
     /**
-     * @param string $content
+     * @param string|null $content
      */
-    public function setContent(string $content): void
+    public function setContent(?string $content): void
     {
         $this->content = $content;
     }

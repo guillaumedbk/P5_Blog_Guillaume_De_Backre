@@ -3,14 +3,19 @@
 namespace App\Repository;
 
 use App\Controllers\Home\HomeController;
+use App\Entity\EntityInterface;
 use App\Repository\DBConnexion;
 use PDO;
 
+
+/**
+ * @template T
+ */
 abstract class Repository
 {
     protected DBConnexion $dbConnection;
     protected string $table;
-    protected string $entity;
+    private string $entity;
 
     public function __construct(DBConnexion $dbConnection, string $table, string $entity)
     {
@@ -19,26 +24,39 @@ abstract class Repository
         $this->entity = $entity;
     }
     //GET ALL
-    public function All(): array
+    /**
+     * @return array<object>
+     * @psalm-return list<T>
+     */
+    public function all(): array
     {
         try{
             $req = $this->dbConnection->getPDO()->query("SELECT * FROM {$this->table}");
-            return $req->fetchAll(PDO::FETCH_CLASS, $this->entity);
+            $fetchAll = $req->fetchAll(PDO::FETCH_ASSOC);
+            $result = [];
+            foreach ($fetchAll as $item){
+               $result[] = $this->hydrate($item);
+            }
+            return $result;
         }catch (\PDOException $exception){
             return 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
         }
-
     }
-
     //GET BY ID
+    /**
+     * @return object
+     * @psalm-return T
+     */
     public function findById(int $id): object
     {
         $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE id = ?");
         $req->execute([$id]);
+        $fetch = $req->fetch(PDO::FETCH_ASSOC);
 
-        return $req->fetchObject($this->entity);
+        /** @var EntityInterface $entity */
+        $entity = $this->entity;
+        return $entity::createFromDb($fetch);
     }
-
     //DELETE ONE ELEMENT
     public function deleteById(int $id)
     {
@@ -50,5 +68,15 @@ abstract class Repository
             return "An error has occured";
         }
     }
+    /**
+     * @param array $element
+     * @return object
+     */
+    function hydrate(array $element): object
+    {
+        $object = (object) $element;
+        return $object;
+    }
+   // abstract function hydrate(array $element): object;
 
 }

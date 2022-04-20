@@ -60,4 +60,5 @@ class UserRepository extends Repository
             echo 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
         }
     }
+
 }
