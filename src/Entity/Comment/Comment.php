@@ -14,6 +14,7 @@ class Comment implements EntityInterface
     private \DateTime $publishAt;
     private string $status;
 
+    //Constructor
     public function __construct(int $userId, int $postId, string $content, \DateTime $publishAt, string $status)
     {
         $this->userId = $userId;
@@ -23,6 +24,7 @@ class Comment implements EntityInterface
         $this->status = $status;
     }
 
+    //Retrieves the array with the data from the db and returns an object
     public static function createFromDb(array $element): self
     {
         $publishAt = new \DateTime($element['publishAt']);
@@ -31,97 +33,56 @@ class Comment implements EntityInterface
         return $comment;
     }
 
-    /**
-     * @return int|null
-     */
+    //Getters and setters
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    /**
-     * @param int|null $id
-     */
     public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return int
-     */
     public function getUserId(): int
     {
         return $this->userId;
     }
-
-    /**
-     * @param int $userId
-     */
     public function setUserId(int $userId): void
     {
         $this->userId = $userId;
     }
 
-    /**
-     * @return int
-     */
     public function getPostId(): int
     {
         return $this->postId;
     }
-
-    /**
-     * @param int $postId
-     */
     public function setPostId(int $postId): void
     {
         $this->postId = $postId;
     }
 
-    /**
-     * @return string
-     */
     public function getContent(): string
     {
         return $this->content;
     }
-
-    /**
-     * @param string $content
-     */
     public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getPublishAt(): \DateTime
     {
         return $this->publishAt;
     }
-
-    /**
-     * @param \DateTime $publishAt
-     */
     public function setPublishAt(\DateTime $publishAt): void
     {
         $this->publishAt = $publishAt;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
-
-    /**
-     * @param string $status
-     */
     public function setStatus(string $status): void
     {
         $this->status = $status;
