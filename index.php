@@ -1,4 +1,5 @@
 <?php
+
 require_once realpath("vendor/autoload.php");
 
 use App\Controllers\Blog\BlogController;
@@ -46,15 +47,8 @@ $router = new Router(
 
 try {
     $url = $_GET['url'];
-    $request = new Request('GET','/'.$url);
+    $request = new Request('GET', '/'.$url);
     $router->execute($request);
-}catch (ControllerNotFoundException $e){
+} catch (ControllerNotFoundException $e) {
     echo $e;
 }
-
-
-
-
-
-
-
