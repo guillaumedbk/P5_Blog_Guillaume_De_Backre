@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity\User;
 
 use App\Entity\EntityInterface;
@@ -6,7 +7,7 @@ use App\Entity\EntityInterface;
 class User implements EntityInterface
 {
     //Attributes
-    private ?int $id = NULL;
+    private ?int $id = null;
     private string $firstname;
     private string $name;
     private string $email;
@@ -15,7 +16,8 @@ class User implements EntityInterface
     private string $password;
 
     //Constructor
-    public function __construct(string $firstname, string $name, string $email, string $status, string $bio, string $password){
+    public function __construct(string $firstname, string $name, string $email, string $status, string $bio, string $password)
+    {
         $this->firstname = $firstname;
         $this->name = $name;
         $this->email = $email;
@@ -24,7 +26,7 @@ class User implements EntityInterface
         $this->password = $password;
     }
 
-    public static function createFromDb(array $element):self
+    public static function createFromDb(array $element): self
     {
         $user = new User($element['firstname'], $element['name'], $element['email'], $element['status'], $element['bio'], $element['password']);
         $user->id = $element['id'];
@@ -126,6 +128,4 @@ class User implements EntityInterface
     {
         $this->password = $password;
     }
-
-
 }

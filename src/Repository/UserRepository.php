@@ -7,7 +7,6 @@ use Exception;
 use App\Exceptions\EntityNotFoundException;
 use App\Repository\DBConnexion;
 
-
 class UserRepository extends Repository
 {
     protected string $table = 'user';
@@ -20,18 +19,17 @@ class UserRepository extends Repository
     //CREATE NEW USER BY PASSING AN OBJECT
     public function createUser(User $user)
     {
-        try{
+        try {
             $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
             return $insertInto ->execute(array($user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(),$user->getPassword()));
-        }
-        catch(\PDOException $exception){
+        } catch (\PDOException $exception) {
             echo 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
-    }
+        }
     }
     //MODIFY ONE USER
     public function modifyUser(User $user, $userId)
     {
-        try{
+        try {
             $modifyUser = $this->dbConnection->getPDO()->prepare('UPDATE user SET firstname = :firstname, name = :name, email = :email, bio = :bio, password = :password WHERE id = :id');
             if (
                 $modifyUser->execute([
@@ -44,21 +42,18 @@ class UserRepository extends Repository
                 ])) {
                 return 'User successfully modified';
             }
-        }
-        catch(\PDOException $exception){
+        } catch (\PDOException $exception) {
             echo 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
         }
     }
     //MODIFY USER STATUS
     public function modifyUserStatus(User $user, $userId)
     {
-        try{
+        try {
             $req = $this->dbConnection->getPDO()->prepare('UPDATE user SET status = :status WHERE id = :id');
             return $req-> execute(['status' => $user->getStatus(), 'id' => $userId]);
-
-        }catch(\PDOException $exception){
+        } catch (\PDOException $exception) {
             echo 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
         }
     }
-
 }

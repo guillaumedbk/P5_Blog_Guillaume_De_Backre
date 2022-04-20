@@ -2,7 +2,6 @@
 
 namespace App\Controllers\Blog;
 
-
 use App\Controllers\Controller;
 use App\Repository\DBConnexion;
 use App\Router\Request;
@@ -26,7 +25,5 @@ class MyPutController extends Controller
         echo $template->render([
             'user' => $users,
         ]);
-
     }
-
 }

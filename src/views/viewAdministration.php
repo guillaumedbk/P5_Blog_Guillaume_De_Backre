@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
+if (!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']) {
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
-if($_SESSION['STATUS'] != 'admin'){
-    die ('error: seul les administrateurs peuvent accéder à cette page');
+if ($_SESSION['STATUS'] != 'admin') {
+    die('error: seul les administrateurs peuvent accéder à cette page');
 }
 ?>
 <!DOCTYPE html>
@@ -116,7 +116,7 @@ if($_SESSION['STATUS'] != 'admin'){
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
 
-                <?php if($waitingComments): ?>
+                <?php if ($waitingComments): ?>
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -225,7 +225,7 @@ if($_SESSION['STATUS'] != 'admin'){
                                 <?php foreach ($users as $user): ?>
                                     <tr>
                                         <td>
-                                            <?php if($user['status'] == 'admin'): ?>
+                                            <?php if ($user['status'] == 'admin'): ?>
                                             <a href="?action=modifyStatus&id=<?= $user['id'] ?>&status=utilisateur" style="color: black">Rendre Utilisateur</a>
                                             <?php elseif ($user['status'] == 'utilisateur'):?>
                                             <a href="?action=modifyStatus&id=<?= $user['id'] ?>&status=admin" style="color: black">Rendre Admin</a>

@@ -6,5 +6,4 @@ use App\Repository\Controller;
 
 class UserController
 {
-
 }

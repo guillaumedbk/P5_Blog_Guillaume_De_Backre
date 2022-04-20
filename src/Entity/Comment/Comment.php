@@ -7,7 +7,7 @@ use App\Entity\EntityInterface;
 class Comment implements EntityInterface
 {
     //Attributes
-    private ?int $id = NULL;
+    private ?int $id = null;
     private int $userId;
     private int $postId;
     private string $content;
@@ -23,7 +23,7 @@ class Comment implements EntityInterface
         $this->status = $status;
     }
 
-    public static function createFromDb(array $element):self
+    public static function createFromDb(array $element): self
     {
         $publishAt = new \DateTime($element['publishAt']);
         $comment = new Comment($element['userId'], $element['postId'], $element['content'], $publishAt, $element['status']);
@@ -126,6 +126,4 @@ class Comment implements EntityInterface
     {
         $this->status = $status;
     }
-
-
 }

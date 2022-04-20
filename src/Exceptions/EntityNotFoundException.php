@@ -15,9 +15,8 @@ class EntityNotFoundException extends \Exception
         $this->class = $class;
     }
 
-    public function getClass():string
+    public function getClass(): string
     {
         return $this->class;
     }
-
 }

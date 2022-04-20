@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
+if (!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']) {
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
-if($_SESSION['STATUS'] != 'admin'){
-    die ('error: seul les administrateurs peuvent ajouter des posts');
+if ($_SESSION['STATUS'] != 'admin') {
+    die('error: seul les administrateurs peuvent ajouter des posts');
 }
 ?>
 <!DOCTYPE html>
@@ -75,7 +75,7 @@ if($_SESSION['STATUS'] != 'admin'){
 
                             <!-- message display -->
                             <?php
-                            if(isset($msg)){
+                            if (isset($msg)) {
                                 echo $msg;
                             }
                             ?>

@@ -7,7 +7,6 @@ use App\Entity\EntityInterface;
 use App\Repository\DBConnexion;
 use PDO;
 
-
 /**
  * @template T
  */
@@ -30,15 +29,15 @@ abstract class Repository
      */
     public function all(): array
     {
-        try{
+        try {
             $req = $this->dbConnection->getPDO()->query("SELECT * FROM {$this->table}");
             $fetchAll = $req->fetchAll(PDO::FETCH_ASSOC);
             $result = [];
-            foreach ($fetchAll as $item){
-               $result[] = $this->hydrate($item);
+            foreach ($fetchAll as $item) {
+                $result[] = $this->hydrate($item);
             }
             return $result;
-        }catch (\PDOException $exception){
+        } catch (\PDOException $exception) {
             return 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
         }
     }
@@ -62,9 +61,9 @@ abstract class Repository
     {
         $req = $this->dbConnection->getPDO()->prepare("DELETE FROM {$this->table} WHERE id = ?");
 
-        if($req->execute([$id])){
+        if ($req->execute([$id])) {
             return "L\'élément $id de la table {$this->table} a été supprimé avec succès";
-        }else{
+        } else {
             return "An error has occured";
         }
     }
@@ -72,11 +71,10 @@ abstract class Repository
      * @param array $element
      * @return object
      */
-    function hydrate(array $element): object
+    public function hydrate(array $element): object
     {
         $object = (object) $element;
         return $object;
     }
-   // abstract function hydrate(array $element): object;
-
+    // abstract function hydrate(array $element): object;
 }

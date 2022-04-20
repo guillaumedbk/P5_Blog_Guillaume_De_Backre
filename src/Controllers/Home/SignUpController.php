@@ -6,10 +6,8 @@ use App\Controllers\Controller;
 use App\Repository\UserRepository;
 use App\Router\Request;
 
-
 class SignUpController extends Controller
 {
-
     public function __invoke(Request $request)
     {
         /*
@@ -20,7 +18,5 @@ class SignUpController extends Controller
         //DISPLAY TEMPLATE AND SEND VARIABLES
         $template = $this->twig->load('home/signUp.html.twig');
         echo $template->render();
-
     }
-
 }

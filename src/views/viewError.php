@@ -25,8 +25,8 @@
 <h1><?= $error ?></h1><br>
 
 <p>
-    <?php if(isset($solution)){
+    <?php if (isset($solution)) {
     echo $solution;
-    } ?>
+} ?>
 </p>
 </body>

@@ -8,7 +8,8 @@ class Router
 {
     private array $routes;
 
-    public function __construct(array $routes){
+    public function __construct(array $routes)
+    {
         $this->routes = $routes;
     }
 
@@ -21,8 +22,8 @@ class Router
         foreach ($this->routes as $pattern => $config) {
             $matches = [];
             if (preg_match($pattern, $request->getPath(), $matches) === 1 && in_array($request->getMethod(), $config['methods'], true)) {
-             $request->setMatches($matches);
-             return $config['controller']($request);
+                $request->setMatches($matches);
+                return $config['controller']($request);
             }
         }
 

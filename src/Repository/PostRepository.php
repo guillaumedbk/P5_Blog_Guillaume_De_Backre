@@ -24,7 +24,7 @@ class PostRepository extends Repository
     public function modifyPost(Post $post, $id)
     {
         $modifyPost = $this->dbConnection->getPDO()->prepare('UPDATE post SET title = :title, chapo = :chapo, content = :content, lastUpdate = NOW() WHERE id = :id');
-        if(
+        if (
             $modifyPost -> execute([
                 'title' => $post->getTitle(),
                 'chapo' => $post->getChapo(),
@@ -32,7 +32,7 @@ class PostRepository extends Repository
                 'id' => $id])
         ) {
             return 'Post successfully modified';
-        }else{
+        } else {
             return 'An error has occured';
         }
     }

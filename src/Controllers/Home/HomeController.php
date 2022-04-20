@@ -12,13 +12,10 @@ use App\Repository\UserRepository;
 use App\Router\Request;
 use DateTime;
 
-
 class HomeController extends Controller
 {
-
     public function __invoke(Request $request)
     {
-
         $oneUser = new UserRepository($this->getDBConnexion());
         $theUser = $oneUser->findById(1);
 
@@ -32,7 +29,7 @@ class HomeController extends Controller
             'user' => $theUser
         ]);
 
-       // var_dump($request->getMatches());
+        // var_dump($request->getMatches());
         var_dump($test);
     }
 }

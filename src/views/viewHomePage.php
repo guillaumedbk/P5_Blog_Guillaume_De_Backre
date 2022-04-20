@@ -120,10 +120,8 @@
 <!-- Mail -->
 <?php
 
-if(isset($_POST['mailform']))
-{
-    if((!empty($_POST['name']) && (!empty($_POST['email']) && (!empty($_POST['message']))))){
-
+if (isset($_POST['mailform'])) {
+    if ((!empty($_POST['name']) && (!empty($_POST['email']) && (!empty($_POST['message']))))) {
         $header="MIME-Version: 1.0\r\n";
         $header.='From:"Guillaume De Backre"<guillaume@gmail.com>'."\n";
         $header.='Content-Type:text/html; charset="uft-8"'."\n";
@@ -151,12 +149,9 @@ if(isset($_POST['mailform']))
 
         mail("debackre.guillaume@gmail.com", "CONTACT - GUIBLOG.be", $message, $header);
         $msg ="Votre message a bien été envoyé !";
-
-            }
-    else{
+    } else {
         $msg = 'Tous les champs doivent être remplis';
     }
-
 }
 
 ?>
@@ -209,7 +204,7 @@ if(isset($_POST['mailform']))
 
                     <!-- message display -->
                     <?php
-                    if(isset($msg)){
+                    if (isset($msg)) {
                         echo $msg;
                     }
                     ?>

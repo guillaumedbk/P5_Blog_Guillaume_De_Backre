@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity\Post;
 
 use App\Entity\EntityInterface;
@@ -6,18 +7,18 @@ use App\Entity\EntityInterface;
 class Post implements EntityInterface
 {
     //Attributes
-    private ?int $id = NULL;
+    private ?int $id = null;
     private int $userId;
     private string $title;
     private string $chapo;
     private string $content;
 
-    public function __construct(int $userId=NULL, string $title=NULL, string $chapo=NULL, string $content=NULL)
+    public function __construct(int $userId=null, string $title=null, string $chapo=null, string $content=null)
     {
-          $this->userId = $userId;
-          $this->title = $title;
-          $this->chapo = $chapo;
-          $this->content = $content;
+        $this->userId = $userId;
+        $this->title = $title;
+        $this->chapo = $chapo;
+        $this->content = $content;
     }
 
     public static function createFromDb(array $element): self
@@ -90,6 +91,4 @@ class Post implements EntityInterface
     {
         $this->content = $content;
     }
-
-
 }
