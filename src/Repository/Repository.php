@@ -11,13 +11,13 @@ abstract class Repository
 {
     protected DBConnexion $dbConnection;
     protected string $table;
-    private string $entity;
+    private string $entityClass;
 
-    public function __construct(DBConnexion $dbConnection, string $table, string $entity)
+    public function __construct(DBConnexion $dbConnection, string $table, string $entityClass)
     {
         $this->dbConnection = $dbConnection;
         $this->table = $table;
-        $this->entity = $entity;
+        $this->entityClass = $entityClass;
     }
     //GET ALL
     /**
@@ -44,9 +44,9 @@ abstract class Repository
         $req->execute([$id]);
         $fetch = $req->fetch(PDO::FETCH_ASSOC);
 
-        /** @var EntityInterface $entity */
-        $entity = $this->entity;
-        return $entity::createFromDb($fetch);
+        /** @var EntityInterface $entityClass */
+        $entityClass = $this->entityClass;
+        return $entityClass::createFromDb($fetch);
     }
     //DELETE ONE ELEMENT
     public function deleteById(int $id): bool
