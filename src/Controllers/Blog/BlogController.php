@@ -9,7 +9,7 @@ use Twig\Extension\AbstractExtension;
 
 class BlogController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): void
     {
         $template = $this->twig->load('blog/index.html.twig');
         echo $template->render([

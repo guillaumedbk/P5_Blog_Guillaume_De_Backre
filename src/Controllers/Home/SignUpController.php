@@ -8,7 +8,7 @@ use App\Router\Request;
 
 class SignUpController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): void
     {
         /*
         //CREATE USER

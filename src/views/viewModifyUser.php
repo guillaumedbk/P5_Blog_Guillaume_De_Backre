@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']) {
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
-if ($_SESSION['STATUS'] != 'admin') {
+if ($_SESSION['STATUS'] !== 'admin') {
     die('error: seul les administrateurs peuvent modifier des utilisateurs');
 }
 ?>
@@ -16,7 +16,7 @@ if ($_SESSION['STATUS'] != 'admin') {
     <meta name="author" content="" />
     <title>Blog - Guillaume </title>
     <!-- Favicon-->
-    <link rel="icon" href=<?= $favicon ?> />
+    <link rel="icon" href=<?= $favicon; ?> />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <!-- Pour les polices-->
@@ -64,32 +64,32 @@ if ($_SESSION['STATUS'] != 'admin') {
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
                 <!-- * * * * * * * * * * * * * * *-->
-                <form action="index.php?action=modifyOneUser&id=<?= $user['id'] ?>" method="post">
+                <form action="index.php?action=modifyOneUser&id=<?= $user['id']; ?>" method="post">
                     <!-- Firstname input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" value="<?= $user['firstname'] ?>" required />
+                        <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" value="<?= $user['firstname']; ?>" required />
                         <label for="firstname">Prénom</label>
                     </div>
                     <!-- Name input-->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?= $user['name'] ?>" required />
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?= $user['name']; ?>" required />
                         <label for="name">Nom</label>
                         <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre nom</div>
                     </div>
                     <!-- Email input-->
                     <div class="form-floating mb-3">
                         <label for="email">Email</label><br />
-                        <input type="email" class="form-control" id="email" name="email" value="<?= $user['email'] ?>" required />
+                        <input type="email" class="form-control" id="email" name="email" value="<?= $user['email']; ?>" required />
                     </div>
                     <!-- Password input-->
                     <div class="form-floating mb-3">
                         <label for="password">Choisissez votre mot de passe</label><br />
-                        <input type="password" class="form-control" id="password" name="password" value="<?= $user['password'] ?>"required />
+                        <input type="password" class="form-control" id="password" name="password" value="<?= $user['password']; ?>"required />
                     </div>
                     <!-- Bio input-->
                     <div class="form-floating mb-3">
                         <label for="content">Biographie</label><br />
-                        <textarea class="form-control" id="bio" name="bio"><?= $user['bio'] ?></textarea>
+                        <textarea class="form-control" id="bio" name="bio"><?= $user['bio']; ?></textarea>
                         <div class="invalid-feedback" data-sb-feedback="message:required">Veuillez entrer votre contenu.</div>
                     </div>
                     <!-- Submit Button-->

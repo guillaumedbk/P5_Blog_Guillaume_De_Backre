@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']) {
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
-if ($_SESSION['STATUS'] != 'admin') {
+if ($_SESSION['STATUS'] !== 'admin') {
     die('error: seul les administrateurs peuvent ajouter des posts');
 }
 ?>
@@ -16,7 +16,7 @@ if ($_SESSION['STATUS'] != 'admin') {
         <meta name="author" content="" />
         <title>Blog - Guillaume </title>
         <!-- Favicon-->
-        <link rel="icon" href=<?= $favicon ?> />
+        <link rel="icon" href=<?= $favicon; ?> />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Pour les polices-->
@@ -36,7 +36,7 @@ if ($_SESSION['STATUS'] != 'admin') {
 
     <body id="page-top">
 
-        <?php include('viewHeader.php') ?>
+        <?php include('viewHeader.php'); ?>
 
         <!-- Post creation Section-->
         <section class="page-section" id="contact">
@@ -53,7 +53,7 @@ if ($_SESSION['STATUS'] != 'admin') {
                     <div class="col-lg-8 col-xl-7">
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
-                        <form action="index.php?action=addPost&id=<?= $_SESSION['ID'] ?>" method="post">
+                        <form action="index.php?action=addPost&id=<?= $_SESSION['ID']; ?>" method="post">
                             <!-- Titre input-->
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="comment" name="title" placeholder="Titre du post" required />
@@ -88,7 +88,7 @@ if ($_SESSION['STATUS'] != 'admin') {
 
 
         <!-- FOOTER -->
-        <?php include('viewFooter.php') ?>
+        <?php include('viewFooter.php'); ?>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

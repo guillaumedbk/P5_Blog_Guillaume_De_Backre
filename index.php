@@ -9,11 +9,11 @@ use App\Controllers\Home\SignUpController;
 use App\Controllers\Home\UserController;
 use App\Exceptions\ControllerNotFoundException;
 use App\Repository\DBConnexion;
-use App\Router\Router;
 use App\Router\Request;
+use App\Router\Router;
 
 //Chemin vers la racine du projet
-define('ROOT', dirname(__DIR__));
+\define('ROOT', \dirname(__DIR__));
 
 // Loading for .env at the root directory
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);

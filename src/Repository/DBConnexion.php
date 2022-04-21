@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Exceptions\CustomException;
 use PDO;
 use PDOException;
+use App\Repository\FileLogger;
 
 class DBConnexion
 {
@@ -26,13 +28,15 @@ class DBConnexion
         if ($this->pdo === null) {
             //Instantiate pdo if null
             try {
-                $this->pdo = new PDO("mysql:dbname={$this->dbname};host={$this->host}", $this->username, $this->password, array(
+                $this->pdo = new PDO("mysql:dbname={$this->dbname};host={$this->host}", $this->username, $this->password, [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
                     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET CHARACTER SET UTF8'
-                ));
-            } catch (PDOException $Exception) {
-                echo 'Connection failure :' . $Exception->getMessage() . ' at ligne ' . $Exception->getLine() . ' in the following file: ' . $Exception->getFile();
+                ]);
+            } catch (PDOException $exception) {
+                $logger = new FileLogger('logger.log');
+                $logger->critical("Connexion failure to bdd: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+                throw new PDOException("Connexion failure to bdd:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
             }
         }
         return $this->pdo;

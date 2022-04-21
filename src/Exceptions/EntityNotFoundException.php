@@ -6,9 +6,6 @@ class EntityNotFoundException extends \Exception
 {
     private string $class;
 
-    /**
-     * @param string $class
-     */
     public function __construct(string $class)
     {
         parent::__construct('Entity not found');

@@ -7,9 +7,6 @@ use App\Entity\EntityInterface;
 use App\Repository\DBConnexion;
 use PDO;
 
-/**
- * @template T
- */
 abstract class Repository
 {
     protected DBConnexion $dbConnection;
@@ -25,7 +22,6 @@ abstract class Repository
     //GET ALL
     /**
      * @return array<object>
-     * @psalm-return list<T>
      */
     public function all(): array
     {
@@ -38,14 +34,10 @@ abstract class Repository
             }
             return $result;
         } catch (\PDOException $exception) {
-            return 'The following error has occured :' . $exception->getMessage() . ' at ligne ' . $exception->getLine() . ' in the following file: ' . $exception->getFile();
+            throw new \PDOException("The following error has occured:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
     }
     //GET BY ID
-    /**
-     * @return object
-     * @psalm-return T
-     */
     public function findById(int $id): object
     {
         $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE id = ?");
@@ -57,24 +49,19 @@ abstract class Repository
         return $entity::createFromDb($fetch);
     }
     //DELETE ONE ELEMENT
-    public function deleteById(int $id)
+    public function deleteById(int $id): bool
     {
-        $req = $this->dbConnection->getPDO()->prepare("DELETE FROM {$this->table} WHERE id = ?");
-
-        if ($req->execute([$id])) {
-            return "L\'élément $id de la table {$this->table} a été supprimé avec succès";
-        } else {
-            return "An error has occured";
+        try {
+            $req = $this->dbConnection->getPDO()->prepare("DELETE FROM {$this->table} WHERE id = ?");
+            return $req->execute([$id]);
+        } catch (\PDOException $exception) {
+            throw new \Exception("The following error has occured: {$exception->getMessage()}, we couldn't delete the element with id: {$id}");
         }
     }
-    /**
-     * @param array $element
-     * @return object
-     */
+    //ARRAY TO OBJECT
     public function hydrate(array $element): object
     {
         $object = (object) $element;
         return $object;
     }
-    // abstract function hydrate(array $element): object;
 }

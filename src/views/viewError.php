@@ -22,7 +22,7 @@
 </head>
 <body class="h-100 d-flex justify-content-center align-items-center flex-column">
 
-<h1><?= $error ?></h1><br>
+<h1><?= $error; ?></h1><br>
 
 <p>
     <?php if (isset($solution)) {

@@ -21,7 +21,7 @@ class Router
     {
         foreach ($this->routes as $pattern => $config) {
             $matches = [];
-            if (preg_match($pattern, $request->getPath(), $matches) === 1 && in_array($request->getMethod(), $config['methods'], true)) {
+            if (preg_match($pattern, $request->getPath(), $matches) === 1 && \in_array($request->getMethod(), $config['methods'], true)) {
                 $request->setMatches($matches);
                 return $config['controller']($request);
             }

@@ -22,7 +22,7 @@
 </head>
 <body id="page-top">
 
-<?php include('viewHeader.php') ?>
+<?php include('viewHeader.php'); ?>
 
 <!-- Masthead-->
 <header class="masthead bg-secondary text-white text-center">
@@ -68,7 +68,7 @@
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                     </div>
-                    <img class="img-fluid" src=<?= 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/HTMLCSS.png' ?> ../../index.php />
+                    <img class="img-fluid" src=<?= 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/HTMLCSS.png'; ?> ../../index.php />
                 </div>
             </div>
             <!-- Portfolio Item 2-->
@@ -77,7 +77,7 @@
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                     </div>
-                    <img class="img-fluid" src= <?= 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/APIREST.png' ?> ../../index.php />
+                    <img class="img-fluid" src= <?= 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/APIREST.png'; ?> ../../index.php />
                 </div>
             </div>
             <!-- Portfolio Item 3-->
@@ -86,7 +86,7 @@
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                     </div>
-                    <img class="img-fluid" src= <?= 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/WEBAPP.png' ?>  ../../index.php />
+                    <img class="img-fluid" src= <?= 'views/startbootstrap-freelancer-gh-pages/assets/img/portfolio/WEBAPP.png'; ?>  ../../index.php />
                 </div>
             </div>
         </div>
@@ -215,7 +215,7 @@ if (isset($_POST['mailform'])) {
     </div>
 </section>
 <!-- FOOTER -->
-<?php include('viewFooter.php') ?>
+<?php include('viewFooter.php'); ?>
 <!-- Portfolio Modals-->
 <!-- Portfolio Modal 1-->
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
