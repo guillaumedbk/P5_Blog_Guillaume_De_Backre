@@ -49,14 +49,10 @@ abstract class Repository
         return $entityClass::createFromDb($fetch);
     }
     //DELETE ONE ELEMENT
-    public function deleteById(int $id): bool
+    public function deleteById(int $id): void
     {
-        try {
-            $req = $this->dbConnection->getPDO()->prepare("DELETE FROM {$this->table} WHERE id = ?");
-            return $req->execute([$id]);
-        } catch (\PDOException $exception) {
-            throw new \Exception("The following error has occured: {$exception->getMessage()}, we couldn't delete the element with id: {$id}");
-        }
+        $req = $this->dbConnection->getPDO()->prepare("DELETE FROM {$this->table} WHERE id = ?");
+        $req->execute([$id]);
     }
     //ARRAY TO OBJECT
     public function hydrate(array $element): object
