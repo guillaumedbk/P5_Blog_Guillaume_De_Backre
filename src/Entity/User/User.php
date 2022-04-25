@@ -1,18 +1,23 @@
 <?php
+
 namespace App\Entity\User;
 
-class User
+use App\Entity\EntityInterface;
+
+class User implements EntityInterface
 {
     //Attributes
-    private $firstname;
-    private $name;
-    private $email;
-    private $status;
-    private $bio;
-    private $password;
+    private ?int $id = null;
+    private string $firstname;
+    private string $name;
+    private string $email;
+    private string $status;
+    private string $bio;
+    private string $password;
 
     //Constructor
-    public function __construct($firstname, $name, $email, $status, $bio, $password){
+    public function __construct(string $firstname, string $name, string $email, string $status, string $bio, string $password)
+    {
         $this->firstname = $firstname;
         $this->name = $name;
         $this->email = $email;
@@ -21,51 +26,66 @@ class User
         $this->password = $password;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFirstname()
+    //Retrieves the array with the data from the db and returns an object
+    public static function createFromDb(array $element): self
+    {
+        $user = new User($element['firstname'], $element['name'], $element['email'], $element['status'], $element['bio'], $element['password']);
+        $user->id = $element['id'];
+        return $user;
+    }
+
+    //Getters and setters
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
+    public function setFirstname(string $firstname): void
+    {
+        $this->firstname = $firstname;
+    }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
 
-    /**
-     * @return mixed
-     */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
 
-    /**
-     * @return mixed
-     */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
 
-    /**
-     * @return mixed
-     */
-    public function getBio()
+    public function getBio(): string
     {
         return $this->bio;
     }
+    public function setBio(string $bio): void
+    {
+        $this->bio = $bio;
+    }
 
-    /**
-     * @return mixed
-     */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
+    }
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 }

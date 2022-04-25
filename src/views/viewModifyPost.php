@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
+if (!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']) {
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
-if($_SESSION['STATUS'] != 'admin'){
-    die ('error: seul les administrateurs peuvent ajouter des posts');
+if ($_SESSION['STATUS'] !== 'admin') {
+    die('error: seul les administrateurs peuvent ajouter des posts');
 }
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ if($_SESSION['STATUS'] != 'admin'){
     <meta name="author" content="" />
     <title>Blog - Guillaume </title>
     <!-- Favicon-->
-    <link rel="icon" href=<?= $favicon ?> />
+    <link rel="icon" href=<?= $favicon; ?> />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <!-- Pour les polices-->
@@ -65,22 +65,22 @@ if($_SESSION['STATUS'] != 'admin'){
             <div class="col-lg-8 col-xl-7">
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
-                <form action="index.php?action=modifyBlogPost&id=<?= $post['id'] ?>" method="post">
+                <form action="index.php?action=modifyBlogPost&id=<?= $post['id']; ?>" method="post">
                     <!-- Titre input-->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="comment" name="title" value="<?= $post['title'] ?>"/>
+                        <input type="text" class="form-control" id="comment" name="title" value="<?= $post['title']; ?>"/>
                         <label for="comment">Titre du post</label>
                         <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez mettre un titre</div>
                     </div>
                     <!-- Chapo input-->
                     <div class="form-floating mb-3">
                         <label for="chapo">Châpo</label><br />
-                        <input type="text" class="form-control" id="chapo" name="chapo" value="<?= $post['chapo'] ?>"></input>
+                        <input type="text" class="form-control" id="chapo" name="chapo" value="<?= $post['chapo']; ?>"></input>
                     </div>
                     <!-- Content input-->
                     <div class="form-floating mb-3">
                         <label for="content">Votre contenu</label><br />
-                        <textarea class="form-control" id="comment" name="content"><?= $post['content'] ?></textarea>
+                        <textarea class="form-control" id="comment" name="content"><?= $post['content']; ?></textarea>
                         <div class="invalid-feedback" data-sb-feedback="message:required">Veuillez entrer votre contenu.</div>
                     </div>
 
@@ -89,7 +89,7 @@ if($_SESSION['STATUS'] != 'admin'){
 
                     <!-- message display -->
                     <?php
-                    if(isset($msg)){
+                    if (isset($msg)) {
                         echo $msg;
                     }
                     ?>

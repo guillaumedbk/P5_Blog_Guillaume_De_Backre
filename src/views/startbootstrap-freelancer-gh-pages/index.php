@@ -63,14 +63,14 @@ foreach ($users as $user) {
                 </div>
                 <!-- Masthead Subheading-->
                 <p class="masthead-subheading font-weight-light mb-0">
-                    <?= $bio ?>
+                    <?= $bio; ?>
                 </p>
 
                 <ul>
 
                     <li>
                         <?=
-                        $firstname, $name ?>
+                        $firstname, $name; ?>
                     </li>
 
                 </ul>

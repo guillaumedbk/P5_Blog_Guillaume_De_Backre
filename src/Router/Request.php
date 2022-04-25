@@ -32,7 +32,6 @@ class Request
     }
 
     /**
-     * @return array
      */
     public function getMatches(): array
     {
@@ -40,7 +39,6 @@ class Request
     }
 
     /**
-     * @param array $matches
      */
     public function setMatches(array $matches): void
     {

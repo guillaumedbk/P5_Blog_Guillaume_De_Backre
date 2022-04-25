@@ -52,7 +52,7 @@
 
                     <!-- message display -->
                     <?php
-                    if(isset($msg, $erreur)){
+                    if (isset($msg, $erreur)) {
                         echo $msg;
                         echo $erreur;
                     }

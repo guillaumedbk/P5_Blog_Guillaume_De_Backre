@@ -3,27 +3,28 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
+use App\Entity\Comment\Comment;
+use App\Entity\Post\Post;
 use App\Entity\User\User;
-use App\Repository\DBConnexion;
+use App\Exceptions\CustomException;
+use App\Repository\CommentRepository;
+use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use App\Router\Request;
-use Twig\Extension\AbstractExtension;
+use DateTime;
 
 class HomeController extends Controller
 {
-
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): void
     {
-
-        //GET ALL USER
-        $req = $this->db->getPDO()->query('SELECT * FROM user');
-        $users = $req->fetchAll();
+        $oneUser = new UserRepository($this->getDBConnexion());
+        $theUser = $oneUser->findById(1);
 
         //DISPLAY TEMPLATE AND SEND VARIABLES
         $template = $this->twig->load('home/index.html.twig');
         echo $template->render([
-            'user' => $users
+            'user' => $theUser
         ]);
-
-        var_dump($request->getMatches());
+        // var_dump($request->getMatches());
     }
 }

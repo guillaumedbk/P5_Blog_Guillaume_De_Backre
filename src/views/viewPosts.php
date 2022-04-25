@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
+if (!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']) {
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
 ?>
@@ -26,13 +26,13 @@ if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
 </head>
 <body>
 <!-- HEADER -->
-<?php include('viewHeader.php') ?>
+<?php include('viewHeader.php'); ?>
 
 <!-- BLOG -->
-<?php include('viewBlog.php') ?>
+<?php include('viewBlog.php'); ?>
 
 <!-- FOOTER -->
-<?php include('viewFooter.php') ?>
+<?php include('viewFooter.php'); ?>
 
 
 <!-- Bootstrap core JS-->
