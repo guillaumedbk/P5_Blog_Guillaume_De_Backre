@@ -8,6 +8,7 @@ use Psr\Log\LogLevel;
 
 class FileLogger extends LogLevel implements LoggerInterface
 {
+    const LEVEL = [self::EMERGENCY, self::ALERT, self::CRITICAL, self::ERROR, self::WARNING, self::NOTICE, self::INFO, self::DEBUG];
     private $handle;
 
     public function __construct(string $file)
@@ -61,22 +62,15 @@ class FileLogger extends LogLevel implements LoggerInterface
 
     public function log($level, \Stringable|string $message, array $context = []): void
     {
-        if ($level !== self::EMERGENCY &&
-            $level !== self::ALERT &&
-            $level !== self::CRITICAL &&
-            $level !== self::ERROR &&
-            $level !== self::WARNING &&
-            $level !== self::NOTICE &&
-            $level !== self::INFO &&
-            $level !== self::DEBUG) {
+        if (in_array($level, self::LEVEL)) {
+            $newMessage = $message;
+            foreach ($context as $key=>$val) {
+                str_replace('{'.$key.'}', $val, $newMessage);
+            }
+            $log = sprintf("%s [%s] - %s", date('Y-m-d H:i:s'), strtoupper($level), $newMessage.PHP_EOL);
+            fwrite($this->handle, $log);
+        } else {
             throw new InvalidArgumentException("Log level invalid");
         }
-        $newMessage = $message;
-        foreach ($context as $key=>$val) {
-            str_replace('{'.$key.'}', $val, $newMessage);
-        }
-
-        $log = sprintf("%s [%s] - %s", date('Y-m-d H:i:s'), strtoupper($level), $newMessage.PHP_EOL);
-        fwrite($this->handle, $log);
     }
 }
