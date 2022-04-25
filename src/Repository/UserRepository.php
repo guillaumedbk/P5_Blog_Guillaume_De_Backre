@@ -3,27 +3,61 @@
 namespace App\Repository;
 
 use App\Entity\User\User;
+use App\Exceptions\EntityNotFoundException;
+use App\Repository\DBConnexion;
+use Exception;
 
-class UserRepository
+class UserRepository extends Repository
 {
-    private DBConnexion $dbConnection;
+    //ATTRIBUTES
+    protected string $table = 'user';
 
+    //CONSTRUCTOR
     public function __construct(DBConnexion $dbConnection)
     {
-        $this->dbConnection = $dbConnection;
+        parent::__construct($dbConnection, $this->table, User::class);
     }
 
-    /**
-     * @return User[]
-     */
-    public function findAll(): array
+    //CREATE NEW USER BY PASSING AN OBJECT
+    public function createUser(User $user): bool
     {
-        $result = $this->dbConnection->execute('SELECT*FROM user');
-        $users = [];
-        foreach ($result as $item){
-            $users[] = new User($item['firstname'], $item['name'],$item['email'], $item['status'], $item['bio'],$item['password']);
+        try {
+            $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
+            return $insertInto ->execute([$user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(),$user->getPassword()]);
+        } catch (\PDOException $exception) {
+            $logger = new FileLogger('logger.log');
+            $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+            throw new \PDOException("The following error has occured:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
-        return $users;
     }
+    //MODIFY ONE USER
+    public function modifyUser(User $user, $userId): bool
+    {
+        try {
+            $modifyUser = $this->dbConnection->getPDO()->prepare('UPDATE user SET firstname = :firstname, name = :name, email = :email, bio = :bio, password = :password WHERE id = :id');
 
+            return $modifyUser->execute([
+                    'firstname' => $user->getFirstname(),
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'bio' => $user->getBio(),
+                    'password' => $user->getPassword(),
+                    'id' => $userId
+                ]);
+        } catch (\PDOException $exception) {
+            $logger = new FileLogger('logger.log');
+            $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+            throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+        }
+    }
+    //MODIFY USER STATUS
+    public function modifyUserStatus(User $user, $userId): bool
+    {
+        try {
+            $req = $this->dbConnection->getPDO()->prepare('UPDATE user SET status = :status WHERE id = :id');
+            return $req-> execute(['status' => $user->getStatus(), 'id' => $userId]);
+        } catch (\PDOException $exception) {
+            throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+        }
+    }
 }

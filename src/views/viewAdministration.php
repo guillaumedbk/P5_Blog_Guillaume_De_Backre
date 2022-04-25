@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']){
+if (!isset($_SESSION['LOGGED']) || !$_SESSION['LOGGED']) {
     header('Location: http://localhost:8888/P5_Blog_Guillaume_De_Backre/index.php?action=connectForm');
 }
-if($_SESSION['STATUS'] != 'admin'){
-    die ('error: seul les administrateurs peuvent accéder à cette page');
+if ($_SESSION['STATUS'] !== 'admin') {
+    die('error: seul les administrateurs peuvent accéder à cette page');
 }
 ?>
 <!DOCTYPE html>
@@ -116,7 +116,7 @@ if($_SESSION['STATUS'] != 'admin'){
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
 
-                <?php if($waitingComments): ?>
+                <?php if ($waitingComments): ?>
                 <!-- DataTales -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -140,11 +140,11 @@ if($_SESSION['STATUS'] != 'admin'){
                                 <tbody>
                                 <?php foreach ($waitingComments as $comment): ?>
                                     <tr>
-                                        <td><?= $comment['id'] ?></td>
-                                        <td><?= $comment['content'] ?></td>
-                                        <td><?= $comment['publishAt'] ?></td>
-                                        <td><button class="btn-secondary btn-sm"><a href="?action=acceptComment&id=<?= $comment['id'] ?>" style="color: white">Accepter</a></button></td>
-                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deleteComment&id=<?= $comment['id'] ?>" style="color: white">Refuser</a></button></td>
+                                        <td><?= $comment['id']; ?></td>
+                                        <td><?= $comment['content']; ?></td>
+                                        <td><?= $comment['publishAt']; ?></td>
+                                        <td><button class="btn-secondary btn-sm"><a href="?action=acceptComment&id=<?= $comment['id']; ?>" style="color: white">Accepter</a></button></td>
+                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deleteComment&id=<?= $comment['id']; ?>" style="color: white">Refuser</a></button></td>
                                     </tr>
                                 <?php endforeach; ?>
 
@@ -180,14 +180,14 @@ if($_SESSION['STATUS'] != 'admin'){
                                 <tbody>
                                 <?php foreach ($posts as $post): ?>
                                     <tr>
-                                        <td><button class="btn-secondary btn-sm"><a href="?action=modifyPost&id=<?= $post['id'] ?>" style="color: white">Modifier</a></button></td>
-                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deletePost&id=<?= $post['id'] ?>" style="color: white">Supprimer</a></button></td>
-                                        <td><?= $post['id'] ?></td>
-                                        <td><?= $post['title'] ?></td>
-                                        <td><?= $post['chapo'] ?></td>
-                                        <td><?= $post['content'] ?></td>
-                                        <td><?= $post['lastUpdate'] ?></td>
-                                        <td><?= $post['userId'] ?></td>
+                                        <td><button class="btn-secondary btn-sm"><a href="?action=modifyPost&id=<?= $post['id']; ?>" style="color: white">Modifier</a></button></td>
+                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deletePost&id=<?= $post['id']; ?>" style="color: white">Supprimer</a></button></td>
+                                        <td><?= $post['id']; ?></td>
+                                        <td><?= $post['title']; ?></td>
+                                        <td><?= $post['chapo']; ?></td>
+                                        <td><?= $post['content']; ?></td>
+                                        <td><?= $post['lastUpdate']; ?></td>
+                                        <td><?= $post['userId']; ?></td>
                                     </tr>
                                 <?php endforeach; ?>
 
@@ -225,21 +225,21 @@ if($_SESSION['STATUS'] != 'admin'){
                                 <?php foreach ($users as $user): ?>
                                     <tr>
                                         <td>
-                                            <?php if($user['status'] == 'admin'): ?>
-                                            <a href="?action=modifyStatus&id=<?= $user['id'] ?>&status=utilisateur" style="color: black">Rendre Utilisateur</a>
-                                            <?php elseif ($user['status'] == 'utilisateur'):?>
-                                            <a href="?action=modifyStatus&id=<?= $user['id'] ?>&status=admin" style="color: black">Rendre Admin</a>
+                                            <?php if ($user['status'] === 'admin'): ?>
+                                            <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=utilisateur" style="color: black">Rendre Utilisateur</a>
+                                            <?php elseif ($user['status'] === 'utilisateur'):?>
+                                            <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=admin" style="color: black">Rendre Admin</a>
                                             <?php endif; ?>
                                         </td>
-                                        <td><button class="btn-secondary btn-sm"><a href="?action=modifyUser&id=<?= $user['id'] ?>" style="color: white">Modifier</a></button></td>
-                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deleteUser&id=<?= $user['id'] ?>" style="color: white">Supprimer</a></button></td>
-                                        <td><?= $user['id'] ?></td>
-                                        <td><?= $user['firstname'] ?></td>
-                                        <td><?= $user['name'] ?></td>
-                                        <td><?= $user['email'] ?></td>
-                                        <td><?= $user['status'] ?></td>
-                                        <td><?= $user['bio'] ?></td>
-                                        <td><?= $user['password'] ?></td>
+                                        <td><button class="btn-secondary btn-sm"><a href="?action=modifyUser&id=<?= $user['id']; ?>" style="color: white">Modifier</a></button></td>
+                                        <td><button class="btn btn-danger btn-sm"><a href="?action=deleteUser&id=<?= $user['id']; ?>" style="color: white">Supprimer</a></button></td>
+                                        <td><?= $user['id']; ?></td>
+                                        <td><?= $user['firstname']; ?></td>
+                                        <td><?= $user['name']; ?></td>
+                                        <td><?= $user['email']; ?></td>
+                                        <td><?= $user['status']; ?></td>
+                                        <td><?= $user['bio']; ?></td>
+                                        <td><?= $user['password']; ?></td>
                                     </tr>
                                 <?php endforeach; ?>
 

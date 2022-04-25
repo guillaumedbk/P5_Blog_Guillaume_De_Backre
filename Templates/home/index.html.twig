@@ -11,10 +11,10 @@
                 <img class="masthead-avatar mb-5 rounded-circle" src="{{ 'Templates/images/photoprofil.jpeg' }}" alt="profile picture" />
 
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0"> <!-- AFFICHER LE NOM -->
-                    {% for item in user %}
-                        {{ item.firstname }}  {{ item.name }}
-                    {% endfor %}
+                <h1 class="masthead-heading text-uppercase mb-0">
+
+                    {{ user.firstname }} {{ user.name }}
+
                 </h1>
 
                 <!-- Icon Divider-->
@@ -24,7 +24,7 @@
 
                 <!-- Masthead Subheading-->
                 <p class="masthead-subheading font-weight-light mb-0">
-                    <!-- AFFICHER LA BIO -->
+                    {{ user.bio }}
                 </p>
 
                 <!-- Icon Divider-->

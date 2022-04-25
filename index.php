@@ -1,4 +1,5 @@
 <?php
+
 require_once realpath("vendor/autoload.php");
 
 use App\Controllers\Blog\BlogController;
@@ -8,11 +9,11 @@ use App\Controllers\Home\SignUpController;
 use App\Controllers\Home\UserController;
 use App\Exceptions\ControllerNotFoundException;
 use App\Repository\DBConnexion;
-use App\Router\Router;
 use App\Router\Request;
+use App\Router\Router;
 
 //Chemin vers la racine du projet
-define('ROOT', dirname(__DIR__));
+\define('ROOT', \dirname(__DIR__));
 
 // Loading for .env at the root directory
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -30,8 +31,8 @@ $router = new Router(
             'controller' => new UserController()
         ],
         "/^\/inscription$/" => [
-            'methods' => ['POST'],
-            'controller' => new SignUpController()
+            'methods' => ['GET', 'POST'],
+            'controller' => new SignUpController('blog')
         ],
         "/^\/blog$/" => [
             'methods' => ['GET'],
@@ -46,15 +47,8 @@ $router = new Router(
 
 try {
     $url = $_GET['url'];
-    $request = new Request('GET','/'.$url);
+    $request = new Request('GET', '/'.$url);
     $router->execute($request);
-}catch (ControllerNotFoundException $e){
+} catch (ControllerNotFoundException $e) {
     echo $e;
 }
-
-
-
-
-
-
-

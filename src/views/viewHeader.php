@@ -25,7 +25,7 @@
                 <!-- Display connexion status -->
                 <?php
 
-                if(isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']){
+                if (isset($_SESSION['LOGGED']) && $_SESSION['LOGGED']) {
                     echo '<div class="btn-group">
                                 <button type="button" class="btn btn-secondary dropdown-toggle p-0 text-success" data-bs-toggle="dropdown" aria-expanded="false">
                                     CONNECTÉ
@@ -35,7 +35,7 @@
                                         <li><button class="dropdown-item" type="button">Profil</button></li>
                                     </ul>
                                 </div>';
-                }else{
+                } else {
                     echo '<a class="py-3 px-0 px-lg-3 rounded " href="/P5_Blog_Guillaume_De_Backre/logIn">Connexion</a>';
                 }
                 ?>

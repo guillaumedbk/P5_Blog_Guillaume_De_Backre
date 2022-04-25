@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Repository\DBConnexion;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use App\Repository\DBConnexion;
 
 abstract class Controller
 {
-    private $loader;
     protected $twig;
     protected $db;
+    private $loader;
 
     //public function __construct(DBConnexion $db)
     public function __construct($db)

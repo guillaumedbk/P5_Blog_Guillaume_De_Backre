@@ -2,7 +2,6 @@
 
 namespace App\Controllers\Blog;
 
-
 use App\Controllers\Controller;
 use App\Repository\DBConnexion;
 use App\Router\Request;
@@ -10,7 +9,7 @@ use Twig\Extension\AbstractExtension;
 
 class MyPutController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): void
     {
         //DB CONNEXION
         $db = new DBConnexion($_ENV['DB_NAME'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
@@ -26,7 +25,5 @@ class MyPutController extends Controller
         echo $template->render([
             'user' => $users,
         ]);
-
     }
-
 }
