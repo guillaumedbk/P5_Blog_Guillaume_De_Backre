@@ -8,6 +8,7 @@ class Request
     private string $path;
     private array $querry;
     private array $matches;
+    private object $user;
 
     public function __construct(string $method, string $path, array $querry = [])
     {
@@ -31,17 +32,32 @@ class Request
         return $this->querry;
     }
 
-    /**
-     */
     public function getMatches(): array
     {
         return $this->matches;
     }
 
-    /**
-     */
     public function setMatches(array $matches): void
     {
         $this->matches = $matches;
     }
+
+    /**
+     * @param object $user
+     */
+    public function setUser(object $user): void
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return object
+     */
+    public function getUser(): object
+    {
+        return $this->user;
+    }
+
+
+
 }

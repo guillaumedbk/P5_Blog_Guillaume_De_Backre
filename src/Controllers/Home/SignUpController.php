@@ -15,7 +15,8 @@ class SignUpController extends Controller
         if ($request->getMethod() === "GET") {
             $this->getSignUpController();
         } elseif ($request->getMethod() === "POST") {
-            $this->postSignUpController();
+            $user = $request->getUser();
+            $this->postSignUpController($user);
         }
     }
 
@@ -26,9 +27,8 @@ class SignUpController extends Controller
         echo $template->render();
     }
 
-    public function postSignUpController(): void
+    public function postSignUpController($user): void
     {
-        $user = new User($_POST['firstname'], $_POST['name'], $_POST['email'], 'visitor', $_POST['bio'], $_POST['password']);
         try {
             //CHECK DATA VALIDITY OF firstname and name
             $validation = array($user->getFirstname(), $user->getName());
