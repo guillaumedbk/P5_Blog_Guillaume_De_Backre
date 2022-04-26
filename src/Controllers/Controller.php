@@ -12,8 +12,7 @@ abstract class Controller
     protected $db;
     private $loader;
 
-    //public function __construct(DBConnexion $db)
-    public function __construct($db)
+    public function __construct()
     {
         //DB CONNEXION
         $db = new DBConnexion($_ENV['DB_NAME'], $_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);

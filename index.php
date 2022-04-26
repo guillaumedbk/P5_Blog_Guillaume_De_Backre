@@ -24,7 +24,7 @@ $router = new Router(
     [
         "/^\/$/" => [
             'methods' => ['GET'],
-            'controller' => new HomeController('blog')
+            'controller' => new HomeController()
         ],
         "/^\/user$/" => [
             'methods' => ['GET'],
@@ -32,22 +32,22 @@ $router = new Router(
         ],
         "/^\/inscription$/" => [
             'methods' => ['GET', 'POST'],
-            'controller' => new SignUpController('blog')
+            'controller' => new SignUpController()
         ],
         "/^\/blog$/" => [
             'methods' => ['GET'],
-            'controller' => new BlogController('blog')
+            'controller' => new BlogController()
         ],
         "/^\/post\/(\d+)$/" => [
             'methods' => ['POST', 'GET', 'PUT'],
-            'controller' => new MyPutController('blog')
+            'controller' => new MyPutController()
         ]
     ]
 );
 
 try {
     $url = $_GET['url'];
-    $request = new Request('GET', '/'.$url);
+    $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url);
     $router->execute($request);
 } catch (ControllerNotFoundException $e) {
     echo $e;
