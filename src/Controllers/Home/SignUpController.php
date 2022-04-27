@@ -8,7 +8,7 @@ use App\Repository\FileLogger;
 use App\Repository\UserRepository;
 use App\Router\Request;
 use App\Router\Router;
-use HttpRequest;
+
 
 class SignUpController extends Controller
 {

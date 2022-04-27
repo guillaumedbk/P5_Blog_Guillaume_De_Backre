@@ -2,13 +2,16 @@
 
 namespace App\Router;
 
+use App\Entity\User\User;
+
 class Request
 {
     private string $method;
     private string $path;
     private array $querry;
     private array $matches;
-    private object $user;
+    private User $user;
+    private object $userConnectInfos;
 
     public function __construct(string $method, string $path, array $querry = [])
     {
@@ -43,9 +46,17 @@ class Request
     }
 
     /**
-     * @param object $user
+     * @return User
      */
-    public function setUser(object $user): void
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
     {
         $this->user = $user;
     }
@@ -53,11 +64,17 @@ class Request
     /**
      * @return object
      */
-    public function getUser(): object
+    public function getUserConnectInfos(): object
     {
-        return $this->user;
+        return $this->userConnectInfos;
     }
 
-
+    /**
+     * @param object $userConnectInfos
+     */
+    public function setUserConnectInfos(object $userConnectInfos): void
+    {
+        $this->userConnectInfos = $userConnectInfos;
+    }
 
 }
