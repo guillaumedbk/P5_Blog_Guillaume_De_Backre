@@ -2,10 +2,13 @@
 
 namespace App\Repository;
 
+use App\Entity\EntityInterface;
 use App\Entity\User\User;
+use App\Entity\User\UserConnectInfo;
 use App\Exceptions\EntityNotFoundException;
 use App\Repository\DBConnexion;
 use Exception;
+use PDO;
 
 class UserRepository extends Repository
 {
@@ -59,5 +62,27 @@ class UserRepository extends Repository
         } catch (\PDOException $exception) {
             throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
+    }
+    //USER CONNEXION
+    public function userConnect(UserConnectInfo $userConnectInfo): bool
+    {
+        try {
+            $req = $this->dbConnection->getPDO()->prepare('SELECT * FROM user WHERE email = ?');
+            $req->execute(array($userConnectInfo->getEmail()));
+            return $req->rowCount();
+        } catch (\PDOException $exception) {
+            throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+        }
+    }
+    //FIND BY EMAIL
+    public function findByEmail(UserConnectInfo $userConnectInfo): object
+    {
+        $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
+        $req->execute([$userConnectInfo->getEmail()]);
+        $fetch = $req->fetch(PDO::FETCH_ASSOC);
+
+        /** @var EntityInterface $entityClass */
+        $entityClass = $this->entityClass;
+        return $entityClass::createFromDb($fetch);
     }
 }

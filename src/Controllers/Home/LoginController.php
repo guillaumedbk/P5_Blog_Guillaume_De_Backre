@@ -3,6 +3,7 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
+use App\Repository\UserRepository;
 use App\Router\Request;
 
 class LoginController extends Controller
@@ -24,9 +25,21 @@ class LoginController extends Controller
         echo $template->render();
     }
 
-    public function postLoginController($userConnectInfo): void
+    public function postLoginController($userConnectInfo)
     {
-        var_dump($userConnectInfo);
-
+        //CHECK EMAIL VALIDITY
+        $this->checkEmailValidity($userConnectInfo->getEmail());
+        //CHECK PASSWORD ISN'T EMPTY
+        $this->validate($userConnectInfo->getPassword());
+        //CHECK IF DATA MATCHES
+        $user = new UserRepository($this->getDBConnexion());
+        $connect = $user->findByEmail($userConnectInfo);
+        //CHECK IF PASSWORD MATCH
+        if (password_verify($userConnectInfo->getPassword(), $connect->getPassword())) {
+            var_dump('ok');
+        //SET DES DONNEES DE SESSION
+        } else {
+            throw new \Exception("Wrong password");
+        }
     }
 }
