@@ -50,7 +50,7 @@ try {
     $url = $_GET['url'];
     $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url);
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/inscription') {
-        $request->setUser(new User($_POST['firstname'], $_POST['name'], $_POST['email'], 'admin', $_POST['bio'], $_POST['password']));
+        $request->setUser(new User($_POST['firstname'], $_POST['name'], $_POST['email'], 'admin', $_POST['bio'], password_hash($_POST['password'], PASSWORD_BCRYPT)));
     }
     $router->execute($request);
 } catch (ControllerNotFoundException $e) {

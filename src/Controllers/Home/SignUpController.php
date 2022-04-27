@@ -7,6 +7,8 @@ use App\Entity\User\User;
 use App\Repository\FileLogger;
 use App\Repository\UserRepository;
 use App\Router\Request;
+use App\Router\Router;
+use HttpRequest;
 
 class SignUpController extends Controller
 {
@@ -42,6 +44,7 @@ class SignUpController extends Controller
             //INSERT NEW USER
             $userrepo = new UserRepository($this->getDBConnexion());
             $insert = $userrepo->createUser($user);
+            header('Location: /P5_Blog_Guillaume_De_Backre/');
         } catch (\Exception $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
