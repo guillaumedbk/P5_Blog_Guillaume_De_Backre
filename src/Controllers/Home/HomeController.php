@@ -23,7 +23,8 @@ class HomeController extends Controller
         //DISPLAY TEMPLATE AND SEND VARIABLES
         $template = $this->twig->load('home/index.html.twig');
         echo $template->render([
-            'user' => $theUser
+            'user' => $theUser,
+            'session' => $request->getSession()
         ]);
         // var_dump($request->getMatches());
     }

@@ -60,6 +60,9 @@ $router = new Router(
 try {
     $url = $_GET['url'];
     $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url);
+    if (isset($_SESSION['LOGGED'],$_SESSION['FIRSTNAME'],$_SESSION['NAME'],$_SESSION['STATUS'])){
+        $request->setSession(array("logged" => $_SESSION['LOGGED'], "firstname" => $_SESSION['FIRSTNAME'], "name" => $_SESSION['NAME'], "status" => $_SESSION['STATUS']));
+    }
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/inscription') {
         $request->setUser(new User($_POST['firstname'], $_POST['name'], $_POST['email'], 'admin', $_POST['bio'], password_hash($_POST['password'], PASSWORD_DEFAULT)));
     }
