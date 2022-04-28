@@ -3,6 +3,8 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
+use App\Controllers\Validator;
+use App\Entity\User\UserConnectInfo;
 use App\Repository\UserRepository;
 use App\Router\Request;
 
@@ -25,12 +27,13 @@ class LoginController extends Controller
         echo $template->render();
     }
 
-    public function postLoginController($userConnectInfo)
+    public function postLoginController(UserConnectInfo $userConnectInfo): void
     {
+        $validator = new Validator($userConnectInfo);
         //CHECK EMAIL VALIDITY
-        $this->checkEmailValidity($userConnectInfo->getEmail());
-        //CHECK PASSWORD ISN'T EMPTY
-        $this->validate($userConnectInfo->getPassword());
+        $validator->checkEmailValidity($userConnectInfo->getEmail());
+        //CHECK PASSWORD VALIDITY
+        $validator->validate($userConnectInfo->getPassword());
         //CHECK IF DATA MATCHES
         $user = new UserRepository($this->getDBConnexion());
         $connect = $user->findByEmail($userConnectInfo);

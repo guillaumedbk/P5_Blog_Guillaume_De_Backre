@@ -3,12 +3,12 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
+use App\Controllers\Validator;
 use App\Entity\User\User;
 use App\Repository\FileLogger;
 use App\Repository\UserRepository;
 use App\Router\Request;
 use App\Router\Router;
-
 
 class SignUpController extends Controller
 {
@@ -32,18 +32,20 @@ class SignUpController extends Controller
     public function postSignUpController($user): void
     {
         try {
+            $validator = new Validator($user);
             //CHECK DATA VALIDITY OF firstname and name
             $validation = array($user->getFirstname(), $user->getName());
             foreach ($validation as $value) {
-                $this->validate($value);
+                $validator->validate($value);
             }
             //CHECK EMAIL VALIDITY
-            $this->checkEmailValidity($user->getEmail());
+            $validator->checkEmailValidity($user->getEmail());
             //CHECK STATUS VALIDITY
-            $this->checkStatusValidity($user->getStatus());
+            $validator->checkStatusValidity($user->getStatus());
+            //CHECK MAIL UNIQUENESS
             //INSERT NEW USER
             $userrepo = new UserRepository($this->getDBConnexion());
-            $insert = $userrepo->createUser($user);
+            $userrepo->createUser($user);
             header('Location: /P5_Blog_Guillaume_De_Backre/');
         } catch (\Exception $exception) {
             $logger = new FileLogger('logger.log');
