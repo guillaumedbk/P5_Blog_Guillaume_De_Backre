@@ -36,7 +36,6 @@ class LoginController extends Controller
         $connect = $user->findByEmail($userConnectInfo);
         //CHECK IF PASSWORD MATCH
         if (password_verify($userConnectInfo->getPassword(), $connect->getPassword())) {
-            session_start();
             //SET DES DONNEES DE SESSION
             $_SESSION['LOGGED'] = true;
             $_SESSION['FIRSTNAME'] = $connect->getFirstName();
