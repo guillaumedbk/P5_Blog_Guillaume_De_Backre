@@ -36,8 +36,13 @@ class LoginController extends Controller
         $connect = $user->findByEmail($userConnectInfo);
         //CHECK IF PASSWORD MATCH
         if (password_verify($userConnectInfo->getPassword(), $connect->getPassword())) {
-            var_dump('ok');
-        //SET DES DONNEES DE SESSION
+            session_start();
+            //SET DES DONNEES DE SESSION
+            $_SESSION['LOGGED'] = true;
+            $_SESSION['FIRSTNAME'] = $connect->getFirstName();
+            $_SESSION['NAME'] = $connect->getName();
+            $_SESSION['STATUS'] = $connect->getStatus();
+            header('Location: /P5_Blog_Guillaume_De_Backre/');
         } else {
             throw new \Exception("Wrong password");
         }

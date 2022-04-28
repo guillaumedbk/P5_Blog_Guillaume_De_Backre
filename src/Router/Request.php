@@ -8,16 +8,16 @@ class Request
 {
     private string $method;
     private string $path;
-    private array $querry;
+    private array $session;
     private array $matches;
     private User $user;
     private object $userConnectInfos;
 
-    public function __construct(string $method, string $path, array $querry = [])
+    public function __construct(string $method, string $path, array $session = [])
     {
         $this->method = $method;
         $this->path = $path;
-        $this->querry = $querry;
+        $this->session = $session;
     }
 
     public function getMethod(): string
@@ -30,10 +30,16 @@ class Request
         return $this->path;
     }
 
-    public function getQuerry(): array
+    public function getSession(): array
     {
-        return $this->querry;
+        return $this->session;
     }
+
+    public function setSession(array $session): void
+    {
+        $this->session = $session;
+    }
+
 
     public function getMatches(): array
     {
