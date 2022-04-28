@@ -85,4 +85,15 @@ class UserRepository extends Repository
         $entityClass = $this->entityClass;
         return $entityClass::createFromDb($fetch);
     }
+    //CHECK IF MAIL ALREADY EXIST IN DB
+    public function mailUniquess(string $email): bool
+    {
+        try {
+            $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
+            $req->execute(array($email));
+            return $req->rowCount();
+        } catch (\PDOException $exception) {
+            throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+        }
+    }
 }

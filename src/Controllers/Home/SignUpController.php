@@ -43,10 +43,19 @@ class SignUpController extends Controller
             //CHECK STATUS VALIDITY
             $validator->checkStatusValidity($user->getStatus());
             //CHECK MAIL UNIQUENESS
-            //INSERT NEW USER
             $userrepo = new UserRepository($this->getDBConnexion());
-            $userrepo->createUser($user);
-            header('Location: /P5_Blog_Guillaume_De_Backre/');
+            if ($userrepo->mailUniquess($user->getEmail()) === true) {
+                throw new \Exception("Mail already exist in bdd");
+            } else {
+                //INSERT NEW USER
+                $userrepo->createUser($user);
+                //SET DES DONNEES DE SESSION
+                $_SESSION['LOGGED'] = true;
+                $_SESSION['FIRSTNAME'] = $user->getFirstName();
+                $_SESSION['NAME'] = $user->getName();
+                $_SESSION['STATUS'] = $user->getStatus();
+                header('Location: /P5_Blog_Guillaume_De_Backre/');
+            }
         } catch (\Exception $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
