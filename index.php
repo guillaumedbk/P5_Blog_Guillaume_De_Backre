@@ -6,6 +6,7 @@ use App\Controllers\Blog\BlogController;
 use App\Controllers\Blog\MyPutController;
 use App\Controllers\Home\HomeController;
 use App\Controllers\Home\LoginController;
+use App\Controllers\Home\LogoutController;
 use App\Controllers\Home\SignUpController;
 use App\Controllers\Home\UserController;
 use App\Entity\User\User;
@@ -36,6 +37,10 @@ $router = new Router(
         "/^\/inscription$/" => [
             'methods' => ['GET', 'POST'],
             'controller' => new SignUpController()
+        ],
+        "/^\/disconnect/" => [
+            'methods' => ['GET'],
+            'controller' => new LogoutController()
         ],
         "/^\/connexion$/" => [
             'methods' => ['GET', 'POST'],
