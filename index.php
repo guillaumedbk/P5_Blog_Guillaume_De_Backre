@@ -66,10 +66,10 @@ try {
     }
     //CONNECT USER DATA
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/connexion') {
-        $request->setUserConnectInfos(new UserConnectInfo(strip_tags($_POST['email']), strip_tags($_POST['password']), strip_tags($_SESSION['TOKEN'])));
+        $request->setUserConnectInfos(new UserConnectInfo(strip_tags($_POST['email']), strip_tags($_POST['password'])));
     }
     //USER SESSION
-    if (isset($_SESSION['LOGGED'],$_SESSION['FIRSTNAME'],$_SESSION['NAME'],$_SESSION['STATUS'])) {
+    if (isset($_SESSION['LOGGED'],$_SESSION['FIRSTNAME'],$_SESSION['NAME'],$_SESSION['STATUS'], $_SESSION['TOKEN'])) {
         $request->setSession(array("logged" => $_SESSION['LOGGED'], "firstname" => $_SESSION['FIRSTNAME'], "name" => $_SESSION['NAME'], "status" => $_SESSION['STATUS'], "token" => $_SESSION['TOKEN']));
     }
     $router->execute($request);

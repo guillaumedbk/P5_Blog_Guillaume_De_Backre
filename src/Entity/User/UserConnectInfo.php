@@ -7,14 +7,12 @@ class UserConnectInfo
     //Attributes
     private string $email;
     private string $password;
-    private string $token;
 
     //Constructor
-    public function __construct(string $email, string $password, string $token)
+    public function __construct(string $email, string $password)
     {
         $this->email = $email;
         $this->password = $password;
-        $this->token = $token;
     }
 
     //Getters and setters
@@ -37,15 +35,4 @@ class UserConnectInfo
     {
         $this->password = $password;
     }
-
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-
-    public function setToken(string $token): void
-    {
-        $this->token = $token;
-    }
-
 }
