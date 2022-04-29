@@ -7,47 +7,45 @@ class UserConnectInfo
     //Attributes
     private string $email;
     private string $password;
+    private string $token;
 
     //Constructor
-    public function __construct(string $email, string $password)
+    public function __construct(string $email, string $password, string $token)
     {
         $this->email = $email;
         $this->password = $password;
+        $this->token = $token;
     }
 
-    /**
-     * @return string
-     */
+    //Getters and setters
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
     public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     */
     public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
-    //Getters and setters
+    public function getToken(): string
+    {
+        return $this->token;
+    }
 
+    public function setToken(string $token): void
+    {
+        $this->token = $token;
+    }
 
 }

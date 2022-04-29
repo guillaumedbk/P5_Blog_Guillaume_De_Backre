@@ -44,6 +44,7 @@ class LoginController extends Controller
             $_SESSION['FIRSTNAME'] = $connect->getFirstName();
             $_SESSION['NAME'] = $connect->getName();
             $_SESSION['STATUS'] = $connect->getStatus();
+            $_SESSION['TOKEN'] = md5(time()*rand(153, 728));
             header('Location: /P5_Blog_Guillaume_De_Backre/');
         } else {
             throw new \Exception("Wrong password");

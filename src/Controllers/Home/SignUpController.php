@@ -49,11 +49,12 @@ class SignUpController extends Controller
             } else {
                 //INSERT NEW USER
                 $userrepo->createUser($user);
-                //SET DES DONNEES DE SESSION
+                //SET DATA SESSION
                 $_SESSION['LOGGED'] = true;
                 $_SESSION['FIRSTNAME'] = $user->getFirstName();
                 $_SESSION['NAME'] = $user->getName();
                 $_SESSION['STATUS'] = $user->getStatus();
+                $_SESSION['TOKEN'] = md5(time()*rand(153, 728));
                 header('Location: /P5_Blog_Guillaume_De_Backre/');
             }
         } catch (\Exception $exception) {
