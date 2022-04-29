@@ -60,16 +60,18 @@ $router = new Router(
 try {
     $url = $_GET['url'];
     $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url);
+    //USER SESSION
     if (isset($_SESSION['LOGGED'],$_SESSION['FIRSTNAME'],$_SESSION['NAME'],$_SESSION['STATUS'])) {
         $request->setSession(array("logged" => $_SESSION['LOGGED'], "firstname" => $_SESSION['FIRSTNAME'], "name" => $_SESSION['NAME'], "status" => $_SESSION['STATUS']));
     }
+    //SIGNUP USER DATA
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/inscription') {
-        $request->setUser(new User($_POST['firstname'], $_POST['name'], $_POST['email'], 'admin', $_POST['bio'], password_hash($_POST['password'], PASSWORD_DEFAULT)));
+        $request->setUser(new User(strip_tags($_POST['firstname']), strip_tags($_POST['name']), strip_tags($_POST['email']), 'admin', strip_tags($_POST['bio']), strip_tags(password_hash($_POST['password'], PASSWORD_DEFAULT))));
     }
+    //CONNECT USER DATA
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/connexion') {
-        $request->setUserConnectInfos(new UserConnectInfo($_POST['email'], $_POST['password']));
+        $request->setUserConnectInfos(new UserConnectInfo(strip_tags($_POST['email']), strip_tags($_POST['password'])));
     }
-
     $router->execute($request);
 } catch (ControllerNotFoundException $e) {
     echo $e;
