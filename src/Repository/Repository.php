@@ -40,13 +40,17 @@ abstract class Repository
     //GET BY ID
     public function findById(int $id): object
     {
-        $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE id = ?");
-        $req->execute([$id]);
-        $fetch = $req->fetch(PDO::FETCH_ASSOC);
+        try {
+            $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE id = ?");
+            $req->execute([$id]);
+            $fetch = $req->fetch(PDO::FETCH_ASSOC);
 
-        /** @var EntityInterface $entityClass */
-        $entityClass = $this->entityClass;
-        return $entityClass::createFromDb($fetch);
+            /** @var EntityInterface $entityClass */
+            $entityClass = $this->entityClass;
+            return $entityClass::createFromDb($fetch);
+        } catch (\PDOException $exception) {
+            throw new \PDOException("The following error has occured:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+        }
     }
     //DELETE ONE ELEMENT
     public function deleteById(int $id): void

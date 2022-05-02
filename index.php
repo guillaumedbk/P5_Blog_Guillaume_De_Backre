@@ -3,7 +3,7 @@
 require_once realpath("vendor/autoload.php");
 
 use App\Controllers\Blog\BlogController;
-use App\Controllers\Blog\MyPutController;
+use App\Controllers\Blog\PostController;
 use App\Controllers\Home\HomeController;
 use App\Controllers\Home\LoginController;
 use App\Controllers\Home\LogoutController;
@@ -55,8 +55,8 @@ $router = new Router(
             'controller' => new BlogController()
         ],
         "/^\/post\/(\d+)$/" => [
-            'methods' => ['POST', 'GET', 'PUT'],
-            'controller' => new MyPutController()
+            'methods' => ['GET'],
+            'controller' => new PostController()
         ]
     ]
 );
