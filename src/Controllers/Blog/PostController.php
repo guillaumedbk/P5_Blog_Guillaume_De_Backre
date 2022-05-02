@@ -26,6 +26,7 @@ class PostController extends Controller
 
         //SEND VARIABLES
         echo $template->render([
+            'postId' => $id,
             'post' => $post,
             'comments' => $comments
         ]);

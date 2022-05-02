@@ -17,15 +17,12 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <p><u><em>Contenu:</em></u></p>
                     <p>{{ post.content }}</p>
-
                     <p><u><em>Commentaires:</em></u></p>
                     <!-- Comments -->
                     {% if comments %}
                     {% for comment in comments %}
                     <div class="post-preview">
-
                         <p class="post-title"> {{ comment.content }} </p>
-
                     </div>
                     {% endfor %}
                     {% endif %}
@@ -34,10 +31,9 @@
 
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <!-- Display comments -->
 
                     <!-- * * SB Forms Contact Form * *-->
-                    <form action="" method="post">
+                    <form action="/P5_Blog_Guillaume_De_Backre/comment/{{ postId }}" method="post">
                         <!-- Titre input-->
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="comment" name="comment" placeholder="Votre commentaire:" required />

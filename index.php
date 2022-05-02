@@ -3,12 +3,14 @@
 require_once realpath("vendor/autoload.php");
 
 use App\Controllers\Blog\BlogController;
+use App\Controllers\Blog\CommentController;
 use App\Controllers\Blog\PostController;
 use App\Controllers\Home\HomeController;
 use App\Controllers\Home\LoginController;
 use App\Controllers\Home\LogoutController;
 use App\Controllers\Home\SignUpController;
 use App\Controllers\Home\UserController;
+use App\Entity\Comment\Comment;
 use App\Entity\User\User;
 use App\Entity\User\UserConnectInfo;
 use App\Exceptions\ControllerNotFoundException;
@@ -57,6 +59,10 @@ $router = new Router(
         "/^\/post\/(\d+)$/" => [
             'methods' => ['GET'],
             'controller' => new PostController()
+        ],
+        "/^\/comment\/(\d+)$/" => [
+            'methods' => ['POST'],
+            'controller' => new CommentController()
         ]
     ]
 );
