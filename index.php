@@ -62,11 +62,11 @@ try {
     $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url);
     //SIGNUP USER DATA
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/inscription') {
-        $request->setUser(new User(strip_tags($_POST['firstname']), strip_tags($_POST['name']), strip_tags($_POST['email']), 'admin', strip_tags($_POST['bio']), strip_tags(password_hash($_POST['password'], PASSWORD_DEFAULT))));
+        $request->setUser(new User(addslashes(strip_tags($_POST['firstname'])), addslashes(strip_tags($_POST['name'])), addslashes(strip_tags($_POST['email'])), 'admin', addslashes(strip_tags($_POST['bio'])), strip_tags(password_hash($_POST['password'], PASSWORD_DEFAULT))));
     }
     //CONNECT USER DATA
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/connexion') {
-        $request->setUserConnectInfos(new UserConnectInfo(strip_tags($_POST['email']), strip_tags($_POST['password'])));
+        $request->setUserConnectInfos(new UserConnectInfo(addslashes(strip_tags($_POST['email'])), strip_tags($_POST['password'])));
     }
     //USER SESSION
     if (isset($_SESSION['LOGGED'],$_SESSION['FIRSTNAME'],$_SESSION['NAME'],$_SESSION['STATUS'], $_SESSION['TOKEN'])) {
