@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Comment\Comment;
 use App\Repository\DBConnexion;
+use PDO;
 
 class CommentRepository extends Repository
 {
@@ -27,5 +28,20 @@ class CommentRepository extends Repository
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
             throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
+    }
+
+    //GET COMMENTS FROM ONE POST
+    public function getOnePostComments($id): array
+    {
+        $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE postId = ?");
+        $req->execute(array($id));
+
+        $fetchAll = $req->fetchAll(PDO::FETCH_ASSOC);
+        $result = [];
+        foreach ($fetchAll as $item) {
+            $result[] = $this->hydrate($item);
+        }
+        return $result;
+
     }
 }
