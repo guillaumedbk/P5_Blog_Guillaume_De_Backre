@@ -2,20 +2,12 @@
 
 namespace App\Entity\User;
 
-class UserConnectInfo
+class UserLoginDTO
 {
     //Attributes
     private string $email;
     private string $password;
 
-    //Constructor
-    public function __construct(string $email, string $password)
-    {
-        $this->email = $email;
-        $this->password = $password;
-    }
-
-    //Getters and setters
     public function getEmail(): string
     {
         return $this->email;

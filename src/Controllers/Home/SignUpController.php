@@ -5,6 +5,7 @@ namespace App\Controllers\Home;
 use App\Controllers\Controller;
 use App\Controllers\Validator;
 use App\Entity\User\User;
+use App\Entity\User\UserSignUpDTO;
 use App\Repository\FileLogger;
 use App\Repository\UserRepository;
 use App\Router\Request;
@@ -17,8 +18,7 @@ class SignUpController extends Controller
         if ($request->getMethod() === "GET") {
             $this->getSignUpController();
         } elseif ($request->getMethod() === "POST") {
-            $user = $request->getUser();
-            $this->postSignUpController($user);
+            $this->postSignUpController($request);
         }
     }
 
@@ -29,9 +29,14 @@ class SignUpController extends Controller
         echo $template->render();
     }
 
-    public function postSignUpController($user): void
+    public function postSignUpController(Request $request): void
     {
+        $userSignUpData = $request->getData();
+        $dto = $this->hydrate($userSignUpData, new UserSignUpDTO());
+
+        /*
         try {
+
             $validator = new Validator($user);
             //CHECK DATA VALIDITY OF firstname and name
             $validation = array($user->getFirstname(), $user->getName());
@@ -61,6 +66,6 @@ class SignUpController extends Controller
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
             throw new \Exception("The following error has occured:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
-        }
+        }*/
     }
 }

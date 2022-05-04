@@ -8,16 +8,18 @@ class Request
 {
     private string $method;
     private string $path;
-    private array $session;
+    private array $query;
     private array $matches;
     private User $user;
     private object $userConnectInfos;
+    private array $data;
 
-    public function __construct(string $method, string $path, array $session = [])
+    public function __construct(string $method, string $path, array $query = [], array $data = [])
     {
         $this->method = $method;
         $this->path = $path;
-        $this->session = $session;
+        $this->query = $query;
+        $this->data = $data;
     }
 
     public function getMethod(): string
@@ -35,12 +37,6 @@ class Request
         return $this->session;
     }
 
-    public function setSession(array $session): void
-    {
-        $this->session = $session;
-    }
-
-
     public function getMatches(): array
     {
         return $this->matches;
@@ -51,36 +47,31 @@ class Request
         $this->matches = $matches;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user): void
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * @return object
-     */
     public function getUserConnectInfos(): object
     {
         return $this->userConnectInfos;
     }
 
-    /**
-     * @param object $userConnectInfos
-     */
     public function setUserConnectInfos(object $userConnectInfos): void
     {
         $this->userConnectInfos = $userConnectInfos;
     }
+
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    public function setData(array $data): void
+    {
+        $this->data = $data;
+    }
+
+
 
 }

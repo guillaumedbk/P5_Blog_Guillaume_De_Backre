@@ -5,6 +5,7 @@ namespace App\Controllers\Home;
 use App\Controllers\Controller;
 use App\Controllers\Validator;
 use App\Entity\User\UserConnectInfo;
+use App\Entity\User\UserLoginDTO;
 use App\Repository\UserRepository;
 use App\Router\Request;
 
@@ -15,8 +16,7 @@ class LoginController extends Controller
         if ($request->getMethod() === "GET") {
             $this->getLoginController();
         } elseif ($request->getMethod() === "POST") {
-            $userConnectInfo = $request->getUserConnectInfos();
-            $this->postLoginController($userConnectInfo);
+            $this->postLoginController($request);
         }
     }
 
@@ -27,8 +27,12 @@ class LoginController extends Controller
         echo $template->render();
     }
 
-    public function postLoginController(UserConnectInfo $userConnectInfo): void
+    public function postLoginController(Request $request): void
     {
+        $userConnectData = $request->getData();
+        $dto = $this->hydrate($userConnectData, new UserLoginDTO());
+
+        /*
         $validator = new Validator($userConnectInfo);
         //CHECK EMAIL VALIDITY
         $validator->checkEmailValidity($userConnectInfo->getEmail());
@@ -48,6 +52,6 @@ class LoginController extends Controller
             header('Location: /P5_Blog_Guillaume_De_Backre/');
         } else {
             throw new \Exception("Wrong password");
-        }
+        }*/
     }
 }

@@ -59,19 +59,7 @@ $router = new Router(
 
 try {
     $url = $_GET['url'];
-    $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url);
-    //SIGNUP USER DATA
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/inscription') {
-        $request->setUser(new User(addslashes(strip_tags($_POST['firstname'])), addslashes(strip_tags($_POST['name'])), addslashes(strip_tags($_POST['email'])), 'admin', addslashes(strip_tags($_POST['bio'])), strip_tags(password_hash($_POST['password'], PASSWORD_DEFAULT))));
-    }
-    //CONNECT USER DATA
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $request->getPath() == '/connexion') {
-        $request->setUserConnectInfos(new UserConnectInfo(addslashes(strip_tags($_POST['email'])), strip_tags($_POST['password'])));
-    }
-    //USER SESSION
-    if (isset($_SESSION['LOGGED'],$_SESSION['FIRSTNAME'],$_SESSION['NAME'],$_SESSION['STATUS'], $_SESSION['TOKEN'])) {
-        $request->setSession(array("logged" => $_SESSION['LOGGED'], "firstname" => $_SESSION['FIRSTNAME'], "name" => $_SESSION['NAME'], "status" => $_SESSION['STATUS'], "token" => $_SESSION['TOKEN']));
-    }
+    $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url, $_GET, $_POST);
     $router->execute($request);
 } catch (ControllerNotFoundException $e) {
     echo $e;

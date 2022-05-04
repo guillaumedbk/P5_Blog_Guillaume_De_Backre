@@ -24,8 +24,7 @@ class HomeController extends Controller
         $template = $this->twig->load('home/index.html.twig');
         echo $template->render([
             'user' => $theUser,
-            'session' => $request->getSession()
+           //'session' => $request->getSession()
         ]);
-        // var_dump($request->getMatches());
     }
 }
