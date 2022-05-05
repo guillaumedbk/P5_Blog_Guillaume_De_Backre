@@ -13,9 +13,13 @@ use App\Entity\User\User;
 use App\Entity\User\UserConnectInfo;
 use App\Exceptions\ControllerNotFoundException;
 use App\Repository\DBConnexion;
+use App\Repository\UserSession;
 use App\Router\Request;
 use App\Router\Router;
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 //Chemin vers la racine du projet
 \define('ROOT', \dirname(__DIR__));
 
@@ -59,7 +63,7 @@ $router = new Router(
 
 try {
     $url = $_GET['url'];
-    $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url, $_GET, $_POST);
+    $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url, $_SESSION, $_POST, $_GET);
     $router->execute($request);
 } catch (ControllerNotFoundException $e) {
     echo $e;

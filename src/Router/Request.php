@@ -3,23 +3,25 @@
 namespace App\Router;
 
 use App\Entity\User\User;
+use App\Repository\UserSession;
 
 class Request
 {
     private string $method;
     private string $path;
-    private array $query;
     private array $matches;
     private User $user;
-    private object $userConnectInfos;
+    private array $session;
     private array $data;
+    private array $query;
 
-    public function __construct(string $method, string $path, array $query = [], array $data = [])
+    public function __construct(string $method, string $path, array $session, array $data = [], array $query = [])
     {
         $this->method = $method;
         $this->path = $path;
-        $this->query = $query;
+        $this->session = $session;
         $this->data = $data;
+        $this->query = $query;
     }
 
     public function getMethod(): string
@@ -30,11 +32,6 @@ class Request
     public function getPath(): string
     {
         return $this->path;
-    }
-
-    public function getSession(): array
-    {
-        return $this->session;
     }
 
     public function getMatches(): array
@@ -52,14 +49,14 @@ class Request
         return $this->user;
     }
 
-    public function getUserConnectInfos(): object
+    public function getSession(): array
     {
-        return $this->userConnectInfos;
+        return $this->session;
     }
 
-    public function setUserConnectInfos(object $userConnectInfos): void
+    public function setSession(array $session): void
     {
-        $this->userConnectInfos = $userConnectInfos;
+        $this->session = $session;
     }
 
     public function getData(): array
@@ -71,7 +68,4 @@ class Request
     {
         $this->data = $data;
     }
-
-
-
 }

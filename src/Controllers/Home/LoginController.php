@@ -6,6 +6,7 @@ use App\Controllers\Controller;
 use App\Entity\User\UserConnectInfo;
 use App\Entity\User\UserLoginDTO;
 use App\Repository\UserRepository;
+use App\Repository\UserSession;
 use App\Router\Request;
 use App\Validator\Validators\Validator;
 use App\Validator\Validators\UserAssertMapValidator;
@@ -48,16 +49,14 @@ class LoginController extends Controller
         //CHECK IF PASSWORD MATCH
         if (password_verify($dto->password, $connect->getPassword())) {
             //NEW SESSION
-            var_dump('connecté');
-            /*
-            //SET DES DONNEES DE SESSION
-            $_SESSION['LOGGED'] = true;
-            $_SESSION['FIRSTNAME'] = $connect->getFirstName();
-            $_SESSION['NAME'] = $connect->getName();
-            $_SESSION['STATUS'] = $connect->getStatus();
-            $_SESSION['TOKEN'] = md5(time()*rand(153, 728));
+            $session = new UserSession();
+            $userInfo = array(
+                'firstname' => $connect->getFirstname(),
+                'name' => $connect->getName(),
+                'status' =>$connect->getStatus()
+            );
+            $session->addSessionKey('USER', $userInfo);
             header('Location: /P5_Blog_Guillaume_De_Backre/');
-            */
         } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('error.html.twig');

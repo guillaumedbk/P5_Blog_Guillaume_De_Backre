@@ -17,9 +17,11 @@ class BlogController extends Controller
         } else {
             $template = $this->twig->load('blog/index.html.twig');
             $blog = new PostRepository($this->getDBConnexion());
+            $session = $request->getSession();
+
             $allPosts = $blog->all();
             echo $template->render([
-                'session' => $request->getSession(),
+                'session' => $session,
                 'posts' => $allPosts
             ]);
         }

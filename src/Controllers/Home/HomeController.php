@@ -19,12 +19,13 @@ class HomeController extends Controller
     {
         $oneUser = new UserRepository($this->getDBConnexion());
         $theUser = $oneUser->findById(1);
+        $session = $request->getSession();
 
         //DISPLAY TEMPLATE AND SEND VARIABLES
         $template = $this->twig->load('home/index.html.twig');
         echo $template->render([
             'user' => $theUser,
-           //'session' => $request->getSession()
+            'session' => $session
         ]);
     }
 }

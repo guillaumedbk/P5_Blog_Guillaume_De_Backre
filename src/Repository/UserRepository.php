@@ -64,11 +64,11 @@ class UserRepository extends Repository
         }
     }
     //USER CONNEXION
-    public function userConnect(UserLoginDTO $userConnectInfo): bool
+    public function userConnect(UserLoginDTO $userLoginDTO): bool
     {
         try {
             $req = $this->dbConnection->getPDO()->prepare('SELECT * FROM user WHERE email = ?');
-            $req->execute(array($userConnectInfo->getEmail()));
+            $req->execute(array($userLoginDTO->email));
             return $req->rowCount();
         } catch (\PDOException $exception) {
             throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");

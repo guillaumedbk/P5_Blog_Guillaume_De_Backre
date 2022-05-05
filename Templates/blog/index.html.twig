@@ -8,10 +8,10 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading" id="heading">
 
-                        <h3>Bonjour {{ session.name }} et bienvenue sur le blog !</h3>
+                        <h3>Bonjour {{ session.USER.name }} et bienvenue sur le blog !</h3>
                         <span class="subheading">Découvre nos derniers posts sans plus attendre</span>
                         <br>
-                        {% if session.status is same as 'admin' %}
+                        {% if session.USER.status is same as 'admin' %}
                             <button class="btn btn-secondary mt-3"><a href="">Créer un post</a></button>
                         {% endif %}
 
