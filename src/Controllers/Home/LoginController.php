@@ -12,6 +12,8 @@ use App\Validator\Validators\UserAssertMapValidator;
 
 class LoginController extends Controller
 {
+    private $checkErrors;
+
     public function __invoke(Request $request): void
     {
         if ($request->getMethod() === "GET") {
@@ -30,25 +32,24 @@ class LoginController extends Controller
 
     public function postLoginController(Request $request): void
     {
+        //RETRIEVE DATA
         $userConnectData = $request->getData();
+        //HYDRATE THE DTO
         $dto = $this->hydrate($userConnectData, new UserLoginDTO());
-
+        //CHECK DATA VALIDITY
         $validator = new Validator();
         $userValidator = new UserAssertMapValidator();
+        $this->checkErrors = $validator->validate($userValidator, $dto);
 
-        var_dump($validator->validate($userValidator, $dto));
-
-        /*
-        $validator = new Validator($userConnectInfo);
-        //CHECK EMAIL VALIDITY
-        $validator->checkEmailValidity($userConnectInfo->getEmail());
-        //CHECK PASSWORD VALIDITY
-        $validator->validate($userConnectInfo->getPassword());
         //CHECK IF DATA MATCHES
         $user = new UserRepository($this->getDBConnexion());
-        $connect = $user->findByEmail($userConnectInfo);
+        $connect = $user->findByEmail($dto);
+
         //CHECK IF PASSWORD MATCH
-        if (password_verify($userConnectInfo->getPassword(), $connect->getPassword())) {
+        if (password_verify($dto->password, $connect->getPassword())) {
+            //NEW SESSION
+            var_dump('connecté');
+            /*
             //SET DES DONNEES DE SESSION
             $_SESSION['LOGGED'] = true;
             $_SESSION['FIRSTNAME'] = $connect->getFirstName();
@@ -56,8 +57,13 @@ class LoginController extends Controller
             $_SESSION['STATUS'] = $connect->getStatus();
             $_SESSION['TOKEN'] = md5(time()*rand(153, 728));
             header('Location: /P5_Blog_Guillaume_De_Backre/');
+            */
         } else {
-            throw new \Exception("Wrong password");
-        }*/
+            //DISPLAY TEMPLATE AND SEND VARIABLES
+            $template = $this->twig->load('error.html.twig');
+            echo $template->render([
+                'checkError' => $this->checkErrors
+            ]);
+        }
     }
 }

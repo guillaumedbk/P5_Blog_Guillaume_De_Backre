@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\EntityInterface;
 use App\Entity\User\User;
-use App\Entity\User\UserConnectInfo;
+use App\Entity\User\UserLoginDTO;
 use App\Exceptions\EntityNotFoundException;
 use App\Repository\DBConnexion;
 use Exception;
@@ -64,7 +64,7 @@ class UserRepository extends Repository
         }
     }
     //USER CONNEXION
-    public function userConnect(UserConnectInfo $userConnectInfo): bool
+    public function userConnect(UserLoginDTO $userConnectInfo): bool
     {
         try {
             $req = $this->dbConnection->getPDO()->prepare('SELECT * FROM user WHERE email = ?');
@@ -75,10 +75,10 @@ class UserRepository extends Repository
         }
     }
     //FIND BY EMAIL
-    public function findByEmail(UserConnectInfo $userConnectInfo): object
+    public function findByEmail(UserLoginDTO $userLoginDTO): object
     {
         $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
-        $req->execute([$userConnectInfo->getEmail()]);
+        $req->execute([$userLoginDTO->email]);
         $fetch = $req->fetch(PDO::FETCH_ASSOC);
 
         /** @var EntityInterface $entityClass */
