@@ -36,15 +36,7 @@ abstract class Controller
     protected function hydrate(array $donnees, $dto): object
     {
         foreach ($donnees as $key => $value) {
-            //We get the name of the corresponding setter
-            $method = 'set'.ucfirst($key);
-            //If the corresponding setter exists
-            if (method_exists($dto, $method)) {
-                //We call the setter and give it its value
-                $dto->$method($value);
-            } else {
-                return 'Method doesn\'t exist';
-            }
+            $dto->$key = $value;
         }
         return $dto;
     }

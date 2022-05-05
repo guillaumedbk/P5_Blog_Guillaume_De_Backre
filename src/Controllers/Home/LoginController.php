@@ -3,11 +3,12 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
-use App\Controllers\Validator;
 use App\Entity\User\UserConnectInfo;
 use App\Entity\User\UserLoginDTO;
 use App\Repository\UserRepository;
 use App\Router\Request;
+use App\Validator\Validators\Validator;
+use App\Validator\Validators\UserAssertMapValidator;
 
 class LoginController extends Controller
 {
@@ -31,6 +32,11 @@ class LoginController extends Controller
     {
         $userConnectData = $request->getData();
         $dto = $this->hydrate($userConnectData, new UserLoginDTO());
+
+        $validator = new Validator();
+        $userValidator = new UserAssertMapValidator();
+
+        var_dump($validator->validate($userValidator, $dto));
 
         /*
         $validator = new Validator($userConnectInfo);
