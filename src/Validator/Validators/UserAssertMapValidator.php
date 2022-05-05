@@ -19,7 +19,7 @@ class UserAssertMapValidator implements AssertMapValidatorInterface
                 new AssertEmail(),
             ],
             'password' => [
-                new AssertLength(2, 60),
+                new AssertLength(6, 60),
             ],
         ];
     }

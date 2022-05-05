@@ -12,7 +12,7 @@ class AssertEmail implements AssertInterface
             return null;
         }
 
-        if (!strpos($value, '@')) {
+        if (filter_var($value, FILTER_VALIDATE_EMAIL) === false) {
             return 'Not valid email';
         }
         return null;
