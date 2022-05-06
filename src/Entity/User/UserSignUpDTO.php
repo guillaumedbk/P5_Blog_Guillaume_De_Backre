@@ -8,6 +8,7 @@ class UserSignUpDTO
     public string $firstname;
     public string $name;
     public string $email;
+    public string $status = 'admin';
     public string $bio;
     public string $password;
 }

@@ -8,12 +8,16 @@ use App\Entity\User\User;
 use App\Entity\User\UserSignUpDTO;
 use App\Repository\FileLogger;
 use App\Repository\UserRepository;
+use App\Repository\UserSession;
 use App\Router\Request;
 use App\Router\Router;
 use App\Validator\Security\SecurePostData;
+use App\Validator\Validators\UserAssertMapValidator;
 
 class SignUpController extends Controller
 {
+    private $checkErrors;
+
     public function __invoke(Request $request): void
     {
         if ($request->getMethod() === "GET") {
@@ -32,44 +36,46 @@ class SignUpController extends Controller
 
     public function postSignUpController(Request $request): void
     {
-        //RETRIEVE AND SECURE DATA
-        $security = new SecurePostData();
-        $securedData = $security->secureData($request->getData());
-        //HYDRATE THE DTO
-        $dto = $this->hydrate($securedData, new UserSignUpDTO());
-        
-        /*
         try {
-
-            $validator = new Validator($user);
-            //CHECK DATA VALIDITY OF firstname and name
-            $validation = array($user->getFirstname(), $user->getName());
-            foreach ($validation as $value) {
-                $validator->validate($value);
-            }
-            //CHECK EMAIL VALIDITY
-            $validator->checkEmailValidity($user->getEmail());
-            //CHECK STATUS VALIDITY
-            $validator->checkStatusValidity($user->getStatus());
+            //RETRIEVE AND SECURE DATA
+            $security = new SecurePostData();
+            $securedData = $security->secureData($request->getData());
+            //HYDRATE THE DTO
+            $dto = $this->hydrateSignDto($securedData, new UserSignUpDTO());
+            //CHECK DATA VALIDITY
+            $validator = new \App\Validator\Validators\Validator();
+            $userValidator = new UserAssertMapValidator();
+            $this->checkErrors = $validator->validate($userValidator, $dto);
             //CHECK MAIL UNIQUENESS
-            $userrepo = new UserRepository($this->getDBConnexion());
-            if ($userrepo->mailUniquess($user->getEmail()) === true) {
+            $userRepo = new UserRepository($this->getDBConnexion());
+            if ($userRepo->mailUniquess($dto->email) === true) {
+                $this->checkErrors['email'] = ['Mail already exist in bdd'];
                 throw new \Exception("Mail already exist in bdd");
             } else {
                 //INSERT NEW USER
-                $userrepo->createUser($user);
-                //SET DATA SESSION
-                $_SESSION['LOGGED'] = true;
-                $_SESSION['FIRSTNAME'] = $user->getFirstName();
-                $_SESSION['NAME'] = $user->getName();
-                $_SESSION['STATUS'] = $user->getStatus();
-                $_SESSION['TOKEN'] = md5(time()*rand(153, 728));
+                $userRepo->createUser($dto);
+                //NEW SESSION
+                $session = new UserSession();
+                $userInfo = array(
+                    'firstname' => $dto->firstname,
+                    'name' => $dto->name,
+                    'bio' => $dto->bio,
+                    'status' =>$dto->status
+                );
+                $session->addSessionKey('USER', $userInfo);
                 header('Location: /P5_Blog_Guillaume_De_Backre/');
+            }
+            if (!empty($this->checkErrors)) {
+                //DISPLAY TEMPLATE AND SEND VARIABLES
+                $template = $this->twig->load('error.html.twig');
+                echo $template->render([
+                'checkError' => $this->checkErrors
+            ]);
             }
         } catch (\Exception $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
             throw new \Exception("The following error has occured:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
-        }*/
+        }
     }
 }

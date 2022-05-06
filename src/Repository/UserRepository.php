@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\EntityInterface;
 use App\Entity\User\User;
 use App\Entity\User\UserLoginDTO;
+use App\Entity\User\UserSignUpDTO;
 use App\Exceptions\EntityNotFoundException;
 use App\Repository\DBConnexion;
 use Exception;
@@ -22,11 +23,11 @@ class UserRepository extends Repository
     }
 
     //CREATE NEW USER BY PASSING AN OBJECT
-    public function createUser(User $user): bool
+    public function createUser(UserSignUpDTO $userSignUpDTO): bool
     {
         try {
             $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
-            return $insertInto ->execute([$user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(),$user->getPassword()]);
+            return $insertInto ->execute([$userSignUpDTO->name, $userSignUpDTO->name, $userSignUpDTO->email, $userSignUpDTO->status, $userSignUpDTO->bio, $userSignUpDTO->password]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
@@ -80,6 +81,9 @@ class UserRepository extends Repository
         $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
         $req->execute([$userLoginDTO->email]);
         $fetch = $req->fetch(PDO::FETCH_ASSOC);
+        if ($fetch === false) {
+            throw new \PDOException("User not found");
+        }
 
         /** @var EntityInterface $entityClass */
         $entityClass = $this->entityClass;

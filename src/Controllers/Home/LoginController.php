@@ -38,7 +38,7 @@ class LoginController extends Controller
         $security = new SecurePostData();
         $securedData = $security->secureData($request->getData());
         //HYDRATE THE DTO
-        $dto = $this->hydrate($securedData, new UserLoginDTO());
+        $dto = $this->hydrateLoginDto($securedData, new UserLoginDTO());
         //CHECK DATA VALIDITY
         $validator = new Validator();
         $userValidator = new UserAssertMapValidator();
@@ -55,11 +55,13 @@ class LoginController extends Controller
             $userInfo = array(
                 'firstname' => $connect->getFirstname(),
                 'name' => $connect->getName(),
+                'bio' => $connect->getStatus(),
                 'status' =>$connect->getStatus()
             );
             $session->addSessionKey('USER', $userInfo);
             header('Location: /P5_Blog_Guillaume_De_Backre/');
         } else {
+            $this->checkErrors['error'] = ['Wrong email or password'];
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('error.html.twig');
             echo $template->render([
