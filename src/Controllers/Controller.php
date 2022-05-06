@@ -30,6 +30,7 @@ abstract class Controller
         return $this->db;
     }
 
+    //HYDRATE DTO
     protected function hydrate(array $donnees, $dto): object
     {
         foreach ($donnees as $key => $value) {

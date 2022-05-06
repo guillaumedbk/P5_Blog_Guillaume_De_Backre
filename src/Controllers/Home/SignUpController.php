@@ -10,6 +10,7 @@ use App\Repository\FileLogger;
 use App\Repository\UserRepository;
 use App\Router\Request;
 use App\Router\Router;
+use App\Validator\Security\SecurePostData;
 
 class SignUpController extends Controller
 {
@@ -31,9 +32,12 @@ class SignUpController extends Controller
 
     public function postSignUpController(Request $request): void
     {
-        $userSignUpData = $request->getData();
-        $dto = $this->hydrate($userSignUpData, new UserSignUpDTO());
-
+        //RETRIEVE AND SECURE DATA
+        $security = new SecurePostData();
+        $securedData = $security->secureData($request->getData());
+        //HYDRATE THE DTO
+        $dto = $this->hydrate($securedData, new UserSignUpDTO());
+        
         /*
         try {
 

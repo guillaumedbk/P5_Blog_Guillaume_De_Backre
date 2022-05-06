@@ -8,6 +8,7 @@ use App\Entity\User\UserLoginDTO;
 use App\Repository\UserRepository;
 use App\Repository\UserSession;
 use App\Router\Request;
+use App\Validator\Security\SecurePostData;
 use App\Validator\Validators\Validator;
 use App\Validator\Validators\UserAssertMapValidator;
 
@@ -33,10 +34,11 @@ class LoginController extends Controller
 
     public function postLoginController(Request $request): void
     {
-        //RETRIEVE DATA
-        $userConnectData = $request->getData();
+        //RETRIEVE AND SECURE DATA
+        $security = new SecurePostData();
+        $securedData = $security->secureData($request->getData());
         //HYDRATE THE DTO
-        $dto = $this->hydrate($userConnectData, new UserLoginDTO());
+        $dto = $this->hydrate($securedData, new UserLoginDTO());
         //CHECK DATA VALIDITY
         $validator = new Validator();
         $userValidator = new UserAssertMapValidator();
