@@ -8,6 +8,7 @@
             <h4 class="mb-3">{{ post.chapo }}</h4>
             {% if session.USER.status is same as 'admin' %}
             <a class="btn btn-primary" href="/P5_Blog_Guillaume_De_Backre/post/update/{{ postId }}" role="button">Modifier le post</a>
+                <a class="btn btn-primary" href="/P5_Blog_Guillaume_De_Backre/post/delete/{{ postId }}" role="button">Supprimer le post</a>
             {% endif %}
         </div>
         <!-- Jumbotron -->
