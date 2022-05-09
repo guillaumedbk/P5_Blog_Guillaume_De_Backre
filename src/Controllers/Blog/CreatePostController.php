@@ -42,12 +42,14 @@ class CreatePostController extends Controller
         $validator = new Validator();
         $postValidator = new PostAssertMapValidator();
         $this->checkErrors = $validator->validate($postValidator, $dto);
+        //USER STATUS
+        $userStatus = $request->getSession()['USER']['status'];
         //CREATE POST
-        if (empty($this->checkErrors)){
+        if (empty($this->checkErrors) && $userStatus === 'admin') {
             $postRepo = new PostRepository($this->getDBConnexion());
             $postRepo->createPost($dto);
             header('Location: /P5_Blog_Guillaume_De_Backre/blog');
-        }else{
+        } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('error.html.twig');
             echo $template->render([

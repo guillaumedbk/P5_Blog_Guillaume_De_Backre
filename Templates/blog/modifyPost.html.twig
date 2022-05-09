@@ -8,4 +8,33 @@
         </div>
         <!-- Jumbotron -->
     </header>
+
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <!-- Registration Form -->
+                    <form action="/P5_Blog_Guillaume_De_Backre/post/update/{{ postId }}" method="post">
+                        <!-- Title input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" id="title" name="title" placeholder="Titre du post" value="{{ post.title }}" required />
+                            <label for="firstname">Titre du post</label>
+                        </div>
+                        <!-- Chapo input-->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="chapo" name="chapo" placeholder="Châpo" value="{{ post.chapo }}" required />
+                            <label for="name">Chapô</label>
+                        </div>
+                        <!-- Content input-->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="content" name="content" placeholder="Contenu" value="{{ post.content }}" required />
+                            <label for="name">Contenu</label>
+                        </div>
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary btn-xl" type="submit" value="modifier">Modifier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

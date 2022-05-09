@@ -30,14 +30,14 @@ class PostRepository extends Repository
         }
     }
     //MODIFY ONE POST
-    public function modifyPost(Post $post, $id): bool
+    public function modifyPost(PostDTO $post, $id): bool
     {
         $modifyPost = $this->dbConnection->getPDO()->prepare('UPDATE post SET title = :title, chapo = :chapo, content = :content, lastUpdate = NOW() WHERE id = :id');
         try {
             return $modifyPost -> execute([
-                'title' => $post->getTitle(),
-                'chapo' => $post->getChapo(),
-                'content' => $post->getContent(),
+                'title' => $post->title,
+                'chapo' => $post->chapo,
+                'content' => $post->content,
                 'id' => $id]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');

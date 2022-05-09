@@ -62,6 +62,10 @@ $router = new Router(
             'methods' => ['GET'],
             'controller' => new PostController()
         ],
+        "/^\/post\/(\d+)$/" => [
+            'methods' => ['DELETE'],
+            'controller' => new PostDeleteController()
+        ],
         "/^\/post\/create$/" => [
             'methods' => ['GET', 'POST'],
             'controller' => new CreatePostController()
