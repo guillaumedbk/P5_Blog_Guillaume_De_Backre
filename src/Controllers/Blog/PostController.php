@@ -11,6 +11,7 @@ use Twig\Extension\AbstractExtension;
 
 class PostController extends Controller
 {
+
     public function __invoke(Request $request): void
     {
         $onePost = new PostRepository($this->getDBConnexion());
@@ -24,8 +25,12 @@ class PostController extends Controller
         //DISPLAY TEMPLATE
         $template = $this->twig->load('blog/post.html.twig');
 
+        //USER'S SESSION
+        $userSession = $request->getSession();
+
         //SEND VARIABLES
         echo $template->render([
+            'session' => $userSession,
             'postId' => $id,
             'post' => $post,
             'comments' => $comments

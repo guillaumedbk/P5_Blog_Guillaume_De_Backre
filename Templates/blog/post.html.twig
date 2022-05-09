@@ -6,7 +6,9 @@
         <div class="p-5 text-center bg-light">
             <h1 class="mb-3">{{ post.title }}</h1>
             <h4 class="mb-3">{{ post.chapo }}</h4>
-            <a class="btn btn-primary" href="" role="button">Call to action</a>
+            {% if session.USER.status is same as 'admin' %}
+            <a class="btn btn-primary" href="/P5_Blog_Guillaume_De_Backre/post/update/{{ postId }}" role="button">Modifier le post</a>
+            {% endif %}
         </div>
         <!-- Jumbotron -->
     </header>

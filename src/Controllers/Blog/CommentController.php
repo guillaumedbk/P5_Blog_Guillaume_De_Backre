@@ -34,19 +34,16 @@ class CommentController extends Controller
         $commentValidator = new CommentAssertMapValidator();
         $this->checkErrors = $validator->validate($commentValidator, $dto);
         //CREATE COMMENT
-        if(empty($this->checkErrors)){
+        if (empty($this->checkErrors)) {
             $comment = new CommentRepository($this->getDBConnexion());
             $comment->createComment($dto);
             header('Location: /P5_Blog_Guillaume_De_Backre/post/'.$postId);
-        }else{
+        } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('error.html.twig');
             echo $template->render([
                 'checkError' => $this->checkErrors
             ]);
         }
-
-        //$getComment = $request->getComment();
-        //$comment->createComment($getComment);
     }
 }
