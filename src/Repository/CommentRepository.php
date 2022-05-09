@@ -43,6 +43,5 @@ class CommentRepository extends Repository
             $result[] = $this->hydrate($item);
         }
         return $result;
-
     }
 }
