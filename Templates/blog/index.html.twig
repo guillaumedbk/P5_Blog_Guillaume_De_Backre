@@ -11,9 +11,8 @@
                         <h3>Bonjour {{ session.USER.name }} et bienvenue sur le blog !</h3>
                         <span class="subheading">Découvre nos derniers posts sans plus attendre</span>
                         <br>
-                            {% if session.USER.status is same as 'admin' %}
-                                <button class="btn btn-secondary mt-3"><a href="">Créer un post</a></button>
-                            {% endif %}
+                        {% if session.USER.status is same as 'admin' %}
+                            <button class="btn btn-secondary mt-3"><a href="/P5_Blog_Guillaume_De_Backre/post/create">Créer un post</a></button>
                         {% endif %}
 
                     </div>
