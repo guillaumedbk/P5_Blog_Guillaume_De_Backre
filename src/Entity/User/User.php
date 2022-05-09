@@ -35,6 +35,11 @@ class User implements EntityInterface
     }
 
     //Getters and setters
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getFirstname(): string
     {
         return $this->firstname;

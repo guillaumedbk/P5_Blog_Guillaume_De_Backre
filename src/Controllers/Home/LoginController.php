@@ -53,6 +53,7 @@ class LoginController extends Controller
             //NEW SESSION
             $session = new UserSession();
             $userInfo = array(
+                'userId' => $connect->getId(),
                 'firstname' => $connect->getFirstname(),
                 'name' => $connect->getName(),
                 'bio' => $connect->getStatus(),
