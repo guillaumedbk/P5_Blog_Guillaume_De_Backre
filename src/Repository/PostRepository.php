@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post\Post;
+use App\Entity\Post\PostDTO;
 use App\Repository\DBConnexion;
 
 class PostRepository extends Repository
@@ -17,11 +18,11 @@ class PostRepository extends Repository
     }
 
     //CREATE NEW POST
-    public function createPost(Post $post): bool
+    public function createPost(PostDTO $post): bool
     {
         try {
             $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO post (userId, title, chapo, content, lastUpdate) VALUES (?,?,?,?,NOW())');
-            return $insertInto ->execute([$post->getUserId(), $post->getTitle(), $post->getChapo(), $post->getContent()]);
+            return $insertInto ->execute([$post->userId, $post->title, $post->chapo, $post->content]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");

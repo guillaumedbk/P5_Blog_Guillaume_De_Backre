@@ -23,7 +23,7 @@ class ModifyPostController extends Controller
         echo $template->render();
     }
 
-    public function postModifyPostController(): void
+    public function postModifyPostController($request): void
     {
 
     }
