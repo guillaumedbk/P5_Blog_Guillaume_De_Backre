@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Repository;
+namespace App\Entity\User;
 
+use App\Entity\User\User;
 use App\Router\Request;
 
 class UserSession
 {
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->addSessionKey('TOKEN', md5(time()*rand(153, 728)));
         $this->addSessionKey('LOGGED', true);
+        $this->addSessionKey('USER', $user);
     }
 
     public function addSessionKey(string $key, $value): void
