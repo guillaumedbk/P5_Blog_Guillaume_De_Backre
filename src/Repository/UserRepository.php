@@ -100,4 +100,12 @@ class UserRepository extends Repository
             throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
     }
+    //GET LAST ID
+    public function getId(string $email): array
+    {
+        $req = $this->dbConnection->getPDO()->prepare("SELECT id FROM {$this->table} WHERE email = ?");
+        $req->execute(array($email));
+        return $req->fetch(PDO::FETCH_ASSOC);
+
+    }
 }

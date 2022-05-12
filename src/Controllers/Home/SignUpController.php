@@ -49,7 +49,9 @@ class SignUpController extends Controller
                 //INSERT NEW USER
                 $userRepo = new UserRepository($this->getDBConnexion());
                 $userRepo->createUser($dto);
-                $user = new User($dto->firstname, $dto->name, $dto->email, $dto->status, $dto->bio, $dto->password);
+                $userId = $userRepo->getId($dto->email);
+                $userId = $userId['id'];
+                $user = new User($userId, $dto->firstname, $dto->name, $dto->email, $dto->status, $dto->bio, $dto->password);
                 //NEW SESSION
                 new UserSession($user);
                 header('Location: /P5_Blog_Guillaume_De_Backre/');
