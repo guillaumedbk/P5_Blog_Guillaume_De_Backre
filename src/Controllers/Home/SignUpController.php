@@ -30,7 +30,9 @@ class SignUpController extends Controller
     {
         //DISPLAY TEMPLATE AND SEND VARIABLES
         $template = $this->twig->load('home/signUp.html.twig');
-        echo $template->render();
+        echo $template->render([
+            'checkErrors' => $this->checkErrors
+        ]);
     }
 
     public function postSignUpController(Request $request): void
@@ -57,9 +59,11 @@ class SignUpController extends Controller
                 header('Location: /P5_Blog_Guillaume_De_Backre/');
             } else {
                 //DISPLAY TEMPLATE AND SEND VARIABLES
-                $template = $this->twig->load('error.html.twig');
+                var_dump($dto);
+                $template = $this->twig->load('home/signUp.html.twig');
                 echo $template->render([
-                'checkError' => $this->checkErrors
+                'checkErrors' => $this->checkErrors,
+                    'dto'=>$dto
             ]);
             }
         } catch (\Exception $exception) {
