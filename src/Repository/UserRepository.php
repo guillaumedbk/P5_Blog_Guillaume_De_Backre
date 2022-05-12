@@ -76,10 +76,10 @@ class UserRepository extends Repository
         }
     }
     //FIND BY EMAIL
-    public function findByEmail(UserLoginDTO $userLoginDTO): object
+    public function findByEmail(string $email): object
     {
         $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
-        $req->execute([$userLoginDTO->email]);
+        $req->execute([$email]);
         $fetch = $req->fetch(PDO::FETCH_ASSOC);
         if ($fetch === false) {
             throw new \PDOException("User not found");
@@ -90,7 +90,7 @@ class UserRepository extends Repository
         return $entityClass::createFromDb($fetch);
     }
     //CHECK IF MAIL ALREADY EXIST IN DB
-    public function mailUniquess(string $email): bool
+    public function mailExist(string $email): bool
     {
         try {
             $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");

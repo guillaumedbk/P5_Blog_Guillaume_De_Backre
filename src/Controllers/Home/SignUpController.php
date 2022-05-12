@@ -3,16 +3,15 @@
 namespace App\Controllers\Home;
 
 use App\Controllers\Controller;
-use App\Controllers\Validator;
 use App\Entity\User\User;
+use App\Entity\User\UserSession;
 use App\Entity\User\UserSignUpDTO;
 use App\Repository\FileLogger;
 use App\Repository\UserRepository;
-use App\Repository\UserSession;
 use App\Router\Request;
-use App\Router\Router;
 use App\Validator\Security\SecurePostData;
-use App\Validator\Validators\UserAssertMapValidator;
+use App\Validator\Validators\SignUpAssertMapValidator;
+use App\Validator\Validators\Validator;
 
 class SignUpController extends Controller
 {
@@ -43,29 +42,18 @@ class SignUpController extends Controller
             //HYDRATE THE DTO
             $dto = $this->hydrateSignDto($securedData, new UserSignUpDTO());
             //CHECK DATA VALIDITY
-            $validator = new \App\Validator\Validators\Validator();
-            $userValidator = new UserAssertMapValidator();
+            $validator = new Validator();
+            $userValidator = new SignUpAssertMapValidator();
             $this->checkErrors = $validator->validate($userValidator, $dto);
-            //CHECK MAIL UNIQUENESS
-            $userRepo = new UserRepository($this->getDBConnexion());
-            if ($userRepo->mailUniquess($dto->email) === true) {
-                $this->checkErrors['email'] = ['Mail already exist in bdd'];
-                throw new \Exception("Mail already exist in bdd");
-            } else {
+            if (empty($this->checkErrors)) {
                 //INSERT NEW USER
+                $userRepo = new UserRepository($this->getDBConnexion());
                 $userRepo->createUser($dto);
+                $user = new User($dto->firstname, $dto->name, $dto->email, $dto->status, $dto->bio, $dto->password);
                 //NEW SESSION
-                $session = new UserSession();
-                $userInfo = array(
-                    'firstname' => $dto->firstname,
-                    'name' => $dto->name,
-                    'bio' => $dto->bio,
-                    'status' =>$dto->status
-                );
-                $session->addSessionKey('USER', $userInfo);
+                new UserSession($user);
                 header('Location: /P5_Blog_Guillaume_De_Backre/');
-            }
-            if (!empty($this->checkErrors)) {
+            } else {
                 //DISPLAY TEMPLATE AND SEND VARIABLES
                 $template = $this->twig->load('error.html.twig');
                 echo $template->render([
