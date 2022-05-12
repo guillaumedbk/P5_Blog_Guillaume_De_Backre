@@ -47,7 +47,7 @@ class LoginController extends Controller
 
         //CHECK IF DATA MATCHES
         $userRepo = new UserRepository($this->getDBConnexion());
-        $user = $userRepo->findByEmail($dto);
+        $user = $userRepo->findByEmail($dto->email);
 
         //CHECK IF PASSWORD MATCH
         if (password_verify($dto->password, $user->getPassword())) {

@@ -23,11 +23,11 @@ class UserRepository extends Repository
     }
 
     //CREATE NEW USER BY PASSING AN OBJECT
-    public function createUser(UserSignUpDTO $userSignUpDTO): bool
+    public function createUser(User $user): bool
     {
         try {
             $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
-            return $insertInto ->execute([$userSignUpDTO->name, $userSignUpDTO->name, $userSignUpDTO->email, $userSignUpDTO->status, $userSignUpDTO->bio, $userSignUpDTO->password]);
+            return $insertInto ->execute([$user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(), $user->getPassword()]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");

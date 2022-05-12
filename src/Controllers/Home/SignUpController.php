@@ -50,16 +50,16 @@ class SignUpController extends Controller
             if (empty($this->checkErrors)) {
                 //INSERT NEW USER
                 $userRepo = new UserRepository($this->getDBConnexion());
-                $userRepo->createUser($dto);
+                $user = new User(null, $dto->firstname, $dto->name, $dto->email, $dto->status, $dto->bio, $dto->password);
+                $userRepo->createUser($user);
+                //GET ID
+                $id = $userRepo->getId($user->getEmail());
                 //NEW SESSION
-                $userId = $userRepo->getId($dto->email);
-                $userId = $userId['id'];
-                $user = new User($userId, $dto->firstname, $dto->name, $dto->email, $dto->status, $dto->bio, $dto->password);
+                $user->setId($id['id']);
                 new UserSession($user);
                 header('Location: /P5_Blog_Guillaume_De_Backre/');
             } else {
                 //DISPLAY TEMPLATE AND SEND VARIABLES
-                var_dump($dto);
                 $template = $this->twig->load('home/signUp.html.twig');
                 echo $template->render([
                 'checkErrors' => $this->checkErrors,
