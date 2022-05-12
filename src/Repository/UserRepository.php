@@ -64,17 +64,7 @@ class UserRepository extends Repository
             throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
     }
-    //USER CONNEXION
-    public function userConnect(UserLoginDTO $userLoginDTO): bool
-    {
-        try {
-            $req = $this->dbConnection->getPDO()->prepare('SELECT * FROM user WHERE email = ?');
-            $req->execute(array($userLoginDTO->email));
-            return $req->rowCount();
-        } catch (\PDOException $exception) {
-            throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
-        }
-    }
+
     //FIND BY EMAIL
     public function findByEmail(string $email): object
     {
@@ -89,7 +79,7 @@ class UserRepository extends Repository
         $entityClass = $this->entityClass;
         return $entityClass::createFromDb($fetch);
     }
-    //CHECK IF MAIL ALREADY EXIST IN DB
+    //CHECK IF MAIL EXIST IN DB
     public function mailExist(string $email): bool
     {
         try {
@@ -106,6 +96,5 @@ class UserRepository extends Repository
         $req = $this->dbConnection->getPDO()->prepare("SELECT id FROM {$this->table} WHERE email = ?");
         $req->execute(array($email));
         return $req->fetch(PDO::FETCH_ASSOC);
-
     }
 }
