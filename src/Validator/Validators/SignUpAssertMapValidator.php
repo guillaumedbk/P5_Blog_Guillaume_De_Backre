@@ -6,6 +6,7 @@ use App\Repository\DBConnexion;
 use App\Repository\UserRepository;
 use App\Validator\AssertMapValidatorInterface;
 use App\Validator\Asserts\AssertEmail;
+use App\Validator\Asserts\AssertEmailUniquess;
 use App\Validator\Asserts\AssertLength;
 use App\Validator\Asserts\AssertNotBlank;
 
@@ -28,6 +29,7 @@ class SignUpAssertMapValidator implements AssertMapValidatorInterface
                 new AssertNotBlank(),
                 new AssertLength(5, 40),
                 new AssertEmail(),
+                new AssertEmailUniquess()
             ],
             'password' => [
                 new AssertNotBlank(),

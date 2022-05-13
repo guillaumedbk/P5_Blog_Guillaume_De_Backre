@@ -17,17 +17,40 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-xl-7">
                     <!-- Connect Form -->
-                    <form action="connexion" method="post">
+                    <form action="connexion" method="post" class="needs-validation" novalidate>
+                        {% if checkErrors.error %}
+                            {% for key, value in checkErrors.error %}
+                                <div class="alert alert-danger" role="alert">
+                                    Error : {{ value }} <br>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <!-- Email input-->
                         <div class="form-floating mb-3">
                             <label for="email">Email</label><br />
                             <input type="email" class="form-control" id="email" name="email" required />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner un Email valide</div>
                         </div>
+                        {% if checkErrors.email %}
+                            {% for key, value in checkErrors.email %}
+                                <div class="alert alert-danger" role="alert">
+                                    Email : {{ value }} <br>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <!-- Password input-->
                         <div class="form-floating mb-3">
                             <label for="password">Entrez votre mot de passe</label><br />
                             <input type="password" class="form-control" id="password" name="password" required />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre mot de passe</div>
                         </div>
+                        {% if checkErrors.password %}
+                            {% for key, value in checkErrors.password %}
+                                <div class="alert alert-danger" role="alert">
+                                    Password : {{ value }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <!-- Submit Button-->
                         <button class="btn btn-primary btn-xl" type="submit" value="Envoyer">Se connecter</button>
 
@@ -36,5 +59,7 @@
             </div>
         </div>
     </section>
+
+    {% include 'script.html.twig' %}
 
 {% endblock %}

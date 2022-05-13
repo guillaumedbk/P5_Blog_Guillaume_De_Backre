@@ -50,16 +50,18 @@ class LoginController extends Controller
         $user = $userRepo->findByEmail($dto->email);
 
         //CHECK IF PASSWORD MATCH
-        if (password_verify($dto->password, $user->getPassword())) {
+        if ($user !== NULL && password_verify($dto->password, $user->getPassword())) {
             //NEW SESSION
             new UserSession($user);
             header('Location: /P5_Blog_Guillaume_De_Backre/');
         } else {
             $this->checkErrors['error'] = ['Wrong email or password'];
+            var_dump($this->checkErrors);
             //DISPLAY TEMPLATE AND SEND VARIABLES
-            $template = $this->twig->load('error.html.twig');
+            $template = $this->twig->load('home/login.html.twig');
             echo $template->render([
-                'checkError' => $this->checkErrors
+                'checkErrors' => $this->checkErrors,
+                'dto'=>$dto
             ]);
         }
     }

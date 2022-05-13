@@ -66,13 +66,13 @@ class UserRepository extends Repository
     }
 
     //FIND BY EMAIL
-    public function findByEmail(string $email): object
+    public function findByEmail(string $email): ?object
     {
         $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
         $req->execute([$email]);
         $fetch = $req->fetch(PDO::FETCH_ASSOC);
         if ($fetch === false) {
-            throw new \PDOException("User not found");
+            return null;
         }
 
         /** @var EntityInterface $entityClass */
