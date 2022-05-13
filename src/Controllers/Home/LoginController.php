@@ -50,7 +50,7 @@ class LoginController extends Controller
         $user = $userRepo->findByEmail($dto->email);
 
         //CHECK IF PASSWORD MATCH
-        if ($user !== NULL && password_verify($dto->password, $user->getPassword())) {
+        if ($user !== null && password_verify($dto->password, $user->getPassword())) {
             //NEW SESSION
             new UserSession($user);
             header('Location: /P5_Blog_Guillaume_De_Backre/');

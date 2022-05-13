@@ -81,11 +81,10 @@ class SignUpController extends Controller
         foreach ($donnees as $key => $value) {
             $dto->$key = $value;
             //HASH THE PASSWORD
-            if ($key === 'password'){
+            if ($key === 'password') {
                 $dto->$key = password_hash($value, PASSWORD_DEFAULT);
             }
         }
         return $dto;
     }
-
 }
