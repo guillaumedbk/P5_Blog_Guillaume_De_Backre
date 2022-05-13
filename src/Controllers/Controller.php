@@ -30,21 +30,8 @@ abstract class Controller
         return $this->db;
     }
 
-    //HYDRATE DTO
-    protected function hydrateSignDto(array $donnees, $dto): object
-    {
-        foreach ($donnees as $key => $value) {
-            $dto->$key = $value;
-            //HASH THE PASSWORD
-            if ($key === 'password'){
-                $dto->$key = password_hash($value, PASSWORD_DEFAULT);
-            }
-        }
-        return $dto;
-    }
-
     //HYDRATE LOGIN DTO
-    protected function hydrateLoginDto(array $donnees, $dto): object
+    protected function hydrateDto(array $donnees, $dto): object
     {
         foreach ($donnees as $key => $value) {
             $dto->$key = $value;

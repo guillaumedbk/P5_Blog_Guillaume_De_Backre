@@ -39,7 +39,7 @@ class LoginController extends Controller
         $security = new SecurePostData();
         $securedData = $security->secureData($request->getData());
         //HYDRATE THE DTO
-        $dto = $this->hydrateLoginDto($securedData, new UserLoginDTO());
+        $dto = $this->hydrateDto($securedData, new UserLoginDTO());
         //CHECK DATA VALIDITY
         $validator = new Validator();
         $userValidator = new UserAssertMapValidator();

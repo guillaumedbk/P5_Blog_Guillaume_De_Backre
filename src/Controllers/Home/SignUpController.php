@@ -42,7 +42,7 @@ class SignUpController extends Controller
             $security = new SecurePostData();
             $securedData = $security->secureData($request->getData());
             //HYDRATE THE DTO
-            $dto = $this->hydrateSignDto($securedData, new UserSignUpDTO());
+            $dto = $this->hydrateDto($securedData, new UserSignUpDTO());
             //CHECK DATA VALIDITY
             $validator = new Validator();
             $userValidator = new SignUpAssertMapValidator();
@@ -72,4 +72,20 @@ class SignUpController extends Controller
             throw new \Exception("The following error has occured:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
     }
+
+    //OVERLOAD HYDRATE DTO
+    protected function hydrateDto(array $donnees, $dto): object
+    {
+        parent::hydrateDto($donnees, $dto);
+
+        foreach ($donnees as $key => $value) {
+            $dto->$key = $value;
+            //HASH THE PASSWORD
+            if ($key === 'password'){
+                $dto->$key = password_hash($value, PASSWORD_DEFAULT);
+            }
+        }
+        return $dto;
+    }
+
 }
