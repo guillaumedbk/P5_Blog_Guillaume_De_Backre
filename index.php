@@ -9,6 +9,7 @@ use App\Controllers\Blog\CreatePostController;
 use App\Controllers\Blog\DeleteCommentController;
 use App\Controllers\Blog\DeletePostController;
 use App\Controllers\Blog\ModifyPostController;
+use App\Controllers\Home\ModifyUserController;
 use App\Controllers\Blog\PostController;
 use App\Controllers\Home\HomeController;
 use App\Controllers\Home\LoginController;
@@ -76,6 +77,10 @@ $router = new Router(
         "/^\/post\/update\/(\d+)$/" => [
             'methods' => ['GET', 'POST'],
             'controller' => new ModifyPostController()
+        ],
+        "/^\/user\/update\/(\d+)$/" => [
+            'methods' => ['GET', 'POST'],
+            'controller' => new ModifyUserController()
         ],
         "/^\/comment\/(\d+)$/" => [
             'methods' => ['GET', 'POST'],

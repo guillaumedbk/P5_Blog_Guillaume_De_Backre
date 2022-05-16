@@ -20,7 +20,7 @@ class CreatePostController extends Controller
         if ($request->getMethod() === "GET") {
             $this->getCreatePostController($request);
         } elseif ($request->getMethod() === "POST") {
-            $this->postCreatePostController();
+            $this->postCreatePostController($request);
         }
     }
 

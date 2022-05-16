@@ -58,11 +58,9 @@
         <div class="sidebar-heading">
             Interface
         </div>
-
-
-
+        
         <!-- Nav Item - Comments -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="#commentaires">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Comments</span></a>
@@ -103,8 +101,6 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
 
-
-
                 {% if comments %}
                 <!-- DataTales -->
                 <div class="card shadow mb-4" id="commentaires">
@@ -127,7 +123,6 @@
                                 </thead>
 
                                 <tbody>
-
                                 {% for comment in comments  %}
                                     {% if comment.status is same as 'attente' %}
                                         <tr>
@@ -138,17 +133,17 @@
                                             <td><button class="btn btn-danger btn-sm"><a href="comment/delete/{{ comment.id }}" style="color: white">Refuser</a></button></td>
                                         </tr>
                                    {% endif %}
-
                                 {% endfor %}
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 {% endif %}
+
+                {% if posts %}
                 <!-- DataTales -->
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-4" id="posts">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">DataTables Posts</h6>
                     </div>
@@ -171,27 +166,28 @@
                                 </thead>
 
                                 <tbody>
-                                <?php foreach ($posts as $post): ?>
-                                <tr>
-                                    <td><button class="btn-secondary btn-sm"><a href="?action=modifyPost&id=<?= $post['id']; ?>" style="color: white">Modifier</a></button></td>
-                                    <td><button class="btn btn-danger btn-sm"><a href="?action=deletePost&id=<?= $post['id']; ?>" style="color: white">Supprimer</a></button></td>
-                                    <td><?= $post['id']; ?></td>
-                                    <td><?= $post['title']; ?></td>
-                                    <td><?= $post['chapo']; ?></td>
-                                    <td><?= $post['content']; ?></td>
-                                    <td><?= $post['lastUpdate']; ?></td>
-                                    <td><?= $post['userId']; ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-
+                                {% for post in posts  %}
+                                        <tr>
+                                            <td><button class="btn-secondary btn-sm"><a href="post/update/{{ post.id }}" style="color: white">Modifier</a></button></td>
+                                            <td><button class="btn btn-danger btn-sm"><a href="post/delete/{{ post.id }}" style="color: white">Supprimer</a></button></td>
+                                            <td>{{ post.id }}</td>
+                                            <td>{{ post.title }}</td>
+                                            <td>{{ post.chapo }}</td>
+                                            <td>{{ post.content }}</td>
+                                            <td>{{ post.lastUpdate }}</td>
+                                            <td>{{ post.userId }}</td>
+                                        </tr>
+                                {% endfor %}
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
                 </div>
-
+                {% endif %}
+                {% if users %}
                 <!-- DataTales -->
-                <div class="card shadow mb-4">
+                <div class="card shadow mb-4" id="users">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">DataTables Users</h6>
                     </div>
@@ -210,37 +206,36 @@
                                     <th>Email</th>
                                     <th>Status</th>
                                     <th>Bio</th>
-                                    <th>Password</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                <?php foreach ($users as $user): ?>
-                                <tr>
-                                    <td>
-                                        <?php if ($user['status'] === 'admin'): ?>
-                                        <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=utilisateur" style="color: black">Rendre Utilisateur</a>
-                                        <?php elseif ($user['status'] === 'utilisateur'):?>
-                                        <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=admin" style="color: black">Rendre Admin</a>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><button class="btn-secondary btn-sm"><a href="?action=modifyUser&id=<?= $user['id']; ?>" style="color: white">Modifier</a></button></td>
-                                    <td><button class="btn btn-danger btn-sm"><a href="?action=deleteUser&id=<?= $user['id']; ?>" style="color: white">Supprimer</a></button></td>
-                                    <td><?= $user['id']; ?></td>
-                                    <td><?= $user['firstname']; ?></td>
-                                    <td><?= $user['name']; ?></td>
-                                    <td><?= $user['email']; ?></td>
-                                    <td><?= $user['status']; ?></td>
-                                    <td><?= $user['bio']; ?></td>
-                                    <td><?= $user['password']; ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-
+                                {% for user in users  %}
+                                    <tr>
+                                        <td>
+                                            {% if user.status is same as 'admin' %}
+                                            <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=utilisateur" style="color: black">Rendre Utilisateur</a>
+                                            {% endif %}
+                                            {% if user.status is same as 'utilisateur' %}
+                                            <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=admin" style="color: black">Rendre Admin</a>
+                                            {% endif %}
+                                        </td>
+                                        <td><button class="btn-secondary btn-sm"><a href="user/update/{{ user.id }}" style="color: white">Modifier</a></button></td>
+                                        <td><button class="btn btn-danger btn-sm"><a href="user/delete/{{ user.id }}" style="color: white">Supprimer</a></button></td>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.firstname }}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.status }}</td>
+                                        <td>{{ user.bio }}</td>
+                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                {% endif %}
 
             </div>
             <!-- /.container-fluid -->
