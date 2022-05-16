@@ -9,6 +9,7 @@ use App\Controllers\Blog\CreatePostController;
 use App\Controllers\Blog\DeleteCommentController;
 use App\Controllers\Blog\DeletePostController;
 use App\Controllers\Blog\ModifyPostController;
+use App\Controllers\Home\ContactController;
 use App\Controllers\Home\ModifyUserController;
 use App\Controllers\Blog\PostController;
 use App\Controllers\Home\HomeController;
@@ -98,6 +99,10 @@ $router = new Router(
         "/^\/administration$/" => [
             'methods' => ['GET'],
             'controller' => new AdministrationController()
+        ],
+        "/^\/contact$/" => [
+            'methods' => ['POST'],
+            'controller' => new ContactController()
         ],
     ]
 );
