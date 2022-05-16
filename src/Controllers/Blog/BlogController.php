@@ -20,6 +20,7 @@ class BlogController extends Controller
             $session = $request->getSession();
 
             $allPosts = $blog->all();
+
             echo $template->render([
                 'session' => $session,
                 'posts' => $allPosts
