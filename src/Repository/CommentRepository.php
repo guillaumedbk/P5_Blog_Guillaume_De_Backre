@@ -40,6 +40,10 @@ class CommentRepository extends Repository
         $fetchAll = $req->fetchAll(PDO::FETCH_ASSOC);
         $result = [];
         foreach ($fetchAll as $item) {
+            //remove backslashes added by the addslashes method
+            foreach ($item as &$element) {
+                $element = stripcslashes($element);
+            }
             $result[] = $this->hydrate($item);
         }
         return $result;

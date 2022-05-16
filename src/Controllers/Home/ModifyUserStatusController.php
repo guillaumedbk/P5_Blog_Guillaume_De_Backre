@@ -16,5 +16,6 @@ class ModifyUserStatusController extends Controller
         $newStatus = $request->getData()['userform'];
         $user->setStatus($newStatus);
         $userRepo->modifyUserStatus($user, $userId);
+        header('Location: /P5_Blog_Guillaume_De_Backre/administration');
     }
 }

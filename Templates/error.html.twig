@@ -21,6 +21,7 @@
     <ul>
         {% for key, error in checkError %}
             <li class="h1 list-unstyled">{{ key }}:
+                {{ error }}
                 {% for errors in error %}
                     {{ errors }}
                 {% endfor %}
