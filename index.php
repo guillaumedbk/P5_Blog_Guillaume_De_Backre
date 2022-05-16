@@ -2,9 +2,11 @@
 
 require_once realpath("vendor/autoload.php");
 
+use App\Controllers\Blog\AdministrationController;
 use App\Controllers\Blog\BlogController;
 use App\Controllers\Blog\CommentController;
 use App\Controllers\Blog\CreatePostController;
+use App\Controllers\Blog\DeleteCommentController;
 use App\Controllers\Blog\DeletePostController;
 use App\Controllers\Blog\ModifyPostController;
 use App\Controllers\Blog\PostController;
@@ -76,9 +78,17 @@ $router = new Router(
             'controller' => new ModifyPostController()
         ],
         "/^\/comment\/(\d+)$/" => [
-            'methods' => ['POST'],
+            'methods' => ['GET', 'POST'],
             'controller' => new CommentController()
-        ]
+        ],
+        "/^\/comment\/delete\/(\d+)$/" => [
+            'methods' => ['GET'],
+            'controller' => new DeleteCommentController()
+        ],
+        "/^\/administration$/" => [
+            'methods' => ['GET'],
+            'controller' => new AdministrationController()
+        ],
     ]
 );
 

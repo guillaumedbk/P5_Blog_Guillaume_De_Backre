@@ -18,6 +18,23 @@ class CommentController extends Controller
 
     public function __invoke(Request $request): void
     {
+        if ($request->getMethod() === "GET") {
+            $this->getModifyStatusCommentController($request);
+        } elseif ($request->getMethod() === "POST") {
+            $this->postCommentController($request);
+        }
+    }
+
+    public function getModifyStatusCommentController(Request $request)
+    {
+        $id = $request->getMatches()[1];
+        $comment = new CommentRepository($this->getDBConnexion());
+        $comment->changeStatus($id);
+        header('Location: /P5_Blog_Guillaume_De_Backre/administration');
+    }
+
+    public function postCommentController(Request $request)
+    {
         //ARRAY OF DATA + SECURE
         $security = new SecurePostData();
         $securedContent = $security->secureData($request->getData());
@@ -54,4 +71,6 @@ class CommentController extends Controller
             ]);
         }
     }
+
+
 }

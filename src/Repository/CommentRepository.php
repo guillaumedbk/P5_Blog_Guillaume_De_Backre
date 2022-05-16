@@ -44,4 +44,11 @@ class CommentRepository extends Repository
         }
         return $result;
     }
+
+    //CHANGE COMMENT STATUS
+    public function changeStatus($id): bool
+    {
+        $req = $this->dbConnection->getPDO()->prepare('UPDATE comments SET status = "accepted" WHERE id = ?');
+        return $req -> execute(array($id));
+    }
 }

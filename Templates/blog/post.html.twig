@@ -24,9 +24,11 @@
                     <!-- Comments -->
                     {% if comments %}
                     {% for comment in comments %}
-                    <div class="post-preview">
-                        <p class="post-title"> {{ comment.content }} </p>
-                    </div>
+                        {% if comment.status is same as 'accepted' %}
+                            <div class="post-preview">
+                                <p class="post-title"> {{ comment.content }} </p>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                     {% endif %}
                 </div>
