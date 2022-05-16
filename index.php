@@ -14,6 +14,7 @@ use App\Controllers\Blog\PostController;
 use App\Controllers\Home\HomeController;
 use App\Controllers\Home\LoginController;
 use App\Controllers\Home\LogoutController;
+use App\Controllers\Home\ModifyUserStatusController;
 use App\Controllers\Home\SignUpController;
 use App\Controllers\Home\UserController;
 use App\Entity\Comment\Comment;
@@ -81,6 +82,10 @@ $router = new Router(
         "/^\/user\/update\/(\d+)$/" => [
             'methods' => ['GET', 'POST'],
             'controller' => new ModifyUserController()
+        ],
+        "/^\/user\/update\/status\/(\d+)$/" => [
+            'methods' => ['GET', 'POST'],
+            'controller' => new ModifyUserStatusController()
         ],
         "/^\/comment\/(\d+)$/" => [
             'methods' => ['GET', 'POST'],

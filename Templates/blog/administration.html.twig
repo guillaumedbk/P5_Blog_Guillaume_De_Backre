@@ -58,7 +58,7 @@
         <div class="sidebar-heading">
             Interface
         </div>
-        
+
         <!-- Nav Item - Comments -->
         <li class="nav-item active">
             <a class="nav-link" href="#commentaires">
@@ -214,10 +214,14 @@
                                     <tr>
                                         <td>
                                             {% if user.status is same as 'admin' %}
-                                            <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=utilisateur" style="color: black">Rendre Utilisateur</a>
+                                                <form action="/P5_Blog_Guillaume_De_Backre/user/update/status/{{ user.id }}" method="post">
+                                                <button class="btn btn-primary btn-xl" type="submit" value="utilisateur" name="userform">Rendre utilisateur</button>
+                                                </form>
                                             {% endif %}
                                             {% if user.status is same as 'utilisateur' %}
-                                            <a href="?action=modifyStatus&id=<?= $user['id']; ?>&status=admin" style="color: black">Rendre Admin</a>
+                                                <form action="/P5_Blog_Guillaume_De_Backre/user/update/status/{{ user.id }}" method="post">
+                                                    <button class="btn btn-primary btn-xl" type="submit" value="admin" name="userform">Rendre admin</button>
+                                                </form>
                                             {% endif %}
                                         </td>
                                         <td><button class="btn-secondary btn-sm"><a href="user/update/{{ user.id }}" style="color: white">Modifier</a></button></td>
