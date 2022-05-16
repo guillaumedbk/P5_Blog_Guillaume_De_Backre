@@ -39,7 +39,7 @@ class ModifyPostController extends Controller
         //RETRIEVE AND SECURE DATA
         $security = new SecurePostData();
         $securedData = $security->secureData($request->getData());
-        $userId = $request->getSession()['USER']['userId'];
+        $userId = $request->getSession()['USER']->getId();
         $data = array("userId" => $userId, "title" => $securedData['title'], "chapo" => $securedData['chapo'], "content" => $securedData['content']);
         //HYDRATE THE DTO
         $dto = $this->hydrateDto($data, new PostDTO());

@@ -19,11 +19,11 @@ class CommentRepository extends Repository
     }
 
     //CREATE COMMENT
-    public function createComment(CommentDTO $comment): bool
+    public function createComment(Comment $comment): bool
     {
         try {
-            $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO comments(userId, postId, content, publishAt, status) VALUES(?, ?, ?, NOW(), "attente")');
-            return $insertInto->execute([$comment->userId, $comment->postId, $comment->comment]);
+            $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO comments(userId, postId, content, publishAt, status) VALUES(?, ?, ?, ?, ?)');
+            return $insertInto->execute([$comment->getUserId(), $comment->getPostId(), $comment->getContent(), $comment->getPublishAt()->format('Y-m-d H:i:s'), $comment->getStatus()]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");

@@ -18,25 +18,33 @@ class CommentController extends Controller
 
     public function __invoke(Request $request): void
     {
-        //DATA
-        $user = $request->getSession();
-        $userId = $user['USER']['userId'];
-        $postId = $request->getMatches()[1];
-        $content = $request->getData()['comment'];
         //ARRAY OF DATA + SECURE
-        $data = array("userId" => $userId, "postId" => $postId, "comment" => $content);
         $security = new SecurePostData();
-        $securedData = $security->secureData($data);
+        $securedContent = $security->secureData($request->getData());
+
         //HYDRATE THE DTO
-        $dto = $this->hydrateDto($securedData, new CommentDTO());
-        //CHECK DATA VALIDITY
+        $dto = $this->hydrateDto($securedContent, new CommentDTO());
+
+        //CHECK CONTENT VALIDITY
         $validator = new Validator();
         $commentValidator = new CommentAssertMapValidator();
         $this->checkErrors = $validator->validate($commentValidator, $dto);
+
+        //DATA
+        $user = $request->getSession();
+        $userId = $user['USER']->getId();
+        $postId = $request->getMatches()[1];
+        $comment = $securedContent['comment'];
+
+        //NEW COMMENT OBJECT
+        $date = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $data = new Comment($userId, $postId, $comment, $date, 'attente');
+
         //CREATE COMMENT
         if (empty($this->checkErrors)) {
+            //INSERT NEW COMMENT
             $comment = new CommentRepository($this->getDBConnexion());
-            $comment->createComment($dto);
+            $comment->createComment($data);
             header('Location: /P5_Blog_Guillaume_De_Backre/post/'.$postId);
         } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
