@@ -3,6 +3,7 @@
 namespace App\Controllers\Blog;
 
 use App\Controllers\Controller;
+use App\Entity\Post\Post;
 use App\Entity\Post\PostDTO;
 use App\Repository\PostRepository;
 use App\Router\Request;
@@ -51,9 +52,11 @@ class ModifyPostController extends Controller
         $postRepo = new PostRepository($this->getDBConnexion());
         $postId = $request->getMatches()[1];
         $post = $postRepo->findById($postId);
+        //NEW POST
+        $post = new Post($userId, $dto->title, $dto->chapo, $dto->content);
         //CHECK IF USER WHO WHANTS TO MODIFY POST IS THE WHO CREATED IT
         if ($userId === $post->getUserId() && empty($this->checkErrors)){
-            $postRepo->modifyPost($dto, $postId);
+            $postRepo->modifyPost($post, $postId);
             header('Location: /P5_Blog_Guillaume_De_Backre/blog');
         }else{
             $this->checkErrors['Permission'] = ['You\'re not allowed to modify this post'];

@@ -3,6 +3,7 @@
 namespace App\Controllers\Blog;
 
 use App\Controllers\Controller;
+use App\Entity\Post\Post;
 use App\Entity\Post\PostDTO;
 use App\Repository\PostRepository;
 use App\Router\Request;
@@ -34,7 +35,7 @@ class CreatePostController extends Controller
         //RETRIEVE AND SECURE DATA
         $security = new SecurePostData();
         $securedData = $security->secureData($request->getData());
-        $userId = $request->getSession()['USER']['userId'];
+        $userId = $request->getSession()['USER']->getId();
         $data = array("userId" => $userId, "title" => $securedData['title'], "chapo" => $securedData['chapo'], "content" => $securedData['content']);
         //HYDRATE THE DTO
         $dto = $this->hydrateDto($data, new PostDTO());
@@ -43,11 +44,14 @@ class CreatePostController extends Controller
         $postValidator = new PostAssertMapValidator();
         $this->checkErrors = $validator->validate($postValidator, $dto);
         //USER STATUS
-        $userStatus = $request->getSession()['USER']['status'];
+        $userStatus = $request->getSession()['USER']->getStatus();
+        //NEW POST
+        $post = new Post($userId, $dto->title, $dto->chapo, $dto->content);
+
         //CREATE POST
         if (empty($this->checkErrors) && $userStatus === 'admin') {
             $postRepo = new PostRepository($this->getDBConnexion());
-            $postRepo->createPost($dto);
+            $postRepo->createPost($post);
             header('Location: /P5_Blog_Guillaume_De_Backre/blog');
         } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES

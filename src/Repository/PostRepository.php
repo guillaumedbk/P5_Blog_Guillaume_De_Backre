@@ -18,11 +18,11 @@ class PostRepository extends Repository
     }
 
     //CREATE NEW POST
-    public function createPost(PostDTO $post): bool
+    public function createPost(Post $post): bool
     {
         try {
             $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO post (userId, title, chapo, content, lastUpdate) VALUES (?,?,?,?,NOW())');
-            return $insertInto ->execute([$post->userId, $post->title, $post->chapo, $post->content]);
+            return $insertInto ->execute([$post->getUserId(), $post->getTitle(), $post->getChapo(), $post->getContent()]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
@@ -30,14 +30,14 @@ class PostRepository extends Repository
         }
     }
     //MODIFY ONE POST
-    public function modifyPost(PostDTO $post, $id): bool
+    public function modifyPost(Post $post, $id): bool
     {
         $modifyPost = $this->dbConnection->getPDO()->prepare('UPDATE post SET title = :title, chapo = :chapo, content = :content, lastUpdate = NOW() WHERE id = :id');
         try {
             return $modifyPost -> execute([
-                'title' => $post->title,
-                'chapo' => $post->chapo,
-                'content' => $post->content,
+                'title' => $post->getTitle(),
+                'chapo' => $post->getChapo(),
+                'content' => $post->getContent(),
                 'id' => $id]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');
