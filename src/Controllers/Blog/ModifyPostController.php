@@ -27,11 +27,13 @@ class ModifyPostController extends Controller
         $postId = $request->getMatches()[1];
         $postRepo = new PostRepository($this->getDBConnexion());
         $post = $postRepo->findById($postId);
+        $session = $request->getSession();
         //DISPLAY TEMPLATE
         $template = $this->twig->load('blog/modifyPost.html.twig');
         echo $template->render([
             'postId' => $postId,
-            'post' => $post
+            'post' => $post,
+            'session' => $session
         ]);
     }
 

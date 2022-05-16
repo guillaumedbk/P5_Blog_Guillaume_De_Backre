@@ -13,7 +13,7 @@ class DeletePostController extends Controller
     public function __invoke(Request $request): void
     {
         $postId = $request->getMatches()[1];
-        $connectedUser = $request->getSession()['USER']['userId'];
+        $connectedUser = $request->getSession()['USER']->getId();
         $postRepo = new PostRepository($this->getDBConnexion());
         $post = $postRepo->findById($postId);
         $postAuthor = $post->getUserId();

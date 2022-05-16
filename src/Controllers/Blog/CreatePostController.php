@@ -18,16 +18,19 @@ class CreatePostController extends Controller
     public function __invoke(Request $request): void
     {
         if ($request->getMethod() === "GET") {
-            $this->getCreatePostController();
+            $this->getCreatePostController($request);
         } elseif ($request->getMethod() === "POST") {
-            $this->postCreatePostController($request);
+            $this->postCreatePostController();
         }
     }
 
-    public function getCreatePostController(): void
+    public function getCreatePostController($request): void
     {
         $template = $this->twig->load('blog/createPost.html.twig');
-        echo $template->render();
+        $session = $request->getSession();
+        echo $template->render([
+            'session' => $session
+        ]);
     }
 
     public function postCreatePostController($request): void
