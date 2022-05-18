@@ -1,1 +1,94 @@
 {% extends "base.html.twig" %}
+
+{% block body %}
+    <section class="page-section" id="contact">
+        <div class="container">
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Créez votre compte</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+            </div>
+
+            <p class="text-center mt-3">Vous avez déjà un compte ? <a href="connexion">Connectez-vous</a></p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <!-- Registration Form -->
+                    <form action="inscription" method="post" class="needs-validation" novalidate>
+
+                        <!-- Firstname input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" value="{{ dto.firstname }}" required />
+                            <label for="firstname">Prénom</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre Prénom</div>
+                        </div>
+                        {% if checkErrors.firstname %}
+                            {% for key, value in checkErrors.firstname %}
+                                <div class="alert alert-danger" role="alert">
+                                    Firstname : {{ value }} <br>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Name input-->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="{{ dto.name }}" required />
+                            <label for="name">Nom</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre nom</div>
+                        </div>
+                        {% if checkErrors.name %}
+                            {% for key, value in checkErrors.name %}
+                                <div class="alert alert-danger" role="alert">
+                                    Name : {{ value }} <br>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Email input-->
+                        <div class="form-floating mb-3">
+                            <label for="email">Email</label><br />
+                            <input type="email" class="form-control" id="email" name="email" value="{{ dto.email }}" required />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre email correctement</div>
+                        </div>
+                        {% if checkErrors.email %}
+                            {% for key, value in checkErrors.email %}
+                                <div class="alert alert-danger" role="alert">
+                                    Email : {{ value }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Password input-->
+                        <div class="form-floating mb-3">
+                            <label for="password">Choisissez votre mot de passe</label><br />
+                            <input type="password" class="form-control" id="password" name="password" required />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez entrer un mot de passe</div>
+                        </div>
+                        {% if checkErrors.password %}
+                            {% for key, value in checkErrors.password %}
+                                <div class="alert alert-danger" role="alert">
+                                    Password : {{ value }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Bio input-->
+                        <div class="form-floating mb-3">
+                            <label for="content">Biographie</label><br />
+                            <textarea class="form-control" id="bio" name="bio" required>{{ dto.bio }}</textarea>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">Veuillez entrer votre contenu.</div>
+                        </div>
+                        {% if checkErrors.bio %}
+                            {% for key, value in checkErrors.bio %}
+                                <div class="alert alert-danger" role="alert">
+                                    Bio : {{ value }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary btn-xl" type="submit" value="Envoyer">S'inscire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'script.html.twig' %}
+{% endblock %}

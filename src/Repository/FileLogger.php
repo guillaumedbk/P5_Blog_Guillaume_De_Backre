@@ -8,7 +8,7 @@ use Psr\Log\LogLevel;
 
 class FileLogger extends LogLevel implements LoggerInterface
 {
-    const LEVEL = [self::EMERGENCY, self::ALERT, self::CRITICAL, self::ERROR, self::WARNING, self::NOTICE, self::INFO, self::DEBUG];
+    public const LEVEL = [self::EMERGENCY, self::ALERT, self::CRITICAL, self::ERROR, self::WARNING, self::NOTICE, self::INFO, self::DEBUG];
     private $handle;
 
     public function __construct(string $file)

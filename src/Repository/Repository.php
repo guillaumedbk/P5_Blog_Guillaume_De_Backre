@@ -11,7 +11,7 @@ abstract class Repository
 {
     protected DBConnexion $dbConnection;
     protected string $table;
-    private string $entityClass;
+    protected string $entityClass;
 
     public function __construct(DBConnexion $dbConnection, string $table, string $entityClass)
     {

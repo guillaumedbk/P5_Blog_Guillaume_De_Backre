@@ -1,0 +1,65 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <!-- Post creation Section-->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <!-- Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Connectez-vous</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+            </div>
+
+            <p class="text-center mt-3">Vous n'avez pas encore de compte ? <a href="inscription">Inscrivez-vous</a></p>
+            <!-- Connect Section Form-->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <!-- Connect Form -->
+                    <form action="connexion" method="post" class="needs-validation" novalidate>
+                        {% if checkErrors.error %}
+                            {% for key, value in checkErrors.error %}
+                                <div class="alert alert-danger" role="alert">
+                                    Error : {{ value }} <br>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Email input-->
+                        <div class="form-floating mb-3">
+                            <label for="email">Email</label><br />
+                            <input type="email" class="form-control" id="email" name="email" required />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner un Email valide</div>
+                        </div>
+                        {% if checkErrors.email %}
+                            {% for key, value in checkErrors.email %}
+                                <div class="alert alert-danger" role="alert">
+                                    Email : {{ value }} <br>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Password input-->
+                        <div class="form-floating mb-3">
+                            <label for="password">Entrez votre mot de passe</label><br />
+                            <input type="password" class="form-control" id="password" name="password" required />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre mot de passe</div>
+                        </div>
+                        {% if checkErrors.password %}
+                            {% for key, value in checkErrors.password %}
+                                <div class="alert alert-danger" role="alert">
+                                    Password : {{ value }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary btn-xl" type="submit" value="Envoyer">Se connecter</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'script.html.twig' %}
+
+{% endblock %}

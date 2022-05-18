@@ -2,10 +2,14 @@
 
 namespace App\Repository;
 
+use App\Entity\EntityInterface;
 use App\Entity\User\User;
+use App\Entity\User\UserLoginDTO;
+use App\Entity\User\UserSignUpDTO;
 use App\Exceptions\EntityNotFoundException;
 use App\Repository\DBConnexion;
 use Exception;
+use PDO;
 
 class UserRepository extends Repository
 {
@@ -23,7 +27,7 @@ class UserRepository extends Repository
     {
         try {
             $insertInto = $this->dbConnection->getPDO()->prepare('INSERT INTO user (firstname, name, email, status, bio, password) VALUES (?,?,?,?,?,?)');
-            return $insertInto ->execute([$user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(),$user->getPassword()]);
+            return $insertInto ->execute([$user->getFirstname(), $user->getName(), $user->getEmail(), $user->getStatus(), $user->getBio(), $user->getPassword()]);
         } catch (\PDOException $exception) {
             $logger = new FileLogger('logger.log');
             $logger->critical("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
@@ -59,5 +63,38 @@ class UserRepository extends Repository
         } catch (\PDOException $exception) {
             throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
         }
+    }
+
+    //FIND BY EMAIL
+    public function findByEmail(string $email): ?object
+    {
+        $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
+        $req->execute([$email]);
+        $fetch = $req->fetch(PDO::FETCH_ASSOC);
+        if ($fetch === false) {
+            return null;
+        }
+
+        /** @var EntityInterface $entityClass */
+        $entityClass = $this->entityClass;
+        return $entityClass::createFromDb($fetch);
+    }
+    //CHECK IF MAIL EXIST IN DB
+    public function mailExist(string $email): bool
+    {
+        try {
+            $req = $this->dbConnection->getPDO()->prepare("SELECT * FROM {$this->table} WHERE email = ?");
+            $req->execute(array($email));
+            return $req->rowCount();
+        } catch (\PDOException $exception) {
+            throw new \PDOException("The following error has occured: {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+        }
+    }
+    //GET LAST ID
+    public function getId(string $email): array
+    {
+        $req = $this->dbConnection->getPDO()->prepare("SELECT id FROM {$this->table} WHERE email = ?");
+        $req->execute(array($email));
+        return $req->fetch(PDO::FETCH_ASSOC);
     }
 }

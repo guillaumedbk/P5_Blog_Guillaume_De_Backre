@@ -16,8 +16,9 @@ class User implements EntityInterface
     private string $password;
 
     //Constructor
-    public function __construct(string $firstname, string $name, string $email, string $status, string $bio, string $password)
+    public function __construct(?int $id = null, string $firstname, string $name, string $email, string $status, string $bio, string $password)
     {
+        $this->id = $id;
         $this->firstname = $firstname;
         $this->name = $name;
         $this->email = $email;
@@ -29,12 +30,20 @@ class User implements EntityInterface
     //Retrieves the array with the data from the db and returns an object
     public static function createFromDb(array $element): self
     {
-        $user = new User($element['firstname'], $element['name'], $element['email'], $element['status'], $element['bio'], $element['password']);
-        $user->id = $element['id'];
+        $user = new User($element['id'], $element['firstname'], $element['name'], $element['email'], $element['status'], $element['bio'], $element['password']);
         return $user;
     }
 
     //Getters and setters
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getFirstname(): string
     {
         return $this->firstname;
