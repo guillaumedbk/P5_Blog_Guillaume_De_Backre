@@ -18,9 +18,14 @@
                     <form action="inscription" method="post" class="needs-validation" novalidate>
                         <!-- Firstname input-->
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" value="{{ dto.firstname }}" required />
+                            <input class="form-control {% if checkErrors.firstname %}is-invalid{% elseif checkErrors is defined %}is-valid{% endif %}" type="text" id="firstname" name="firstname" placeholder="Prénom" value="{{ dto.firstname }}" required />
                             <label for="firstname">Prénom</label>
                             <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner votre Prénom</div>
+                            {% if checkErrors.firstname %}
+                                {% for key, value in checkErrors.firstname %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         {% if checkErrors.firstname %}
                             {% for key, value in checkErrors.firstname %}

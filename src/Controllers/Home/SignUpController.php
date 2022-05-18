@@ -31,7 +31,7 @@ class SignUpController extends Controller
         //DISPLAY TEMPLATE AND SEND VARIABLES
         $template = $this->twig->load('home/signUp.html.twig');
         echo $template->render([
-            'checkErrors' => $this->checkErrors
+         //   'checkErrors' => $this->checkErrors
         ]);
     }
 
