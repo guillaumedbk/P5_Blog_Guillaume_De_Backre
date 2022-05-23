@@ -18,5 +18,6 @@
   "scripts": {
     "cs-fix": "vendor/bin/php-cs-fixer fix .",
     "phpstan": "vendor/bin/phpstan analyse -l 6 src"
-  }
+  },
+  "license": "proprietary"
 }
