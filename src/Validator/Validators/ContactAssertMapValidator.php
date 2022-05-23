@@ -25,7 +25,6 @@ class ContactAssertMapValidator implements AssertMapValidatorInterface
             ],
             'email' => [
                 new AssertNotBlank(),
-                new AssertLength(5, 40),
                 new AssertEmail(),
             ],
             'message' => [

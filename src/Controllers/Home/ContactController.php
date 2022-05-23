@@ -12,6 +12,7 @@ use App\Validator\Validators\Validator;
 class ContactController extends Controller
 {
     private $checkErrors;
+    private $message;
 
     public function __invoke(Request $request): void
     {
@@ -36,10 +37,28 @@ class ContactController extends Controller
                 'Reply-To' => 'debackre.guillaume@gmail.com',
                 'X-Mailer' => 'PHP/' . phpversion()
             );
-            if(mail($to, $subject, $message, $headers) === true){
-                echo  'votre mail a bien été envoyé';
-            }else{
-                 echo "une erreur est survenue lors de l'envoie du mail";
+
+            $oneUser = new UserRepository($this->getDBConnexion());
+            $theUser = $oneUser->findById(1);
+
+            if (mail($to, $subject, $message, $headers) === true && empty($this->checkErrors)) {
+                $this->message = 'Votre mail a bien été envoyé';
+                //DISPLAY TEMPLATE AND SEND VARIABLES
+                $template = $this->twig->load('home/index.html.twig');
+                echo $template->render([
+                    'checkErrors' => $this->checkErrors,
+                    'message' => $this->message,
+                    'user' => $theUser
+                ]);
+            } else {
+                $this->message = "Une erreur est survenue lors de l'envoie du mail !";
+                //DISPLAY TEMPLATE AND SEND VARIABLES
+                $template = $this->twig->load('home/index.html.twig');
+                echo $template->render([
+                    'checkErrors' => $this->checkErrors,
+                    'message' => $this->message,
+                    'user' => $theUser
+                ]);
             }
         }
     }
