@@ -26,5 +26,4 @@ class AssertEmailUniquess implements AssertInterface
         }
         return null;
     }
-
 }
