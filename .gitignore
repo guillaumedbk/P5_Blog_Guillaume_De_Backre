@@ -1,7 +1,6 @@
-.idea
 vendor
 .env
 .php-cs-fixer
 .php-cs-fixer.cache
 logger.log
-.DS_Store
+
