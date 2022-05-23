@@ -31,7 +31,24 @@ class ContactController extends Controller
             //send email
             $to = 'debackre.guillaume@gmail.com';
             $subject = 'the subject';
-            $message = $securedData->message;
+            $mailContent = '
+                    <html>
+                    
+                        <body>
+                    
+                            <div align="center">
+                              <p>Prénom : '.$securedData->firstname.'</p>  <br />
+                              <p>Nom : '.$securedData->name.' </p> <br />
+                              <p>Message :</p> <br />'.nl2br($securedData->message).' </p> <br />
+                              <p>Email :  '.$securedData->email.'  <br />
+                    
+                            </div>
+                    
+                        </body>
+                    
+                    </html>
+                    ';
+
             $headers = array(
                 'From' => 'debackre.guillaume@gmail.com',
                 'Reply-To' => 'debackre.guillaume@gmail.com',
@@ -41,7 +58,7 @@ class ContactController extends Controller
             $oneUser = new UserRepository($this->getDBConnexion());
             $theUser = $oneUser->findById(1);
 
-            if (mail($to, $subject, $message, $headers) === true && empty($this->checkErrors)) {
+            if (mail($to, $subject, $mailContent, $headers) === true && empty($this->checkErrors)) {
                 $this->message = 'Votre mail a bien été envoyé';
                 //DISPLAY TEMPLATE AND SEND VARIABLES
                 $template = $this->twig->load('home/index.html.twig');
