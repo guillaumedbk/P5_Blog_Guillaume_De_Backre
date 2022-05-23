@@ -56,7 +56,6 @@ class LoginController extends Controller
             header('Location: /P5_Blog_Guillaume_De_Backre/');
         } else {
             $this->checkErrors['error'] = ['Wrong email or password'];
-            var_dump($this->checkErrors);
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('home/login.html.twig');
             echo $template->render([
