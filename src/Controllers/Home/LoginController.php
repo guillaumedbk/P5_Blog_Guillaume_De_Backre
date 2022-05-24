@@ -53,7 +53,7 @@ class LoginController extends Controller
         if ($user !== null && password_verify($dto->password, $user->getPassword())) {
             //NEW SESSION
             new UserSession($user);
-            header('Location: /P5_Blog_Guillaume_De_Backre/');
+            header('Location: /');
         } else {
             $this->checkErrors['error'] = ['Wrong email or password'];
             //DISPLAY TEMPLATE AND SEND VARIABLES

@@ -30,7 +30,7 @@ class CommentController extends Controller
         $id = $request->getMatches()[1];
         $comment = new CommentRepository($this->getDBConnexion());
         $comment->changeStatus($id);
-        header('Location: /P5_Blog_Guillaume_De_Backre/administration');
+        header('Location: /administration');
     }
 
     public function postCommentController(Request $request)
@@ -62,7 +62,7 @@ class CommentController extends Controller
             //INSERT NEW COMMENT
             $comment = new CommentRepository($this->getDBConnexion());
             $comment->createComment($data);
-            header('Location: /P5_Blog_Guillaume_De_Backre/post/'.$postId);
+            header('Location: /post/'.$postId);
         } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('error.html.twig');

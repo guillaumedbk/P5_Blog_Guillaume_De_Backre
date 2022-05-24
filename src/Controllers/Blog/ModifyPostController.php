@@ -59,7 +59,7 @@ class ModifyPostController extends Controller
         //CHECK IF USER WHO WHANTS TO MODIFY POST IS THE WHO CREATED IT
         if ($userId === $post->getUserId() && empty($this->checkErrors)){
             $postRepo->modifyPost($post, $postId);
-            header('Location: /P5_Blog_Guillaume_De_Backre/blog');
+            header('Location: /blog');
         }else{
             $this->checkErrors['Permission'] = ['You\'re not allowed to modify this post'];
             //DISPLAY TEMPLATE AND SEND VARIABLES

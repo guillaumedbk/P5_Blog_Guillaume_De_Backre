@@ -15,7 +15,7 @@
             <div class="col-lg-8 col-xl-7">
                 {% if user %}
                 <!-- * * * * * * * * * * * * * * *-->
-                <form action="/P5_Blog_Guillaume_De_Backre/user/update/{{ user.id }}" method="post">
+                <form action="/user/update/{{ user.id }}" method="post">
                     <!-- Firstname input-->
                     <div class="form-floating mb-3">
                         <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" value="{{ user.firstname }}" required />

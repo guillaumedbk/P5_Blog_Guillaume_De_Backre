@@ -56,7 +56,7 @@ class ModifyUserController extends Controller
             $userRepo = new UserRepository($this->getDBConnexion());
             $user = new User($userId, $dto->firstname, $dto->name, $dto->email, $dto->status, $dto->bio, $dto->password);
             $userRepo->modifyUser($user, $userId);
-            header('Location: /P5_Blog_Guillaume_De_Backre/administration');
+            header('Location: /administration');
         }else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('blog/modifyUser.html.twig');

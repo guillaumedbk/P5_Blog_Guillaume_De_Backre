@@ -57,7 +57,7 @@ class SignUpController extends Controller
                 //NEW SESSION
                 $user->setId($id['id']);
                 new UserSession($user);
-                header('Location: /P5_Blog_Guillaume_De_Backre/');
+                header('Location: /');
             } else {
                 //DISPLAY TEMPLATE AND SEND VARIABLES
                 $template = $this->twig->load('home/signUp.html.twig');

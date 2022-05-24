@@ -20,7 +20,7 @@ class DeletePostController extends Controller
         //CHECK PERMISSION TO DELETE
         if ($postAuthor === $connectedUser){
             $postRepo->deleteById($postId);
-            header('Location: /P5_Blog_Guillaume_De_Backre/blog');
+            header('Location: /blog');
         }else{
             $this->checkErrors['Permission'] = ['You\'re not allowed to modify this post'];
             //DISPLAY TEMPLATE AND SEND VARIABLES

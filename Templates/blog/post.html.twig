@@ -7,8 +7,8 @@
             <h1 class="mb-3">{{ post.title }}</h1>
             <h4 class="mb-3">{{ post.chapo }}</h4>
             {% if session.USER.status is same as 'admin' %}
-            <a class="btn btn-primary" href="/P5_Blog_Guillaume_De_Backre/post/update/{{ postId }}" role="button">Modifier le post</a>
-                <a class="btn btn-primary" href="/P5_Blog_Guillaume_De_Backre/post/delete/{{ postId }}" role="button">Supprimer le post</a>
+            <a class="btn btn-primary" href="/post/update/{{ postId }}" role="button">Modifier le post</a>
+                <a class="btn btn-primary" href="/post/delete/{{ postId }}" role="button">Supprimer le post</a>
             {% endif %}
         </div>
         <!-- Jumbotron -->
@@ -38,7 +38,7 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
 
                     <!-- * * SB Forms Contact Form * *-->
-                    <form action="/P5_Blog_Guillaume_De_Backre/comment/{{ postId }}" method="post">
+                    <form action="/comment/{{ postId }}" method="post">
                         <!-- Titre input-->
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="comment" name="comment" placeholder="Votre commentaire:" required/>

@@ -22,7 +22,7 @@ class DeleteCommentController extends Controller
         //CHECK PERMISSION TO DELETE
         if ($commentAuthor === $connectedUser || $userStatus === 'admin'){
             $commentRepo->deleteById($commentId);
-            header('Location: /P5_Blog_Guillaume_De_Backre/administration');
+            header('Location: /administration');
         }else{
             $this->checkErrors['Permission'] = ['You\'re not allowed to modify this comment'];
             //DISPLAY TEMPLATE AND SEND VARIABLES

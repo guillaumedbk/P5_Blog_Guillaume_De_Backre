@@ -108,8 +108,8 @@ $router = new Router(
 );
 
 try {
-    $url = $_GET['url'];
-    $request = new Request($_SERVER['REQUEST_METHOD'], '/'.$url, $_SESSION, $_POST, $_GET);
+    $url = $_SERVER['REQUEST_URI'];
+    $request = new Request($_SERVER['REQUEST_METHOD'], $url, $_SESSION, $_POST, $_GET);
     $router->execute($request);
 } catch (ControllerNotFoundException $e) {
     echo $e;

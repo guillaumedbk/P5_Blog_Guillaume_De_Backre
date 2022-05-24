@@ -55,7 +55,7 @@ class CreatePostController extends Controller
         if (empty($this->checkErrors) && $userStatus === 'admin') {
             $postRepo = new PostRepository($this->getDBConnexion());
             $postRepo->createPost($post);
-            header('Location: /P5_Blog_Guillaume_De_Backre/blog');
+            header('Location: /blog');
         } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
             $template = $this->twig->load('error.html.twig');
