@@ -31,7 +31,7 @@ class AdministrationController extends Controller
             $user = new UserRepository($this->getDBConnexion());
             $users = $user->all();
 
-            $template = $this->twig->load('blog/administration.html.twig');
+            $template = $this->twig->load('administration/administration.html.twig');
             echo $template->render([
                 'session' => $session,
                 'comments' => $comments,
