@@ -58,9 +58,9 @@ class CreatePostController extends Controller
             header('Location: /blog');
         } else {
             //DISPLAY TEMPLATE AND SEND VARIABLES
-            $template = $this->twig->load('error.html.twig');
+            $template = $this->twig->load('blog/createPost.html.twig');
             echo $template->render([
-                'checkError' => $this->checkErrors
+                'checkErrors' => $this->checkErrors
                 ]);
         }
     }

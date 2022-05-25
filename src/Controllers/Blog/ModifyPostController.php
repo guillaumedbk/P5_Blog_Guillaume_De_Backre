@@ -63,9 +63,9 @@ class ModifyPostController extends Controller
         }else{
             $this->checkErrors['Permission'] = ['You\'re not allowed to modify this post'];
             //DISPLAY TEMPLATE AND SEND VARIABLES
-            $template = $this->twig->load('error.html.twig');
+            $template = $this->twig->load('blog/modifyPost.html.twig');
             echo $template->render([
-                'checkError' => $this->checkErrors
+                'checkErrors' => $this->checkErrors
             ]);
         }
     }
