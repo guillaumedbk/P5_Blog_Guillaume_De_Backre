@@ -19,7 +19,7 @@ abstract class Controller
 
         $this->db = $db;
         //Parameter for the templates folder
-        $this->loader = new FilesystemLoader(ROOT.'/P5_Blog_Guillaume_De_Backre/Templates');
+        $this->loader = new FilesystemLoader(ROOT.'/Templates');
 
         //Twig Environment
         $this->twig = new Environment($this->loader);

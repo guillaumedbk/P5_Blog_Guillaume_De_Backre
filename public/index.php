@@ -1,6 +1,6 @@
 <?php
 
-require_once realpath("vendor/autoload.php");
+require_once realpath("../vendor/autoload.php");
 
 use App\Controllers\Blog\AdministrationController;
 use App\Controllers\Blog\BlogController;
@@ -27,14 +27,16 @@ use App\Repository\UserSession;
 use App\Router\Request;
 use App\Router\Router;
 
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 //Chemin vers la racine du projet
 \define('ROOT', \dirname(__DIR__));
 
 // Loading for .env at the root directory
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 //Router
