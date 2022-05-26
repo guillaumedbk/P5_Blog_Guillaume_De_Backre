@@ -16,8 +16,7 @@ cd Projet-5-PHP-OpenClassrooms
 composer install
 ```
 ## Notes
-You will need to fill in the information for the database in an .env file
-With the following elements:
+You will need to fill in the information for the database in an ".env" file. With the following elements:
 DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD 
 
 ## Code Quality - Symfony Insight
