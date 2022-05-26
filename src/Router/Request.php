@@ -2,6 +2,7 @@
 
 namespace App\Router;
 
+use App\Entity\Comment\Comment;
 use App\Entity\User\User;
 use App\Repository\UserSession;
 

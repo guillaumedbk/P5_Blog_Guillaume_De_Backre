@@ -8,12 +8,12 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading" id="heading">
                         {% if session.LOGGED is same as true %}
-                        <h3>Bonjour {{ session.USER.name }} et bienvenue sur le blog !</h3>
+                        <h3>Bonjour {{ session.USER.firstname }} et bienvenue sur le blog !</h3>
                         <span class="subheading">Découvre nos derniers posts sans plus attendre</span>
                         <br>
-                            {% if session.USER.status is same as 'admin' %}
-                                <button class="btn btn-secondary mt-3"><a href="">Créer un post</a></button>
-                            {% endif %}
+                        {% endif %}
+                        {% if session.USER.status is same as 'admin' %}
+                            <button class="btn btn-secondary mt-3"><a href="/post/create">Créer un post</a></button>
                         {% endif %}
 
                     </div>
@@ -32,10 +32,11 @@
                             {% if posts %}
                             {% for post in posts %}
                             <div class="post-preview">
-                                <a href="">
+                                <a href="post/{{ post.id }}">
                                     <h2 class="post-title"> {{ post.title }} </h2>
-                                    <h3 class="post-subtitle"> {{ post.chapo }} </h3>
                                 </a>
+                                    <h3 class="post-subtitle"> {{ post.chapo }} </h3>
+
                                 <p class="post-meta">
                                     Posté le {{ post.lastUpdate }}
                                 </p>
@@ -49,5 +50,4 @@
                 </div>
         </div>
     </div>
-    </html>
 {% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <header>
+        <!-- Jumbotron -->
+        <div class="p-5 text-center bg-light">
+            <h1 class="mb-3">Modifier le post</h1>
+        </div>
+        <!-- Jumbotron -->
+    </header>
+
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <!-- Registration Form -->
+                    <form action="/post/update/{{ postId }}" method="post">
+                        <!-- Title input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control  {% if checkErrors.title %}is-invalid{% elseif checkErrors is defined %}is-valid{% endif %}" type="text" id="title" name="title" placeholder="Titre du post" value="{{ post.title }}" required />
+                            <label for="firstname">Titre du post</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner un titre valide</div>
+                            {% if checkErrors.title %}
+                                {% for key, value in checkErrors.title %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Chapo input-->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control  {% if checkErrors.chapo %}is-invalid{% elseif checkErrors is defined %}is-valid{% endif %}" id="chapo" name="chapo" placeholder="Châpo" value="{{ post.chapo }}" required />
+                            <label for="name">Chapô</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner un châpo valide</div>
+                            {% if checkErrors.chapo %}
+                                {% for key, value in checkErrors.chapo %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Content input-->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control {% if checkErrors.content %}is-invalid{% elseif checkErrors is defined %}is-valid{% endif %}" id="content" name="content" placeholder="Contenu" value="{{ post.content }}" required />
+                            <label for="name">Contenu</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Veuillez renseigner un contenu valide</div>
+                            {% if checkErrors.content %}
+                                {% for key, value in checkErrors.content %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary btn-xl" type="submit" value="modifier">Modifier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

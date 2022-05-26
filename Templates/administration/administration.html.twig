@@ -1,0 +1,154 @@
+{% extends 'administration/base.html.twig' %}
+
+{% block body %}
+    <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include 'administration/sidebar.html.twig' %}
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                </nav>
+
+                <div class="container-fluid">
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    {% if comments %}
+                        <div class="card shadow mb-4" id="commentaires">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Commentaires en attente de validation</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <!-- Post preview-->
+                                    <table class="table table-bordered" id="dataTable">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Commentaire</th>
+                                            <th>Date de publication:</th>
+                                            <th>Accepter</th>
+                                            <th>Refuser</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for comment in comments  %}
+                                            {% if comment.status is same as 'attente' %}
+                                                <tr>
+                                                    <td>{{ comment.id }}</td>
+                                                    <td>{{ comment.content }}</td>
+                                                    <td>{{ comment.publishAt }}</td>
+                                                    <td><button class="btn-secondary btn-sm"><a href="comment/{{ comment.id }}" style="color: white">Accepter</a></button></td>
+                                                    <td><button class="btn btn-danger btn-sm"><a href="comment/delete/{{ comment.id }}" style="color: white">Refuser</a></button></td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if posts %}
+                        <!-- DataTales -->
+                        <div class="card shadow mb-4" id="posts">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">DataTables Posts</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <!-- Post preview-->
+                                    <table class="table table-bordered" id="dataTable">
+                                        <thead>
+                                        <tr>
+                                            <th>Modifier</th>
+                                            <th>Supprimer</th>
+                                            <th>Id</th>
+                                            <th>Titre</th>
+                                            <th>Chapo</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Author</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for post in posts  %}
+                                            <tr>
+                                                <td><button class="btn-secondary btn-sm"><a href="post/update/{{ post.id }}" style="color: white">Modifier</a></button></td>
+                                                <td><button class="btn btn-danger btn-sm"><a href="post/delete/{{ post.id }}" style="color: white">Supprimer</a></button></td>
+                                                <td>{{ post.id }}</td>
+                                                <td>{{ post.title }}</td>
+                                                <td>{{ post.chapo }}</td>
+                                                <td>{{ post.content }}</td>
+                                                <td>{{ post.lastUpdate }}</td>
+                                                <td>{{ post.userId }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if users %}
+                        <div class="card shadow mb-4" id="users">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">DataTables Users</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <!-- Post preview-->
+                                    <table class="table table-bordered" id="dataTable">
+                                        <thead>
+                                        <tr>
+                                            <th>Modifier status</th>
+                                            <th>Modifier</th>
+                                            <th>Supprimer</th>
+                                            <th>Id</th>
+                                            <th>Prénom</th>
+                                            <th>Nom</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Bio</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in users  %}
+                                            <tr>
+                                                <td>
+                                                    {% if user.status is same as 'admin' %}
+                                                        <form action="/user/update/status/{{ user.id }}" method="post">
+                                                            <button class="btn btn-primary btn-xl" type="submit" value="utilisateur" name="userform">Rendre utilisateur</button>
+                                                        </form>
+                                                    {% endif %}
+                                                    {% if user.status is same as 'utilisateur' %}
+                                                        <form action="/user/update/status/{{ user.id }}" method="post">
+                                                            <button class="btn btn-primary btn-xl" type="submit" value="admin" name="userform">Rendre admin</button>
+                                                        </form>
+                                                    {% endif %}
+                                                </td>
+                                                <td><button class="btn-secondary btn-sm"><a href="user/update/{{ user.id }}" style="color: white">Modifier</a></button></td>
+                                                <td><button class="btn btn-danger btn-sm"><a href="user/delete/{{ user.id }}" style="color: white">Supprimer</a></button></td>
+                                                <td>{{ user.id }}</td>
+                                                <td>{{ user.firstname }}</td>
+                                                <td>{{ user.name }}</td>
+                                                <td>{{ user.email }}</td>
+                                                <td>{{ user.status }}</td>
+                                                <td>{{ user.bio }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% include 'administration/footer.html.twig' %}
+        </div>
+    </div>
+    </body>
+{% endblock %}

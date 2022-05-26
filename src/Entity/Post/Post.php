@@ -25,9 +25,13 @@ class Post implements EntityInterface
     //Retrieves the array with the data from the db and returns an object
     public static function createFromDb(array $element): self
     {
-        $post = new Post($element['userId'], $element['title'], $element['chapo'], $element['content']);
-        $post->id = $element['id'];
-        return $post;
+        try {
+            $post = new Post($element['userId'], $element['title'], $element['chapo'], $element['content']);
+            $post->id = $element['id'];
+            return $post;
+        } catch (\Exception $exception) {
+            throw new \PDOException("The following error has occured:  {$exception->getMessage()} at line: {$exception->getLine()} in file {$exception->getFile()}");
+        }
     }
 
     //Getters and setters

@@ -1,0 +1,71 @@
+ <!-- Contact Section-->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contactez-moi</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+
+            </div>
+            <!-- Contact Section Form-->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <p>Veuillez renseigner vos coordonnées et taper votre message.</p>
+                    <form action="/contact" method="POST">
+                        <!-- Firstname input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control {% if checkErrors.firstname %}is-invalid{% endif %}" type="text" name="firstname" placeholder="Votre prénom" />
+                            <label for="name">Votre prénom</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Un prénom doit être renseigné</div>
+                            {% if checkErrors.firstname %}
+                                {% for key, value in checkErrors.firstname %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Name input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control {% if checkErrors.name %}is-invalid{% endif %}" type="text" name="name" placeholder="Votre nom" />
+                            <label for="name">Votre nom</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Un nom doit être renseigné</div>
+                            {% if checkErrors.name %}
+                                {% for key, value in checkErrors.name %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Email address input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control {% if checkErrors.email %}is-invalid{% endif %}" type="email" name="email" placeholder="Votre email" />
+                            <label for="email">Email address</label>
+                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            {% if checkErrors.email %}
+                                {% for key, value in checkErrors.email %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Textarea-->
+                        <!-- Message input-->
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control {% if checkErrors.message %}is-invalid{% endif %}" name="message" placeholder="Votre message" ></textarea>
+                            <label for="message">Message</label>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">Un message est nécessaire.</div>
+                            {% if checkErrors.message %}
+                                {% for key, value in checkErrors.message %}
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">{{ value }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary btn-xl" type="submit">Envoyer</button>
+                        <p>{{ message }}</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>

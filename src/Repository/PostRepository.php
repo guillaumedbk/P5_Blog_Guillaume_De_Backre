@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post\Post;
+use App\Entity\Post\PostDTO;
 use App\Repository\DBConnexion;
 
 class PostRepository extends Repository
