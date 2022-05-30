@@ -20,7 +20,8 @@ You will need to fill in the information for the database in an ".env" file. Wit
 DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD 
 
 ## Code Quality - Symfony Insight
-https://insight.symfony.com/projects/10117f14-619b-4788-853b-b9e8e9305080/analyses/39
+<img width="498" alt="Capture d’écran 2022-05-26 à 18 12 04" src="https://user-images.githubusercontent.com/83345073/170529024-d0f54a2b-4850-4b8c-a8f4-9ee9cd1a238c.png">
+https://insight.symfony.com/projects/10117f14-619b-4788-853b-b9e8e9305080/analyses/44
 
 ## Context
 The project was to develop a blog. A web site that breaks down into two main groups of pages:
