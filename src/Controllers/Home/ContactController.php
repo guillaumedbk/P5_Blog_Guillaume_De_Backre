@@ -30,17 +30,21 @@ class ContactController extends Controller
 
             //send email
             $to = 'debackre.guillaume@gmail.com';
-            $subject = 'the subject';
+            $subject = 'Nouveau message de '.$securedData->firstname . $securedData->name;
             //mail content
             $template = $this->twig->load('home/mail.html.twig');
             $mailTwig = $template->render([
-                'securedData' => $securedData
+                'firstname' => stripcslashes($securedData->firstname),
+                'name' => stripslashes($securedData->name),
+                'message' => stripslashes($securedData->message),
+                'email' => stripslashes($securedData->email)
             ]);
 
             $headers = array(
                 'From' => 'debackre.guillaume@gmail.com',
                 'Reply-To' => 'debackre.guillaume@gmail.com',
-                'X-Mailer' => 'PHP/' . phpversion()
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Content-type' => 'text/html'
             );
 
             $oneUser = new UserRepository($this->getDBConnexion());
